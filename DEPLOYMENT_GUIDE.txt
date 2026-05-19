@@ -1,0 +1,410 @@
+
+================================================================================
+  Devendra's Shop — CLOTHING STORE WEBSITE
+  COMPLETE SETUP & DEPLOYMENT GUIDE
+  For InfinityFree Free Hosting
+================================================================================
+
+TABLE OF CONTENTS
+─────────────────
+ 1. Project Folder Structure
+ 2. Files Already Created
+ 3. Files You Still Need to Create
+ 4. InfinityFree Account Setup
+ 5. MySQL Database Setup
+ 6. config.php — How to Fill It
+ 7. Upload Files via FileZilla (FTP)
+ 8. Upload Files via File Manager
+ 9. Import the SQL Database
+10. Test Your Website
+11. Common Errors & Fixes
+12. Security Checklist
+13. Optimization Tips
+
+================================================================================
+1. PROJECT FOLDER STRUCTURE
+================================================================================
+
+clothing-store/
+│
+├── config.php                  ← Database config (edit this first!)
+├── index.php                   ← Homepage
+│
+├── includes/
+│   ├── db.php                  ← PDO database connection
+│   ├── functions.php           ← Helper functions (cart, auth, etc.)
+│   ├── header.php              ← Navbar (included on every page)
+│   └── footer.php              ← Footer (included on every page)
+│
+├── assets/
+│   ├── css/
+│   │   ├── style.css           ← Main stylesheet
+│   │   └── admin.css           ← Admin panel styles
+│   ├── js/
+│   │   ├── main.js             ← Main JavaScript
+│   │   └── admin.js            ← Admin JavaScript
+│   └── images/
+│       ├── products/           ← Product placeholder images
+│       └── banners/            ← Hero banner images
+│
+├── pages/
+│   ├── shop.php                ← Product listing page
+│   ├── product.php             ← Single product detail page
+│   ├── collections.php         ← Collections page
+│   ├── about.php               ← About us page
+│   ├── contact.php             ← Contact form page
+│   ├── account.php             ← User account page
+│   ├── orders.php              ← Order history page
+│   └── newsletter.php          ← Newsletter handler
+│
+├── cart/
+│   ├── cart.php                ← Shopping cart page
+│   ├── checkout.php            ← Checkout page
+│   └── cart_actions.php        ← AJAX cart handler
+│
+├── auth/
+│   ├── login.php               ← Login page
+│   ├── register.php            ← Registration page
+│   └── logout.php              ← Logout handler
+│
+├── admin/
+│   ├── index.php               ← Admin dashboard
+│   ├── products.php            ← Manage products
+│   ├── orders.php              ← Manage orders
+│   ├── users.php               ← Manage users
+│   ├── includes/
+│   │   ├── admin_header.php    ← Admin navbar/sidebar
+│   │   └── admin_footer.php    ← Admin footer
+│   └── actions/
+│       ├── add_product.php     ← Add product handler
+│       ├── edit_product.php    ← Edit product handler
+│       └── delete_product.php  ← Delete product handler
+│
+├── uploads/
+│   └── products/               ← Uploaded product images go here
+│
+└── database/
+    └── schema.sql              ← Full database schema + demo data
+
+
+================================================================================
+2. FILES ALREADY CREATED (Done ✓)
+================================================================================
+
+  ✓ config.php
+  ✓ includes/db.php
+  ✓ includes/functions.php
+  ✓ includes/header.php
+  ✓ includes/footer.php
+
+
+================================================================================
+3. FILES STILL TO CREATE (Remaining)
+================================================================================
+
+  → assets/css/style.css          (main styles)
+  → assets/css/admin.css          (admin styles)
+  → assets/js/main.js             (navbar, cart, slider JS)
+  → assets/js/admin.js            (admin panel JS)
+  → index.php                     (homepage with hero + sections)
+  → pages/shop.php                (product listing + filters)
+  → pages/product.php             (product detail page)
+  → pages/collections.php
+  → pages/about.php
+  → pages/contact.php
+  → cart/cart.php
+  → cart/checkout.php
+  → cart/cart_actions.php
+  → auth/login.php
+  → auth/register.php
+  → auth/logout.php
+  → admin/index.php
+  → admin/products.php
+  → admin/orders.php
+  → admin/includes/admin_header.php
+  → admin/actions/add_product.php
+  → admin/actions/edit_product.php
+  → admin/actions/delete_product.php
+  → database/schema.sql
+
+  NOTE: Ask the AI to generate these one at a time or in small groups.
+
+
+================================================================================
+4. INFINITYFREE ACCOUNT SETUP
+================================================================================
+
+STEP 1 — Sign Up
+  • Go to: https://www.infinityfree.com
+  • Click "Get Free Hosting"
+  • Create a free account (email + password)
+  • Verify your email
+
+STEP 2 — Create a Hosting Account
+  • After login, click "New Account"
+  • Choose a free subdomain like: devendras.rf.gd
+    OR use your own domain (requires DNS setup)
+  • Set a password for your hosting account
+  • Click "Create Account"
+  • Wait ~10 minutes for account to activate
+
+STEP 3 — Control Panel (cpanel)
+  • Go to your InfinityFree dashboard
+  • Click "Go to Control Panel" for your hosting account
+  • This opens the InfinityFree cPanel
+
+
+================================================================================
+5. MYSQL DATABASE SETUP
+================================================================================
+
+STEP 1 — Create a Database
+  • In cPanel, find "MySQL Databases"
+  • Under "Create New Database", type a name e.g. clothingstore
+  • Full name will be: if0_XXXXXXX_clothingstore
+  • Click "Create Database"
+
+STEP 2 — Create a Database User
+  • Scroll down to "MySQL Users"
+  • Enter a username e.g. luxeuser
+  • Set a strong password
+  • Click "Create User"
+  • Write down the username (if0_XXXXXXX_luxeuser)
+
+STEP 3 — Link User to Database
+  • Scroll to "Add User to Database"
+  • Select your user and database
+  • Click "Add"
+  • On next screen, click "ALL PRIVILEGES" then "Make Changes"
+
+STEP 4 — Note Your DB Host
+  • Go back to cPanel main page
+  • Look for "MySQL Databases" or check welcome email
+  • Host is something like: sql309.infinityfree.com
+  • Write it down — you need it in config.php
+
+
+================================================================================
+6. CONFIG.PHP — HOW TO FILL IT
+================================================================================
+
+Open: clothing-store/config.php
+
+Change these lines with YOUR real values:
+
+  define('DB_HOST', 'sql309.infinityfree.com');   // Your MySQL host
+  define('DB_NAME', 'if0_12345678_clothingstore'); // Your database name
+  define('DB_USER', 'if0_12345678_luxeuser');      // Your DB username
+  define('DB_PASS', 'YourStrongPassword123');       // Your DB password
+
+  define('SITE_URL', 'https://devendras.rf.gd');    // Your site URL (no trailing slash)
+  define('DEBUG_MODE', false);                      // Keep false on live site!
+
+IMPORTANT: Never share config.php publicly. Never upload it to GitHub.
+
+
+================================================================================
+7. UPLOAD FILES VIA FILEZILLA (FTP)
+================================================================================
+
+STEP 1 — Install FileZilla
+  • Download free from: https://filezilla-project.org
+
+STEP 2 — Get FTP Credentials
+  • In InfinityFree cPanel, find "FTP Accounts"
+  • Note the FTP host, username, and password
+  • Port is usually 21
+
+STEP 3 — Connect in FileZilla
+  • Open FileZilla
+  • Host: your FTP host (e.g. ftpupload.net)
+  • Username: your FTP username
+  • Password: your FTP password
+  • Port: 21
+  • Click "Quickconnect"
+
+STEP 4 — Upload Files
+  • On the right panel, navigate to: /htdocs/
+  • On the left panel, find your clothing-store/ folder
+  • Select ALL files inside clothing-store/
+  • Drag them to the right panel into /htdocs/
+  • Wait for upload to complete
+
+
+================================================================================
+8. UPLOAD FILES VIA FILE MANAGER (No FTP needed)
+================================================================================
+
+STEP 1 — Open File Manager
+  • In InfinityFree cPanel, click "Online File Manager"
+
+STEP 2 — Navigate to htdocs
+  • Click on the "htdocs" folder
+
+STEP 3 — Upload
+  • Click "Upload" button at the top
+  • Select all your project files
+  • Wait for upload
+  • For folders: zip your project first, upload the zip,
+    then right-click and "Extract" inside File Manager
+
+  HOW TO ZIP (Windows):
+  • Right-click your clothing-store folder
+  • "Send to" → "Compressed (zipped) folder"
+  • Upload that zip file
+
+
+================================================================================
+9. IMPORT THE SQL DATABASE
+================================================================================
+
+STEP 1 — Open phpMyAdmin
+  • In InfinityFree cPanel, click "phpMyAdmin"
+  • Select your database from the left panel
+
+STEP 2 — Import SQL File
+  • Click the "Import" tab at the top
+  • Click "Choose File"
+  • Select: clothing-store/database/schema.sql
+  • Click "Go" at the bottom
+
+STEP 3 — Verify
+  • You should see tables like:
+    users, products, categories, orders, order_items,
+    cart, reviews, newsletter_subscribers
+  • Click each table and verify demo data is there
+
+
+================================================================================
+10. TEST YOUR WEBSITE
+================================================================================
+
+  1. Visit your domain: https://devendras.rf.gd
+  2. Homepage should load with products
+  3. Test registration: /auth/register.php
+  4. Test login: /auth/login.php
+  5. Browse products: /pages/shop.php
+  6. Add to cart → view cart → checkout
+  7. Test admin panel: /admin/index.php
+     (Login with admin@devendras.com / Admin@1234)
+  8. Try adding/editing/deleting a product
+
+
+================================================================================
+11. COMMON ERRORS & FIXES
+================================================================================
+
+ERROR: "Database Connection Failed"
+  FIX: Check config.php DB_HOST, DB_NAME, DB_USER, DB_PASS
+       Make sure the DB user is linked to the database
+
+ERROR: "404 Not Found" on pages
+  FIX: Make sure files are inside /htdocs/ not outside
+       Check SITE_URL in config.php has no trailing slash
+
+ERROR: White blank page
+  FIX: Temporarily set DEBUG_MODE to true in config.php
+       Check PHP error in browser, fix it, then set back to false
+
+ERROR: Images not showing
+  FIX: Check that uploads/ folder exists and is writable
+       Check UPLOAD_DIR path in config.php
+
+ERROR: "Permission denied" on uploads
+  FIX: In File Manager, right-click uploads/products/
+       Choose "Change Permissions" → set to 755
+
+ERROR: Session/Login not working
+  FIX: InfinityFree supports PHP sessions. If issues:
+       Add session_save_path('/tmp') at top of config.php
+
+ERROR: .htaccess issues
+  FIX: InfinityFree supports .htaccess. Create one in /htdocs/:
+       Options -Indexes
+       DirectoryIndex index.php
+
+ERROR: "Call to undefined function" errors
+  FIX: Make sure require_once paths are correct
+       All includes use __DIR__ which is safe
+
+ERROR: Form submissions not working
+  FIX: Check CSRF token is in the form
+       Make sure form action URL is correct
+
+
+================================================================================
+12. SECURITY CHECKLIST
+================================================================================
+
+  ✓ config.php has real DB credentials (never share)
+  ✓ DEBUG_MODE = false on live site
+  ✓ All queries use PDO prepared statements (already done in db.php)
+  ✓ Passwords are hashed with password_hash() (done in auth files)
+  ✓ Admin panel checks isAdmin() on every page
+  ✓ CSRF token on all forms
+  ✓ File uploads validate type and size
+  ✓ User inputs are sanitized with e() / htmlspecialchars()
+  ✓ session_name() set to custom name (done in functions.php)
+
+  OPTIONAL EXTRAS:
+  • Add .htaccess to block direct access to includes/:
+      deny from all
+  • Add rate limiting on login form (limit 5 tries)
+  • Enable HTTPS in InfinityFree cPanel → SSL/TLS
+
+
+================================================================================
+13. OPTIMIZATION TIPS
+================================================================================
+
+PERFORMANCE:
+  • Use placeholder images from picsum.photos or unsplash until you have real ones
+  • Keep CSS in one file (style.css) — already done
+  • Minify CSS/JS before going live (use: https://minifycode.com)
+  • Use WebP format for all product images
+  • Compress images before upload (use: https://squoosh.app)
+
+SEO:
+  • Each page has unique <title> and <meta description>
+  • Use <h1> only once per page
+  • Add alt text to all images
+  • Keep URL structure clean
+
+MOBILE:
+  • All CSS uses mobile-first media queries
+  • Navbar has hamburger menu for mobile
+  • Test on actual phone using your live URL
+
+FREE HOSTING LIMITS (InfinityFree):
+  • 5 GB storage
+  • No Node.js / no npm
+  • PHP 7.4+ supported
+  • MySQL 5+ supported
+  • 50,000 hits/day limit
+  • No shell/SSH access
+  • Upload max file size: usually 10MB per file
+
+
+================================================================================
+  ADMIN CREDENTIALS (Default — CHANGE AFTER FIRST LOGIN!)
+================================================================================
+
+  URL:      https://yourdomain.com/admin/index.php
+  Email:    admin@devendras.com
+  Password: Admin@1234
+
+  !! CHANGE THESE IMMEDIATELY after your first login !!
+
+
+================================================================================
+  SUPPORT & REFERENCES
+================================================================================
+
+  InfinityFree Help:    https://support.infinityfree.com
+  phpMyAdmin Docs:      https://www.phpmyadmin.net/docs/
+  PHP Manual:           https://www.php.net/manual/
+  FileZilla Guide:      https://wiki.filezilla-project.org
+
+================================================================================
+  END OF GUIDE — Devendra's Shop v1.0
+================================================================================
