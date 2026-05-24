@@ -2,7 +2,7 @@
 // admin/orders.php
 $pageTitle = 'Orders';
 include __DIR__ . '/includes/admin_header.php';
-$orders = dbFetchAll("SELECT * FROM orders ORDER BY created_at DESC");
+$orders = dbFetchAll("SELECT id, order_number, shipping_name, shipping_email, shipping_phone, shipping_address, shipping_city, shipping_pincode, total_amount, payment_method, payment_status, status, created_at FROM orders ORDER BY created_at DESC LIMIT 100");
 
 if (isset($_GET['update_status']) && isset($_GET['id']) && isset($_GET['status'])) {
     $allowed = ['pending','processing','shipped','delivered','cancelled','refunded'];

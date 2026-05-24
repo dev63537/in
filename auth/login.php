@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!$email || !$password) {
             $error = 'Please fill in all fields.';
         } else {
-            $user = dbFetchOne("SELECT * FROM users WHERE email = ? AND status = 'active'", [$email]);
+            $user = dbFetchOne("SELECT id, name, email, password, role FROM users WHERE email = ? AND status = 'active'", [$email]);
             if ($user && password_verify($password, $user['password'])) {
                 $_SESSION['user_id']   = $user['id'];
                 $_SESSION['user_name'] = $user['name'];

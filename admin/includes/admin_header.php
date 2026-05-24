@@ -9,9 +9,11 @@ $currentAdmin = basename($_SERVER['PHP_SELF']);
 <html lang="en">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title><?= e($pageTitle ?? "Admin \u2014 Devendra's Shop") ?></title>
+  <title><?= e($pageTitle ?? "Admin — Devendra's Shop") ?></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin/>
   <link rel="stylesheet" href="<?= SITE_URL ?>/assets/css/style.css"/>
 </head>
 <body>

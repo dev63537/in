@@ -6,7 +6,7 @@ if (!$id) { redirect(SITE_URL . '/pages/shop.php'); }
 $product = dbFetchOne("SELECT p.*,c.name AS category_name FROM products p LEFT JOIN categories c ON p.category_id=c.id WHERE p.id=? AND p.status='active'", [$id]);
 if (!$product) { redirect(SITE_URL . '/pages/shop.php'); }
 
-$reviews  = dbFetchAll("SELECT * FROM reviews WHERE product_id=? AND status='approved' ORDER BY id DESC", [$id]);
+$reviews  = dbFetchAll("SELECT id, reviewer_name, rating, comment, created_at FROM reviews WHERE product_id=? AND status='approved' ORDER BY id DESC LIMIT 20", [$id]);
 $avgRating = count($reviews) ? round(array_sum(array_column($reviews,'rating'))/count($reviews),1) : 0;
 $related  = getProducts(4,0,['category_id'=>$product['category_id']]);
 

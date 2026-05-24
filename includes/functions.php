@@ -193,7 +193,7 @@ function getProducts($limit = 12, $offset = 0, $filters = []) {
 
 // Get categories
 function getCategories() {
-    return dbFetchAll("SELECT * FROM categories WHERE status = 'active' ORDER BY sort_order, name");
+    return dbFetchAll("SELECT id, name, slug FROM categories WHERE status = 'active' ORDER BY sort_order, name");
 }
 
 // Upload image helper

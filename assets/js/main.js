@@ -222,4 +222,15 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // ── Mobile shop filter toggle
+  const filterToggle  = document.getElementById('filter-toggle');
+  const shopSidebar   = document.getElementById('shop-sidebar');
+  if (filterToggle && shopSidebar) {
+    // Show button only on mobile (CSS hides it on desktop)
+    filterToggle.style.display = '';
+    filterToggle.addEventListener('click', () => {
+      shopSidebar.classList.toggle('open');
+    });
+  }
+
 });

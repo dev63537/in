@@ -34,8 +34,14 @@ include __DIR__ . '/../includes/header.php';
 <div class="container">
   <div class="shop-layout">
 
+  <!-- Mobile Filter Toggle -->
+  <button class="btn btn-outline shop-sidebar-toggle" id="filter-toggle"
+          style="display:none;width:100%;margin-bottom:16px;justify-content:center">
+    <i class="fa fa-sliders-h"></i> Show / Hide Filters
+  </button>
+
     <!-- SIDEBAR -->
-    <aside class="shop-sidebar">
+    <aside class="shop-sidebar" id="shop-sidebar">
       <form method="GET" action="" id="filter-form">
         <div class="sidebar-section">
           <div class="sidebar-title">Categories</div>

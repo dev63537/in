@@ -2,7 +2,7 @@
 // admin/users.php
 $pageTitle = 'Customers';
 include __DIR__ . '/includes/admin_header.php';
-$users = dbFetchAll("SELECT * FROM users WHERE role='customer' ORDER BY id DESC");
+$users = dbFetchAll("SELECT id, name, email, role, status, created_at FROM users WHERE role='customer' ORDER BY id DESC LIMIT 200");
 ?>
 <div class="admin-card">
   <div class="admin-card-header"><h3>All Customers (<?= count($users) ?>)</h3></div>
