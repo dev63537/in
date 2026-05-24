@@ -88,14 +88,6 @@
           <li><i class="fa fa-envelope"></i> <?= SITE_EMAIL ?></li>
           <li><i class="fa fa-clock"></i> Mon–Sat: 10:00 AM – 7:00 PM</li>
         </ul>
-        <!-- Payment Icons -->
-        <div class="payment-icons">
-          <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" title="Visa" />
-          <img src="https://img.icons8.com/color/48/mastercard-logo.png" alt="Mastercard" title="Mastercard" />
-          <img src="https://img.icons8.com/color/48/rupay.png" alt="RuPay" title="RuPay" />
-          <img src="https://img.icons8.com/color/48/upi-logo.png" alt="UPI" title="UPI" />
-        </div>
-      </div>
 
     </div><!-- /footer-grid -->
   </div><!-- /container -->
