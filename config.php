@@ -10,7 +10,7 @@ define('DB_USER', 'if0_41941799');    // e.g. if0_123456789
 define('DB_PASS', 'KGmQJFj1LOz8iNK');
 
 define('SITE_NAME', "Devendra's Shop");
-define('SITE_URL', 'http://devenra-s.great-site.net'); // NO trailing slash
+define('SITE_URL', 'https://devenra-s.great-site.net'); // NO trailing slash
 define('SITE_EMAIL', 'info@devendras.com');
 define('CURRENCY', '₹');
 define('CURRENCY_CODE', 'INR');
