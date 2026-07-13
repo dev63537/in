@@ -14,8 +14,7 @@ include __DIR__ . '/includes/header.php';
 
 <!-- ===== HERO SLIDER ===== -->
 <section class="hero">
-  <!-- Slide 1: Women's Fashion -->
-  <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1600')">
+  <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600')">
     <div class="container hero-content">
       <span class="hero-tag">New Collection 2025</span>
       <h1 class="hero-title">Define Your<br><span>Style Story</span></h1>
@@ -26,8 +25,7 @@ include __DIR__ . '/includes/header.php';
       </div>
     </div>
   </div>
-  <!-- Slide 2: Ethnic / Sarees -->
-  <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=1600')">
+  <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1600')">
     <div class="container hero-content">
       <span class="hero-tag">Ethnic Wear</span>
       <h1 class="hero-title">Tradition Meets<br><span>Modern Grace</span></h1>
@@ -38,8 +36,7 @@ include __DIR__ . '/includes/header.php';
       </div>
     </div>
   </div>
-  <!-- Slide 3: Men's Fashion -->
-  <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1617137968427-85924c800a22?w=1600')">
+  <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1600')">
     <div class="container hero-content">
       <span class="hero-tag">Men's Edit</span>
       <h1 class="hero-title">Dress Sharp.<br><span>Live Bold.</span></h1>
@@ -58,7 +55,6 @@ include __DIR__ . '/includes/header.php';
     <button class="hero-dot"></button>
   </div>
 </section>
-
 
 <!-- ===== FEATURES STRIP ===== -->
 <section class="features-strip">
@@ -84,42 +80,7 @@ include __DIR__ . '/includes/header.php';
   </div>
 </section>
 
-<!-- ===== SHOP BY GENDER ===== -->
-<section class="section" style="padding:60px 0">
-  <div class="container">
-    <div class="section-header animate-on-scroll">
-      <h2>Shop by Gender</h2>
-      <p>Fashion curated for every member of your family</p>
-    </div>
-    <div class="gender-grid">
-      <a href="<?= SITE_URL ?>/pages/shop.php?gender=women" class="gender-card animate-on-scroll">
-        <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=700" alt="Women's Fashion" loading="lazy" />
-        <div class="gender-overlay">
-          <div class="gender-label">Women's</div>
-          <div class="gender-sub">Kurtas, Sarees, Dresses & more</div>
-          <span class="gender-btn">Shop Now <i class="fa fa-arrow-right"></i></span>
-        </div>
-      </a>
-      <a href="<?= SITE_URL ?>/pages/shop.php?gender=men" class="gender-card animate-on-scroll">
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700" alt="Men's Fashion" loading="lazy" />
-        <div class="gender-overlay">
-          <div class="gender-label">Men's</div>
-          <div class="gender-sub">Shirts, Trousers, Kurtas & more</div>
-          <span class="gender-btn">Shop Now <i class="fa fa-arrow-right"></i></span>
-        </div>
-      </a>
-      <a href="<?= SITE_URL ?>/pages/shop.php?gender=kids" class="gender-card animate-on-scroll">
-        <img src="https://images.unsplash.com/photo-1543946207-39bd91e70ca7?w=700" alt="Kids Fashion" loading="lazy" />
-        <div class="gender-overlay">
-          <div class="gender-label">Kids'</div>
-          <div class="gender-sub">Cute & comfy styles for little ones</div>
-          <span class="gender-btn">Shop Now <i class="fa fa-arrow-right"></i></span>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
+<!-- ===== CATEGORIES ===== -->
 <section class="section section-light">
   <div class="container">
     <div class="section-header animate-on-scroll">
@@ -252,24 +213,6 @@ include __DIR__ . '/includes/header.php';
     </div>
   </div>
 </section>
-
-<!-- ===== BRAND LOGOS ===== -->
-<?php 
-$homeBrands = dbFetchAll("SELECT id, name FROM brands WHERE status='active' ORDER BY name LIMIT 6");
-if (!empty($homeBrands)): 
-?>
-<section class="brand-strip" style="background:#faf8f5; padding:30px 0; border-top: 1px solid #f0ece6; border-bottom: 1px solid #f0ece6;">
-  <div class="container">
-    <div class="brand-flex" style="display:flex; justify-content:space-around; align-items:center; flex-wrap:wrap; gap:30px;">
-      <?php foreach ($homeBrands as $b): ?>
-        <div class="brand-item" style="font-family:'Outfit', sans-serif; font-size:1.3rem; font-weight:700; color:#c9a96e; letter-spacing:3px; text-transform:uppercase; transition:all 0.3s; opacity:0.65; cursor:default;" onmouseover="this.style.opacity=1; this.style.transform='scale(1.05)';" onmouseout="this.style.opacity=0.65; this.style.transform='scale(1)';">
-          <?= e($b['name']) ?>
-        </div>
-      <?php endforeach; ?>
-    </div>
-  </div>
-</section>
-<?php endif; ?>
 
 <!-- ===== TESTIMONIALS ===== -->
 <section class="section">

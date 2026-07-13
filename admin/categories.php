@@ -55,7 +55,7 @@ if ($action === 'editform' && $catId) {
 
 $categories = dbFetchAll("SELECT c.*, COUNT(p.id) AS product_count FROM categories c LEFT JOIN products p ON p.category_id=c.id GROUP BY c.id ORDER BY c.sort_order, c.name");
 
-include __DIR__ . '/includes/admin_header.php';
+include __DIR__ . '/../includes/admin_header.php';
 ?>
 
 <!-- Page Header -->
@@ -152,4 +152,4 @@ function toggleForm() {
   w.style.display = w.style.display === 'none' ? '' : 'none';
 }
 </script>
-<?php require_once __DIR__ . '/includes/admin_footer.php'; ?>
+<?php require_once __DIR__ . '/../includes/admin_footer.php'; ?>

@@ -155,12 +155,7 @@ $stats = dbFetchOne("SELECT
           if ($p['stock'] == 0) $stockClass = 'stock-out';
           elseif ($p['stock'] <= ($p['low_stock_alert'] ?? 5)) $stockClass = 'stock-low';
         ?>
-        <?php
-          $rowBg = '';
-          if ($p['stock'] == 0) $rowBg = 'background:#fdecea';
-          elseif ($p['stock'] <= ($p['low_stock_alert'] ?? 5)) $rowBg = 'background:#fff8e1';
-        ?>
-        <tr style="<?= $rowBg ?>">
+        <tr>
           <td><input type="checkbox" class="row-check" value="<?= $p['id'] ?>"/></td>
           <td>
             <img src="<?= e($p['image'] ?? '') ?>" alt="<?= e($p['name']) ?>"

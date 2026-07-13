@@ -4,8 +4,6 @@ require_once __DIR__ . '/../../includes/functions.php';
 startSession(); requireAdmin();
 $adminUser = $_SESSION['user_name'] ?? 'Admin';
 $currentAdmin = basename($_SERVER['PHP_SELF']);
-// Low-stock + out-of-stock count for sidebar badge
-$_lowStockCount = (int)(dbFetchOne("SELECT COUNT(*) AS c FROM products WHERE stock <= COALESCE(low_stock_alert,5)")['c'] ?? 0);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,14 +30,8 @@ $_lowStockCount = (int)(dbFetchOne("SELECT COUNT(*) AS c FROM products WHERE sto
     <a href="<?= SITE_URL ?>/admin/index.php" class="admin-nav-item <?= $currentAdmin==='index.php'?'active':'' ?>">
       <i class="fa fa-chart-line"></i> Dashboard
     </a>
-    <a href="<?= SITE_URL ?>/admin/products.php" class="admin-nav-item <?= $currentAdmin==='products.php'?'active':'' ?>" style="display:flex;align-items:center">
+    <a href="<?= SITE_URL ?>/admin/products.php" class="admin-nav-item <?= $currentAdmin==='products.php'?'active':'' ?>">
       <i class="fa fa-box"></i> Products
-      <?php if ($_lowStockCount > 0): ?>
-      <span style="background:#e74c3c;color:#fff;border-radius:50px;font-size:.65rem;padding:1px 7px;margin-left:auto"><?= $_lowStockCount ?></span>
-      <?php endif; ?>
-    </a>
-    <a href="<?= SITE_URL ?>/admin/import_products.php" class="admin-nav-item <?= $currentAdmin==='import_products.php'?'active':'' ?>">
-      <i class="fa fa-file-csv"></i> Import CSV
     </a>
     <a href="<?= SITE_URL ?>/admin/orders.php" class="admin-nav-item <?= $currentAdmin==='orders.php'?'active':'' ?>">
       <i class="fa fa-shopping-cart"></i> Orders

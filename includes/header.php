@@ -19,15 +19,6 @@ $currentPage = basename($_SERVER['PHP_SELF']);
   <meta name="theme-color" content="#0f0f0f" />
   <title><?= e($pageTitle ?? "Devendra's Shop — Premium Fashion") ?></title>
 
-  <!-- Open Graph / Social Sharing -->
-  <meta property="og:type"        content="website" />
-  <meta property="og:title"       content="<?= e($pageTitle ?? "Devendra's Shop — Premium Fashion") ?>" />
-  <meta property="og:description" content="<?= e($metaDesc ?? "Shop premium fashion at Devendra's Shop.") ?>" />
-  <meta property="og:image"       content="<?= isset($ogImage) ? e($ogImage) : SITE_URL.'/assets/images/og-default.jpg' ?>" />
-  <meta property="og:url"         content="<?= e(SITE_URL . $_SERVER['REQUEST_URI']) ?>" />
-  <meta property="og:site_name"   content="Devendra's Shop" />
-  <meta name="twitter:card"       content="summary_large_image" />
-
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -128,64 +119,12 @@ $currentPage = basename($_SERVER['PHP_SELF']);
   <!-- Search Bar -->
   <div class="search-bar" id="search-bar">
     <form action="<?= SITE_URL ?>/pages/shop.php" method="GET" class="search-form">
-      <div class="search-suggest-wrap">
-        <input type="text" name="search" placeholder="Search for clothes, styles, brands…" autocomplete="off"
-               value="<?= e($_GET['search'] ?? '') ?>" id="search-input" />
-        <div class="search-suggest-dropdown" id="search-suggest-dropdown"></div>
-      </div>
+      <input type="text" name="search" placeholder="Search for clothes, styles, brands…" autocomplete="off"
+             value="<?= e($_GET['search'] ?? '') ?>" id="search-input" />
       <button type="submit"><i class="fa fa-search"></i> Search</button>
     </form>
     <button class="search-close" id="search-close"><i class="fa fa-times"></i></button>
   </div>
-
-  <script>
-  (function(){
-    var inp   = document.getElementById('search-input');
-    var drop  = document.getElementById('search-suggest-dropdown');
-    var timer = null;
-    if(!inp||!drop) return;
-
-    function fmtPrice(n){ return '\u20b9' + parseFloat(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,','); }
-
-    function showDropdown(results){
-      if(!results.length){ drop.innerHTML=''; drop.classList.remove('open'); return; }
-      var html = '';
-      results.forEach(function(p){
-        var href = (window.SITE_URL||'') + '/pages/product.php?id=' + p.id;
-        html += '<a href="' + href + '" class="ss-item">' +
-          '<img src="' + p.image + '" alt="' + p.name + '" class="ss-thumb"/>' +
-          '<div class="ss-info">' +
-            '<span class="ss-name">' + p.name + '</span>' +
-            '<span class="ss-cat">' + (p.category_name||'') + '</span>' +
-          '</div>' +
-          '<span class="ss-price">' + fmtPrice(p.price) + '</span>' +
-        '</a>';
-      });
-      html += '<a href="' + (window.SITE_URL||'') + '/pages/shop.php?search=' + encodeURIComponent(inp.value) + '" class="ss-view-all">View all results <i class="fa fa-arrow-right"></i></a>';
-      drop.innerHTML = html;
-      drop.classList.add('open');
-    }
-
-    inp.addEventListener('keyup', function(e){
-      if(e.key==='Escape'){ drop.innerHTML=''; drop.classList.remove('open'); return; }
-      clearTimeout(timer);
-      var q = inp.value.trim();
-      if(q.length < 2){ drop.innerHTML=''; drop.classList.remove('open'); return; }
-      timer = setTimeout(function(){
-        fetch((window.SITE_URL||'') + '/pages/search_suggest.php?q=' + encodeURIComponent(q))
-          .then(function(r){ return r.json(); })
-          .then(showDropdown)
-          .catch(function(){}); 
-      }, 300);
-    });
-
-    document.addEventListener('click', function(e){
-      if(!inp.contains(e.target) && !drop.contains(e.target)){
-        drop.innerHTML=''; drop.classList.remove('open');
-      }
-    });
-  })();
-  </script>
 
   <!-- Mobile Overlay -->
   <div class="nav-overlay" id="nav-overlay"></div>

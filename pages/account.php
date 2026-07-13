@@ -9,45 +9,7 @@ $user   = dbFetchOne("SELECT id, name, email, phone, address, role, created_at F
 $errors  = [];
 $success = '';
 
-// ── Re-order handler ────────────────────────────────────────────────────────
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reorder_order_id'])) {
-    if (!verifyCsrf($_POST['csrf_token'] ?? '')) {
-        setFlash('error', 'Invalid request. Please refresh and try again.');
-        header('Location: ' . SITE_URL . '/pages/account.php#tab-orders');
-        exit;
-    }
-    $reorderId = (int)$_POST['reorder_order_id'];
-    $orderCheck = dbFetchOne("SELECT id FROM orders WHERE id=? AND user_id=?", [$reorderId, $userId]);
-    if ($orderCheck) {
-        $items = dbFetchAll(
-            "SELECT product_id, quantity, size, color FROM order_items WHERE order_id=?",
-            [$reorderId]
-        );
-        foreach ($items as $item) {
-            // Check product still active
-            $prod = dbFetchOne("SELECT id FROM products WHERE id=? AND status='active'", [$item['product_id']]);
-            if (!$prod) continue;
-            // Add or update cart
-            $existing = dbFetchOne(
-                "SELECT id, quantity FROM cart WHERE user_id=? AND product_id=? AND size=? AND color=?",
-                [$userId, $item['product_id'], $item['size'], $item['color']]
-            );
-            if ($existing) {
-                dbExecute("UPDATE cart SET quantity=quantity+? WHERE id=?", [$item['quantity'], $existing['id']]);
-            } else {
-                dbExecute(
-                    "INSERT INTO cart (user_id, product_id, quantity, size, color) VALUES (?,?,?,?,?)",
-                    [$userId, $item['product_id'], $item['quantity'], $item['size'], $item['color']]
-                );
-            }
-        }
-        setFlash('success', 'Items from your order have been added to your cart!');
-        header('Location: ' . SITE_URL . '/cart/cart.php');
-        exit;
-    }
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reorder_order_id'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!verifyCsrf($_POST['csrf_token'] ?? '')) {
         $errors[] = 'Invalid request. Please refresh and try again.';
     } else {
@@ -86,45 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['reorder_order_id']))
     }
 }
 
-$orders = dbFetchAll("SELECT id, order_number, total_amount, status, payment_status, payment_method, created_at FROM orders WHERE user_id=? ORDER BY created_at DESC LIMIT 5", [$userId]);
+$orders = dbFetchAll("SELECT id, order_number, total_amount, status, created_at FROM orders WHERE user_id=? ORDER BY created_at DESC LIMIT 5", [$userId]);
 
 $pageTitle = "My Account — Devendra's Shop";
 include __DIR__ . '/../includes/header.php';
-
-// Helper: build timeline steps for an order
-function buildOrderTimeline(array $order): array {
-    $status = strtolower($order['status'] ?? 'pending');
-    $pstatus = strtolower($order['payment_status'] ?? '');
-    $method  = strtolower($order['payment_method'] ?? '');
-
-    $statusOrder = ['pending' => 0, 'processing' => 2, 'shipped' => 3, 'delivered' => 4, 'cancelled' => -1];
-    $currentIdx  = $statusOrder[$status] ?? 0;
-
-    $paymentDone = ($pstatus === 'paid' || $method === 'cod');
-
-    $steps = [
-        ['icon' => 'fa-file-alt',       'label' => 'Order Placed',       'done' => true],
-        ['icon' => 'fa-check-circle',   'label' => 'Payment Confirmed',   'done' => $paymentDone],
-        ['icon' => 'fa-cog',            'label' => 'Processing',          'done' => $currentIdx >= 2],
-        ['icon' => 'fa-truck',          'label' => 'Shipped',             'done' => $currentIdx >= 3],
-        ['icon' => 'fa-box-open',       'label' => 'Delivered',           'done' => $currentIdx >= 4],
-    ];
-
-    // Find active (first not-done after all done, or last done)
-    $activeIdx = 0;
-    foreach ($steps as $i => $step) {
-        if ($step['done']) $activeIdx = $i;
-    }
-    // If cancelled, mark nothing active after placement
-    if ($status === 'cancelled') $activeIdx = 0;
-
-    foreach ($steps as $i => &$step) {
-        $step['active'] = ($i === $activeIdx && !$step['done']);
-        // If done or is the last done step, mark active on last done
-        $step['is_current'] = ($i === $activeIdx);
-    }
-    return $steps;
-}
 ?>
 <section class="page-hero">
   <div class="container">
@@ -223,56 +150,26 @@ function buildOrderTimeline(array $order): array {
             <p>No orders yet. <a href="<?= SITE_URL ?>/pages/shop.php" style="color:#c9a96e">Start shopping!</a></p>
           </div>
           <?php else: ?>
-          <?php foreach ($orders as $o):
-            $sc = ['pending'=>'status-pending','processing'=>'status-processing','shipped'=>'status-processing','delivered'=>'status-active','cancelled'=>'status-cancelled'][$o['status']] ?? 'status-pending';
-            $timeline = buildOrderTimeline($o);
-          ?>
-          <div class="order-card" style="border:1.5px solid #f0ece6;border-radius:12px;margin-bottom:24px;overflow:hidden">
-            <!-- Order Header -->
-            <div style="background:#faf8f5;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
-              <div>
-                <span style="font-weight:700;font-size:.95rem">#<?= e($o['order_number']) ?></span>
-                <span style="font-size:.8rem;color:#888;margin-left:12px"><?= date('d M Y', strtotime($o['created_at'])) ?></span>
-              </div>
-              <div style="display:flex;align-items:center;gap:10px">
-                <span style="font-weight:700"><?= formatPrice($o['total_amount']) ?></span>
-                <span class="status-badge <?= $sc ?>"><?= ucfirst($o['status']) ?></span>
-              </div>
-            </div>
-
-            <!-- Order Timeline -->
-            <div style="padding:24px 20px 8px">
-              <div class="order-timeline">
-                <?php foreach ($timeline as $idx => $step): ?>
-                <div class="ot-step <?= $step['done'] ? 'ot-done' : '' ?> <?= $step['is_current'] ? 'ot-current' : '' ?>">
-                  <div class="ot-icon-wrap">
-                    <div class="ot-icon"><i class="fa <?= $step['icon'] ?>"></i></div>
-                    <?php if ($idx < count($timeline)-1): ?><div class="ot-line"></div><?php endif; ?>
-                  </div>
-                  <div class="ot-label"><?= $step['label'] ?></div>
-                </div>
+          <div style="overflow-x:auto">
+            <table class="admin-table" style="width:100%">
+              <thead><tr>
+                <th>Order #</th><th>Date</th><th>Amount</th><th>Status</th><th>Action</th>
+              </tr></thead>
+              <tbody>
+                <?php foreach ($orders as $o):
+                  $sc = ['pending'=>'status-pending','processing'=>'status-processing','shipped'=>'status-processing','delivered'=>'status-active','cancelled'=>'status-cancelled'][$o['status']] ?? 'status-pending';
+                ?>
+                <tr>
+                  <td><strong>#<?= e($o['order_number']) ?></strong></td>
+                  <td><?= date('d M Y', strtotime($o['created_at'])) ?></td>
+                  <td><?= formatPrice($o['total_amount']) ?></td>
+                  <td><span class="status-badge <?= $sc ?>"><?= ucfirst($o['status']) ?></span></td>
+                  <td><a href="<?= SITE_URL ?>/pages/track-order.php" class="action-btn view">Track</a></td>
+                </tr>
                 <?php endforeach; ?>
-              </div>
-            </div>
-
-            <!-- Order Actions -->
-            <div style="padding:12px 20px 20px;display:flex;gap:10px;flex-wrap:wrap">
-              <a href="<?= SITE_URL ?>/pages/track-order.php" class="action-btn view" style="text-decoration:none">
-                <i class="fa fa-map-marker-alt"></i> Track Order
-              </a>
-              <?php if ($o['status'] !== 'cancelled'): ?>
-              <form method="POST" action="" style="display:inline">
-                <input type="hidden" name="csrf_token" value="<?= csrfToken() ?>"/>
-                <input type="hidden" name="reorder_order_id" value="<?= $o['id'] ?>"/>
-                <button type="submit" class="action-btn edit" style="cursor:pointer"
-                        onclick="return confirm('Add all items from this order to your cart?')">
-                  <i class="fa fa-redo"></i> Re-order
-                </button>
-              </form>
-              <?php endif; ?>
-            </div>
+              </tbody>
+            </table>
           </div>
-          <?php endforeach; ?>
           <?php endif; ?>
         </div>
       </div>

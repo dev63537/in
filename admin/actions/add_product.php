@@ -100,7 +100,7 @@ try {
 // ── Handle Gallery Images ─────────────────────────────────
 if (!empty($_FILES['gallery_images']['name'][0])) {
     $sort = 0;
-    for ($i = 0; $i < min(8, count($_FILES['gallery_images']['name'])); $i++) {
+    for ($i = 0; $i < min(6, count($_FILES['gallery_images']['name'])); $i++) {
         if ($_FILES['gallery_images']['error'][$i] !== UPLOAD_ERR_OK) continue;
         $file = [
             'name'     => $_FILES['gallery_images']['name'][$i],

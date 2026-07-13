@@ -94,7 +94,7 @@ catch (Exception $ex) {
 // ── Handle New Gallery Images ─────────────────────────────
 if (!empty($_FILES['gallery_images']['name'][0])) {
     $sort = (int)(dbFetchOne("SELECT COALESCE(MAX(sort_order),0) AS mx FROM product_images WHERE product_id=?", [$id])['mx'] ?? 0);
-    for ($i = 0; $i < min(8, count($_FILES['gallery_images']['name'])); $i++) {
+    for ($i = 0; $i < min(6, count($_FILES['gallery_images']['name'])); $i++) {
         if ($_FILES['gallery_images']['error'][$i] !== UPLOAD_ERR_OK) continue;
         $file = [
             'name'     => $_FILES['gallery_images']['name'][$i],
