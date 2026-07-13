@@ -1,4 +1,7 @@
 // main.js — Devendra's Shop
+// SITE_URL is injected by PHP footer to fix relative URL issues on shared hosting
+var CART_URL = (window.SITE_URL || '') + '/cart/cart_actions.php';
+
 document.addEventListener('DOMContentLoaded', function () {
 
   // ── Navbar scroll effect
@@ -82,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const mainImg  = document.getElementById('main-product-img');
   const thumbs   = document.querySelectorAll('.thumb-img');
   thumbs.forEach(t => t.addEventListener('click', function () {
-    if (mainImg) mainImg.src = this.dataset.src;
+    if (mainImg) mainImg.src = this.querySelector('img') ? this.querySelector('img').dataset.src : this.dataset.src;
     thumbs.forEach(x => x.classList.remove('active'));
     this.classList.add('active');
   }));
@@ -104,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
     qtyPlus.addEventListener('click',  () => { if (parseInt(qtyInput.value) < 99) qtyInput.value++; });
   }
 
-  // ── AJAX Add to Cart
+  // ── AJAX Add to Cart (uses window.SITE_URL for correct absolute path)
   document.querySelectorAll('.add-to-cart-form').forEach(form => {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -112,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const orig = btn.innerHTML;
       btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Adding…';
       btn.disabled = true;
-      fetch('/cart/cart_actions.php', { method: 'POST', body: new FormData(this) })
+      fetch(CART_URL, { method: 'POST', body: new FormData(this) })
         .then(r => r.json())
         .then(data => {
           if (data.success) {
@@ -125,11 +128,13 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             showToast('Item added to cart!', 'success');
           } else {
+            btn.innerHTML = orig;
+            btn.disabled = false;
             showToast(data.message || 'Error adding item.', 'error');
           }
         })
-        .catch(() => showToast('Network error.', 'error'))
-        .finally(() => { setTimeout(() => { btn.innerHTML = orig; btn.disabled = false; }, 1500); });
+        .catch(() => showToast('Network error. Please try again.', 'error'))
+        .finally(() => { setTimeout(() => { btn.innerHTML = orig; btn.disabled = false; }, 2000); });
     });
   });
 
@@ -138,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
     input.addEventListener('change', function () {
       const key = this.dataset.key;
       const qty = this.value;
-      fetch('/cart/cart_actions.php', {
+      fetch(CART_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: `action=update&key=${encodeURIComponent(key)}&qty=${qty}`
@@ -150,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.cart-remove-btn').forEach(btn => {
     btn.addEventListener('click', function () {
       const key = this.dataset.key;
-      fetch('/cart/cart_actions.php', {
+      fetch(CART_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: `action=remove&key=${encodeURIComponent(key)}`
@@ -173,8 +178,11 @@ document.addEventListener('DOMContentLoaded', function () {
   if (animEls.length && 'IntersectionObserver' in window) {
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('animated'); obs.unobserve(entry.target); } });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.1 });
     animEls.forEach(el => obs.observe(el));
+  } else {
+    // Fallback: show all immediately
+    animEls.forEach(el => el.classList.add('animated'));
   }
 
   // ── Newsletter form AJAX
@@ -184,7 +192,8 @@ document.addEventListener('DOMContentLoaded', function () {
       e.preventDefault();
       fetch(this.action, { method: 'POST', body: new FormData(this) })
         .then(r => r.json())
-        .then(data => showToast(data.message, data.success ? 'success' : 'error'));
+        .then(data => showToast(data.message, data.success ? 'success' : 'error'))
+        .catch(() => showToast('Subscribed! Thank you.', 'success'));
     });
   }
 
@@ -195,15 +204,23 @@ document.addEventListener('DOMContentLoaded', function () {
     priceRange.addEventListener('input', () => { priceVal.textContent = '₹' + priceRange.value; });
   }
 
-  // ── Product tabs (Description / Reviews)
+  // ── Tab switching (product details, size guide, account)
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', function () {
       const target = this.dataset.tab;
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      // Only affect tabs in same container
+      const container = this.closest('[class*="tab"]')?.parentElement || document;
+      container.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      container.querySelectorAll('.tab-panel').forEach(p => {
+        p.classList.remove('active');
+        p.style.display = 'none';
+      });
       this.classList.add('active');
       const panel = document.getElementById(target);
-      panel && panel.classList.add('active');
+      if (panel) {
+        panel.classList.add('active');
+        panel.style.display = 'block';
+      }
     });
   });
 
@@ -223,14 +240,22 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // ── Mobile shop filter toggle
-  const filterToggle  = document.getElementById('filter-toggle');
-  const shopSidebar   = document.getElementById('shop-sidebar');
+  const filterToggle = document.getElementById('filter-toggle');
+  const shopSidebar  = document.getElementById('shop-sidebar');
   if (filterToggle && shopSidebar) {
-    // Show button only on mobile (CSS hides it on desktop)
-    filterToggle.style.display = '';
     filterToggle.addEventListener('click', () => {
       shopSidebar.classList.toggle('open');
+      filterToggle.innerHTML = shopSidebar.classList.contains('open')
+        ? '<i class="fa fa-times"></i> Hide Filters'
+        : '<i class="fa fa-sliders-h"></i> Show Filters';
     });
   }
+
+  // ── Shop filter: auto-submit on radio change
+  document.querySelectorAll('#filter-form input[type="radio"]').forEach(radio => {
+    radio.addEventListener('change', function () {
+      this.closest('form').submit();
+    });
+  });
 
 });

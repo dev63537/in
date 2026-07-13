@@ -79,6 +79,9 @@ $pageTitle = "Login — Devendra's Shop";
       Don't have an account? <a href="<?= SITE_URL ?>/auth/register.php">Create one free</a>
     </p>
     <p class="auth-footer" style="margin-top:8px">
+      <a href="<?= SITE_URL ?>/auth/forgot-password.php"><i class="fa fa-key"></i> Forgot Password?</a>
+    </p>
+    <p class="auth-footer" style="margin-top:8px">
       <a href="<?= SITE_URL ?>/index.php"><i class="fa fa-home"></i> Back to Home</a>
     </p>
   </div>

@@ -1,6 +1,6 @@
 <?php
 // ============================================================
-// includes/footer.php — Global Site Footer
+// includes/footer.php — Global Site Footer (5-column layout)
 // ============================================================
 ?>
 
@@ -10,7 +10,7 @@
     <div class="newsletter-inner">
       <div class="newsletter-text">
         <h3>Join the Devendra's Shop Circle</h3>
-        <p>Get exclusive deals, early access to new arrivals & style inspiration.</p>
+        <p>Get exclusive deals, early access to new arrivals &amp; style inspiration.</p>
       </div>
       <form class="newsletter-form" id="newsletter-form" action="<?= SITE_URL ?>/pages/newsletter.php" method="POST">
         <input type="hidden" name="csrf_token" value="<?= csrfToken() ?>" />
@@ -50,6 +50,8 @@
           <li><a href="<?= SITE_URL ?>/pages/collections.php"><i class="fa fa-chevron-right"></i> Collections</a></li>
           <li><a href="<?= SITE_URL ?>/pages/shop.php?tag=new"><i class="fa fa-chevron-right"></i> New Arrivals</a></li>
           <li><a href="<?= SITE_URL ?>/pages/shop.php?tag=sale"><i class="fa fa-chevron-right"></i> Sale</a></li>
+          <li><a href="<?= SITE_URL ?>/pages/wishlist.php"><i class="fa fa-chevron-right"></i> Wishlist</a></li>
+          <li><a href="<?= SITE_URL ?>/pages/account.php"><i class="fa fa-chevron-right"></i> My Account</a></li>
           <li><a href="<?= SITE_URL ?>/pages/about.php"><i class="fa fa-chevron-right"></i> About Us</a></li>
         </ul>
       </div>
@@ -60,7 +62,7 @@
         <ul class="footer-links">
           <li><a href="<?= SITE_URL ?>/pages/faq.php"><i class="fa fa-chevron-right"></i> FAQ</a></li>
           <li><a href="<?= SITE_URL ?>/pages/shipping.php"><i class="fa fa-chevron-right"></i> Shipping Policy</a></li>
-          <li><a href="<?= SITE_URL ?>/pages/returns.php"><i class="fa fa-chevron-right"></i> Returns & Exchanges</a></li>
+          <li><a href="<?= SITE_URL ?>/pages/returns.php"><i class="fa fa-chevron-right"></i> Returns &amp; Exchanges</a></li>
           <li><a href="<?= SITE_URL ?>/pages/size-guide.php"><i class="fa fa-chevron-right"></i> Size Guide</a></li>
           <li><a href="<?= SITE_URL ?>/pages/contact.php"><i class="fa fa-chevron-right"></i> Contact Us</a></li>
           <li><a href="<?= SITE_URL ?>/pages/track-order.php"><i class="fa fa-chevron-right"></i> Track Order</a></li>
@@ -76,10 +78,11 @@
           <li><a href="<?= SITE_URL ?>/pages/careers.php"><i class="fa fa-chevron-right"></i> Careers</a></li>
           <li><a href="<?= SITE_URL ?>/pages/affiliate.php"><i class="fa fa-chevron-right"></i> Affiliate Program</a></li>
           <li><a href="<?= SITE_URL ?>/pages/blog.php"><i class="fa fa-chevron-right"></i> Style Blog</a></li>
+          <li><a href="<?= SITE_URL ?>/pages/sitemap.php"><i class="fa fa-chevron-right"></i> Sitemap</a></li>
         </ul>
       </div>
 
-      <!-- Contact Info -->
+      <!-- Get in Touch -->
       <div class="footer-col">
         <h4 class="footer-heading">Get in Touch</h4>
         <ul class="footer-contact">
@@ -88,6 +91,7 @@
           <li><i class="fa fa-envelope"></i> <?= SITE_EMAIL ?></li>
           <li><i class="fa fa-clock"></i> Mon–Sat: 10:00 AM – 7:00 PM</li>
         </ul>
+      </div><!-- /footer-col get-in-touch -->
 
     </div><!-- /footer-grid -->
   </div><!-- /container -->
@@ -111,6 +115,10 @@
 </button>
 
 <!-- Main JavaScript -->
+<script>
+  // Expose PHP SITE_URL to JavaScript so AJAX calls use correct absolute paths
+  window.SITE_URL = '<?= SITE_URL ?>';
+</script>
 <script src="<?= SITE_URL ?>/assets/js/main.js"></script>
 
 <?php if (isset($extraJS)): ?>

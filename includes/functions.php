@@ -179,11 +179,20 @@ function getProducts($limit = 12, $offset = 0, $filters = []) {
     }
 
     $whereSQL = implode(' AND ', $where);
+
+    $sort = isset($filters['sort']) ? $filters['sort'] : 'newest';
+    switch ($sort) {
+        case 'price_asc':  $orderBy = 'p.price ASC';       break;
+        case 'price_desc': $orderBy = 'p.price DESC';      break;
+        case 'name_asc':   $orderBy = 'p.name ASC';        break;
+        default:           $orderBy = 'p.created_at DESC'; break;
+    }
+
     $sql = "SELECT p.*, c.name AS category_name
             FROM products p
             LEFT JOIN categories c ON p.category_id = c.id
             WHERE $whereSQL
-            ORDER BY p.created_at DESC
+            ORDER BY $orderBy
             LIMIT ? OFFSET ?";
     $params[] = (int)$limit;
     $params[] = (int)$offset;
@@ -218,14 +227,72 @@ function redirect($url) {
 }
 
 // Paginate helper — returns HTML
-function pagination($total, $limit, $page, $url) {
+function pagination($total, $limit, $page, $baseUrl) {
     $pages = ceil($total / $limit);
     if ($pages <= 1) return '';
+    // Strip trailing & or ? from base URL
+    $baseUrl = rtrim($baseUrl, '&?');
+    // Determine separator
+    $sep = (strpos($baseUrl, '?') !== false) ? '&' : '?';
     $html = '<div class="pagination">';
     for ($i = 1; $i <= $pages; $i++) {
         $active = ($i == $page) ? ' active' : '';
-        $html .= "<a href=\"{$url}&page={$i}\" class=\"page-btn{$active}\">{$i}</a>";
+        $html .= "<a href=\"{$baseUrl}{$sep}page={$i}\" class=\"page-btn{$active}\">{$i}</a>";
     }
     $html .= '</div>';
     return $html;
+}
+
+// ── Wishlist helpers (session-based) ─────────────────────────
+function getWishlist() {
+    startSession();
+    return $_SESSION['wishlist'] ?? [];
+}
+
+function addToWishlist($product_id) {
+    startSession();
+    $id = (int)$product_id;
+    if (!in_array($id, $_SESSION['wishlist'] ?? [])) {
+        $_SESSION['wishlist'][] = $id;
+    }
+}
+
+function removeFromWishlist($product_id) {
+    startSession();
+    $id = (int)$product_id;
+    $wishlist = isset($_SESSION['wishlist']) ? $_SESSION['wishlist'] : array();
+    $filtered = array();
+    foreach ($wishlist as $w) {
+        if ($w !== $id) $filtered[] = $w;
+    }
+    $_SESSION['wishlist'] = array_values($filtered);
+}
+
+function isInWishlist($product_id) {
+    startSession();
+    return in_array((int)$product_id, $_SESSION['wishlist'] ?? []);
+}
+
+// Count total products (for admin stats)
+function countProducts() {
+    $row = dbFetchOne("SELECT COUNT(*) AS cnt FROM products WHERE status='active'");
+    return $row ? (int)$row['cnt'] : 0;
+}
+
+// Count total orders
+function countOrders() {
+    $row = dbFetchOne("SELECT COUNT(*) AS cnt FROM orders");
+    return $row ? (int)$row['cnt'] : 0;
+}
+
+// Count total users
+function countUsers() {
+    $row = dbFetchOne("SELECT COUNT(*) AS cnt FROM users WHERE role='customer'");
+    return $row ? (int)$row['cnt'] : 0;
+}
+
+// Get total revenue
+function getTotalRevenue() {
+    $row = dbFetchOne("SELECT COALESCE(SUM(total_amount),0) AS total FROM orders WHERE status NOT IN ('cancelled','refunded')");
+    return $row ? (float)$row['total'] : 0;
 }

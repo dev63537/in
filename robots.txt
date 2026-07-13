@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Disallow admin and auth pages from indexing
+Disallow: /admin/
+Disallow: /auth/
+Disallow: /cart/
+Disallow: /config.php
+Disallow: /database/
+Disallow: /includes/
+Disallow: /phpinfo.php
+Disallow: /reset_admin.php
+Disallow: /uploads/
+
+# Allow CSS and JS for rendering
+Allow: /assets/css/
+Allow: /assets/js/
+
+# Sitemap
+Sitemap: https://devenra-s.great-site.net/pages/sitemap.php
+
+# Crawl delay
+Crawl-delay: 2

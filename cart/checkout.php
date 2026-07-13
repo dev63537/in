@@ -36,8 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     [$orderId, $item['product_id'], $item['name'], $item['image'], $item['size'], $item['color'], $item['quantity'], $item['price'], $item['price']*$item['quantity']]);
             }
             unset($_SESSION['cart']);
-            setFlash('success', "Order #{$orderNum} placed successfully! We'll contact you soon.");
-            redirect(SITE_URL . '/pages/orders.php');
+            $_SESSION['last_order_number'] = $orderNum;
+            $_SESSION['last_order_id']     = $orderId;
+            redirect(SITE_URL . '/pages/order-success.php');
         }
     }
 }

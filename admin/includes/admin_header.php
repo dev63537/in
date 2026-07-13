@@ -4,6 +4,8 @@ require_once __DIR__ . '/../../includes/functions.php';
 startSession(); requireAdmin();
 $adminUser = $_SESSION['user_name'] ?? 'Admin';
 $currentAdmin = basename($_SERVER['PHP_SELF']);
+// Low-stock + out-of-stock count for sidebar badge
+$_lowStockCount = (int)(dbFetchOne("SELECT COUNT(*) AS c FROM products WHERE stock <= COALESCE(low_stock_alert,5)")['c'] ?? 0);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,14 +32,33 @@ $currentAdmin = basename($_SERVER['PHP_SELF']);
     <a href="<?= SITE_URL ?>/admin/index.php" class="admin-nav-item <?= $currentAdmin==='index.php'?'active':'' ?>">
       <i class="fa fa-chart-line"></i> Dashboard
     </a>
-    <a href="<?= SITE_URL ?>/admin/products.php" class="admin-nav-item <?= $currentAdmin==='products.php'?'active':'' ?>">
+    <a href="<?= SITE_URL ?>/admin/products.php" class="admin-nav-item <?= $currentAdmin==='products.php'?'active':'' ?>" style="display:flex;align-items:center">
       <i class="fa fa-box"></i> Products
+      <?php if ($_lowStockCount > 0): ?>
+      <span style="background:#e74c3c;color:#fff;border-radius:50px;font-size:.65rem;padding:1px 7px;margin-left:auto"><?= $_lowStockCount ?></span>
+      <?php endif; ?>
+    </a>
+    <a href="<?= SITE_URL ?>/admin/import_products.php" class="admin-nav-item <?= $currentAdmin==='import_products.php'?'active':'' ?>">
+      <i class="fa fa-file-csv"></i> Import CSV
     </a>
     <a href="<?= SITE_URL ?>/admin/orders.php" class="admin-nav-item <?= $currentAdmin==='orders.php'?'active':'' ?>">
       <i class="fa fa-shopping-cart"></i> Orders
     </a>
     <a href="<?= SITE_URL ?>/admin/users.php" class="admin-nav-item <?= $currentAdmin==='users.php'?'active':'' ?>">
       <i class="fa fa-users"></i> Customers
+    </a>
+    <div class="admin-nav-section">Catalogue</div>
+    <a href="<?= SITE_URL ?>/admin/categories.php" class="admin-nav-item <?= $currentAdmin==='categories.php'?'active':'' ?>">
+      <i class="fa fa-tags"></i> Categories
+    </a>
+    <a href="<?= SITE_URL ?>/admin/brands.php" class="admin-nav-item <?= $currentAdmin==='brands.php'?'active':'' ?>">
+      <i class="fa fa-store"></i> Brands
+    </a>
+    <a href="<?= SITE_URL ?>/admin/reviews.php" class="admin-nav-item <?= $currentAdmin==='reviews.php'?'active':'' ?>">
+      <i class="fa fa-star"></i> Reviews
+    </a>
+    <a href="<?= SITE_URL ?>/admin/coupons.php" class="admin-nav-item <?= $currentAdmin==='coupons.php'?'active':'' ?>">
+      <i class="fa fa-ticket-alt"></i> Coupons
     </a>
     <div class="admin-nav-section">Settings</div>
     <a href="<?= SITE_URL ?>/index.php" target="_blank" class="admin-nav-item">
