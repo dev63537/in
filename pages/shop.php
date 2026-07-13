@@ -261,7 +261,7 @@ include __DIR__ . '/../includes/header.php';
               <?php endif; ?>
             </div>
             <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
-              <form class="add-to-cart-form">
+              <form class="add-to-cart-form" data-product-name="<?= e($p['name']) ?>">
                 <input type="hidden" name="action" value="add"/>
                 <input type="hidden" name="product_id" value="<?= $p['id'] ?>"/>
                 <input type="hidden" name="size" value="M"/>
@@ -299,7 +299,8 @@ include __DIR__ . '/../includes/header.php';
               <?php endif; ?>
               <div class="product-actions">
                 <button class="product-action-btn" title="Wishlist"
-                        onclick="event.preventDefault();toggleWishlistShop(this,<?= $p['id'] ?>)">
+                        data-wishlist-toggle="<?= $p['id'] ?>"
+                        data-product-name="<?= e($p['name']) ?>">
                   <i class="far fa-heart"></i>
                 </button>
                 <a href="<?= SITE_URL ?>/pages/product.php?id=<?= $p['id'] ?>" class="product-action-btn" title="View">
@@ -318,7 +319,7 @@ include __DIR__ . '/../includes/header.php';
                   <span class="price-original"><?= formatPrice($p['price']) ?></span>
                 <?php endif; ?>
               </div>
-              <form class="add-to-cart-form">
+              <form class="add-to-cart-form" data-product-name="<?= e($p['name']) ?>">
                 <input type="hidden" name="action" value="add"/>
                 <input type="hidden" name="product_id" value="<?= $p['id'] ?>"/>
                 <input type="hidden" name="size" value="M"/>
@@ -358,20 +359,6 @@ function applySort(s) {
   url.searchParams.set('sort', s);
   url.searchParams.set('page', '1');
   window.location.href = url.toString();
-}
-
-function toggleWishlistShop(btn, pid) {
-  fetch('<?= SITE_URL ?>/cart/cart_actions.php', {
-    method:'POST',
-    headers:{'Content-Type':'application/x-www-form-urlencoded'},
-    body:'action=wishlist_add&product_id='+pid
-  }).then(r=>r.json()).then(data=>{
-    if(data.success){
-      var icon = btn.querySelector('i');
-      icon.className = 'fas fa-heart';
-      icon.style.color = '#e74c3c';
-    }
-  }).catch(()=>{});
 }
 </script>
 

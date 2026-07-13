@@ -106,10 +106,64 @@
   </div>
 </footer>
 
+<!-- ===== CART DRAWER ===== -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="closeAllDrawers()"></div>
+
+<aside class="side-drawer" id="cart-drawer" aria-label="Shopping Cart">
+  <div class="drawer-header">
+    <div class="drawer-title"><i class="fa fa-shopping-bag"></i> Your Cart <span class="drawer-count" id="drawer-cart-count">0</span></div>
+    <button class="drawer-close" onclick="closeAllDrawers()" aria-label="Close cart"><i class="fa fa-times"></i></button>
+  </div>
+  <div class="drawer-body" id="cart-drawer-body">
+    <div class="drawer-loading"><i class="fa fa-spinner fa-spin"></i> Loading…</div>
+  </div>
+  <div class="drawer-footer" id="cart-drawer-footer" style="display:none">
+    <div class="drawer-total-row">
+      <span>Subtotal</span>
+      <span class="drawer-total-val" id="drawer-cart-total">₹0.00</span>
+    </div>
+    <a href="<?= SITE_URL ?>/cart/cart.php" class="btn btn-primary" style="width:100%;justify-content:center;margin-bottom:10px">
+      <i class="fa fa-eye"></i> View Full Cart
+    </a>
+    <a href="<?= SITE_URL ?>/cart/checkout.php" class="btn btn-dark" style="width:100%;justify-content:center">
+      <i class="fa fa-bolt"></i> Checkout Now
+    </a>
+  </div>
+</aside>
+
+<!-- ===== WISHLIST DRAWER ===== -->
+<aside class="side-drawer" id="wishlist-drawer" aria-label="Wishlist">
+  <div class="drawer-header">
+    <div class="drawer-title"><i class="fas fa-heart" style="color:#e74c3c"></i> Wishlist <span class="drawer-count" id="drawer-wishlist-count">0</span></div>
+    <button class="drawer-close" onclick="closeAllDrawers()" aria-label="Close wishlist"><i class="fa fa-times"></i></button>
+  </div>
+  <div class="drawer-body" id="wishlist-drawer-body">
+    <div class="drawer-loading"><i class="fa fa-spinner fa-spin"></i> Loading…</div>
+  </div>
+  <div class="drawer-footer" id="wishlist-drawer-footer" style="display:none">
+    <a href="<?= SITE_URL ?>/pages/shop.php" class="btn btn-primary" style="width:100%;justify-content:center">
+      <i class="fa fa-shopping-bag"></i> Continue Shopping
+    </a>
+  </div>
+</aside>
+
+<!-- ===== CART ADDED TOAST ===== -->
+<div class="cart-toast" id="cart-toast">
+  <div class="cart-toast-inner">
+    <div class="cart-toast-icon"><i class="fa fa-check-circle"></i></div>
+    <div>
+      <div class="cart-toast-title">Added to Cart!</div>
+      <div class="cart-toast-sub" id="cart-toast-name"></div>
+    </div>
+    <button class="cart-toast-view" onclick="openCartDrawer()">View Cart <i class="fa fa-arrow-right"></i></button>
+  </div>
+</div>
+
 <!-- Back to Top -->
 <button class="back-to-top" id="back-to-top" title="Back to Top" aria-label="Back to top">
   <i class="fa fa-chevron-up"></i>
 </button>
+
 
 <!-- Main JavaScript -->
 <script>
@@ -117,6 +171,7 @@
   window.SITE_URL = '<?= SITE_URL ?>';
 </script>
 <script src="<?= SITE_URL ?>/assets/js/main.js"></script>
+<script src="<?= SITE_URL ?>/assets/js/drawers.js"></script>
 
 <?php if (isset($extraJS)): ?>
   <script src="<?= SITE_URL ?>/assets/js/<?= e($extraJS) ?>"></script>

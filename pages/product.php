@@ -286,8 +286,8 @@ include __DIR__ . '/../includes/header.php';
       <!-- Wishlist -->
       <button type="button" id="wishlist-btn"
               class="pd-wishlist-btn <?= $inWishlist ? 'wishlisted' : '' ?>"
-              data-id="<?= $id ?>"
-              onclick="toggleWishlist(this)">
+              data-wishlist-toggle="<?= $id ?>"
+              data-product-name="<?= e($product['name']) ?>">
         <i class="fa<?= $inWishlist ? 's' : 'r' ?> fa-heart"></i>
         <?= $inWishlist ? 'Remove from Wishlist' : 'Add to Wishlist' ?>
       </button>
@@ -395,7 +395,7 @@ include __DIR__ . '/../includes/header.php';
             <div class="product-price">
               <span class="price-current"><?= formatPrice($rPrice) ?></span>
             </div>
-            <form class="add-to-cart-form">
+            <form class="add-to-cart-form" data-product-name="<?= e($rp['name']) ?>">
               <input type="hidden" name="action"     value="add">
               <input type="hidden" name="product_id" value="<?= $rp['id'] ?>">
               <input type="hidden" name="size"       value="M">

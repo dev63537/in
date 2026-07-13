@@ -101,13 +101,21 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         <a href="<?= SITE_URL ?>/auth/login.php" class="nav-btn" title="Login"><i class="fa fa-user"></i></a>
       <?php endif; ?>
 
+      <!-- Wishlist -->
+      <button class="nav-btn" id="wishlist-nav-btn" title="Wishlist" aria-label="Open Wishlist" onclick="openWishlistDrawer()">
+        <i class="far fa-heart"></i>
+        <span class="cart-badge" id="wishlist-badge" style="display:none;background:#e74c3c">0</span>
+      </button>
+
       <!-- Cart -->
-      <a href="<?= SITE_URL ?>/cart/cart.php" class="nav-btn cart-btn" title="Shopping Cart" aria-label="Cart">
+      <button class="nav-btn cart-btn" id="cart-nav-btn" title="Shopping Cart" aria-label="Open Cart" onclick="openCartDrawer()">
         <i class="fa fa-shopping-bag"></i>
         <?php if ($cartCount > 0): ?>
-          <span class="cart-badge"><?= $cartCount ?></span>
+          <span class="cart-badge" id="cart-badge-nav"><?= $cartCount ?></span>
+        <?php else: ?>
+          <span class="cart-badge" id="cart-badge-nav" style="display:none">0</span>
         <?php endif; ?>
-      </a>
+      </button>
 
       <!-- Hamburger -->
       <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
