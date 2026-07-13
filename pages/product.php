@@ -119,10 +119,12 @@ include __DIR__ . '/../includes/header.php';
                onclick="swapImage(this,'<?= e($product['image']) ?>')"
                alt="Main"/>
         <?php endif; ?>
-        <?php foreach ($galleryRows as $img): ?>
-          <img src="<?= UPLOAD_URL . e($img['image_path']) ?>"
+        <?php foreach ($galleryRows as $img):
+            $gSrc = (strpos($img['image_path'], 'http') === 0) ? $img['image_path'] : UPLOAD_URL . $img['image_path'];
+        ?>
+          <img src="<?= e($gSrc) ?>"
                class="pd-thumb"
-               onclick="swapImage(this,'<?= UPLOAD_URL . e($img['image_path']) ?>')"
+               onclick="swapImage(this,'<?= e($gSrc) ?>')"
                alt="<?= e($img['alt_text'] ?? $product['name']) ?>"/>
         <?php endforeach; ?>
         <?php foreach ($galleryLegacy as $gsrc): ?>
