@@ -404,6 +404,40 @@ function removeGalleryImage(imgId, productId) {
     } else { alert(data.message || 'Error removing image'); }
   });
 }
+
+// Prevent server crash (ERR_CONNECTION_RESET) by validating file sizes before upload
+document.getElementById('product-form').addEventListener('submit', function(e) {
+  var maxBytes = 2 * 1024 * 1024; // 2MB per file limit
+  var totalMaxBytes = 8 * 1024 * 1024; // 8MB total payload limit for InfinityFree
+  var totalBytes = 0;
+  
+  var main = document.getElementById('main-image-input');
+  if (main.files && main.files.length > 0) {
+    if (main.files[0].size > maxBytes) {
+      alert('Main image exceeds the 2MB limit! Please choose a smaller image.');
+      e.preventDefault();
+      return;
+    }
+    totalBytes += main.files[0].size;
+  }
+  
+  var gallery = document.getElementById('gallery-input');
+  if (gallery.files && gallery.files.length > 0) {
+    for (var i = 0; i < gallery.files.length; i++) {
+      if (gallery.files[i].size > maxBytes) {
+        alert('Gallery image "' + gallery.files[i].name + '" exceeds the 2MB limit! Please choose a smaller image.');
+        e.preventDefault();
+        return;
+      }
+      totalBytes += gallery.files[i].size;
+    }
+  }
+  
+  if (totalBytes > totalMaxBytes) {
+    alert('Total size of all images combined exceeds 8MB! Your server will block this upload and crash (ERR_CONNECTION_RESET). Please upload fewer images or compress them first.');
+    e.preventDefault();
+  }
+});
 </script>
 
 <?php include __DIR__ . '/includes/admin_footer.php'; ?>
