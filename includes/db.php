@@ -17,6 +17,16 @@ function getDB() {
                 PDO::ATTR_EMULATE_PREPARES   => false,
             ];
             $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
+            
+            // Ensure product_images table exists
+            $pdo->exec("CREATE TABLE IF NOT EXISTS `product_images` (
+              `id` INT(11) AUTO_INCREMENT PRIMARY KEY,
+              `product_id` INT(11) NOT NULL,
+              `image_path` VARCHAR(255) NOT NULL,
+              `alt_text` VARCHAR(200),
+              `sort_order` INT(11) DEFAULT 0,
+              `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
         } catch (PDOException $e) {
             if (DEBUG_MODE) {
                 die("Database Connection Failed: " . $e->getMessage());

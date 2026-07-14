@@ -188,14 +188,14 @@ function getProducts($limit = 12, $offset = 0, $filters = []) {
         default:           $orderBy = 'p.created_at DESC'; break;
     }
 
+    $limit = (int)$limit;
+    $offset = (int)$offset;
     $sql = "SELECT p.*, c.name AS category_name
             FROM products p
             LEFT JOIN categories c ON p.category_id = c.id
             WHERE $whereSQL
             ORDER BY $orderBy
-            LIMIT ? OFFSET ?";
-    $params[] = (int)$limit;
-    $params[] = (int)$offset;
+            LIMIT $limit OFFSET $offset";
 
     return dbFetchAll($sql, $params);
 }
