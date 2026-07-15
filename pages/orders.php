@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../includes/functions.php';
 startSession(); requireLogin();
 $orders = dbFetchAll("SELECT * FROM orders WHERE user_id=? ORDER BY created_at DESC", [$_SESSION['user_id']]);
-$pageTitle = "My Orders — Devendra's Shop";
+$pageTitle = "My Orders — Gujju Clothing";
 include __DIR__ . '/../includes/header.php';
 ?>
 <section class="page-hero"><div class="container"><h1>My Orders</h1></div></section>

@@ -1,4 +1,4 @@
-// main.js — Devendra's Shop
+// main.js — Gujju Clothing
 // SITE_URL is injected by PHP footer to fix relative URL issues on shared hosting
 var CART_URL = (window.SITE_URL || '') + '/cart/cart_actions.php';
 

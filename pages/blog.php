@@ -1,13 +1,13 @@
 <?php
 require_once __DIR__ . '/../includes/functions.php';
-$pageTitle = "Style Blog — Devendra's Shop";
-$metaDesc  = "Fashion tips, style guides, and trend updates from Devendra's Shop.";
+$pageTitle = "Style Blog — Gujju Clothing";
+$metaDesc  = "Fashion tips, style guides, and trend updates from Gujju Clothing.";
 
 $posts = [
   ['id'=>1,'slug'=>'summer-fashion-2025','title'=>'Summer Fashion 2025: 10 Must-Have Looks','category'=>'Trends','date'=>'May 20, 2025','read'=>'5 min','image'=>'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=600','excerpt'=>'Discover the hottest summer trends of 2025 — from breezy cotton kurtas to bold printed sets that will define the season.'],
   ['id'=>2,'slug'=>'ethnic-wear-guide','title'=>'Complete Guide to Indian Ethnic Wear for Weddings','category'=>'Guide','date'=>'May 15, 2025','read'=>'7 min','image'=>'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600','excerpt'=>'From Anarkali sets to Banarasi sarees — our ultimate guide to picking the perfect ethnic outfit for any wedding ceremony.'],
   ['id'=>3,'slug'=>'men-style-basics','title'=>'Men\'s Style Basics: Building a Capsule Wardrobe','category'=>'Style Guide','date'=>'May 10, 2025','read'=>'6 min','image'=>'https://images.unsplash.com/photo-1516257984-b1b4d707412e?w=600','excerpt'=>'Every man needs a solid wardrobe foundation. Here are the 10 essential pieces that will carry you from office to weekend effortlessly.'],
-  ['id'=>4,'slug'=>'sustainable-fashion','title'=>'How We\'re Making Fashion More Sustainable','category'=>'Brand Story','date'=>'May 5, 2025','read'=>'4 min','image'=>'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600','excerpt'=>'Our commitment to ethical fashion — from sourcing sustainable fabrics to reducing packaging waste at Devendra\'s Shop.'],
+  ['id'=>4,'slug'=>'sustainable-fashion','title'=>'How We\'re Making Fashion More Sustainable','category'=>'Brand Story','date'=>'May 5, 2025','read'=>'4 min','image'=>'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600','excerpt'=>'Our commitment to ethical fashion — from sourcing sustainable fabrics to reducing packaging waste at Gujju\'s Shop.'],
   ['id'=>5,'slug'=>'kids-fashion-tips','title'=>'Dressing Your Kids in Style: Tips for Every Occasion','category'=>'Kids','date'=>'April 28, 2025','read'=>'5 min','image'=>'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=600','excerpt'=>'From school uniforms to birthday parties — tips on choosing comfortable, stylish, and practical clothing for your little ones.'],
   ['id'=>6,'slug'=>'accessory-styling','title'=>'How to Accessorize: The Art of Completing Your Look','category'=>'Accessories','date'=>'April 20, 2025','read'=>'4 min','image'=>'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600','excerpt'=>'The right accessories can transform any outfit. Learn how to layer necklaces, choose the perfect bag, and pick shoes that elevate your look.'],
 ];

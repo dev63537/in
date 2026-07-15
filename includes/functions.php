@@ -8,7 +8,7 @@ require_once __DIR__ . '/db.php';
 // Start session safely — compatible with PHP 5.6, 7.x, 8.x
 function startSession() {
     if (session_status() === PHP_SESSION_NONE) {
-        session_name('DEVENDRAS_SESSION');
+        session_name('GUJJU_SESSION');
         // Use positional args (works on all PHP versions including InfinityFree)
         session_set_cookie_params(SESSION_TIMEOUT, '/', '', false, true);
         session_start();
@@ -208,6 +208,9 @@ function getCategories() {
 // Upload image helper
 function uploadImage($file, $dir = null) {
     if (!$dir) $dir = UPLOAD_DIR;
+    if (!is_dir($dir)) {
+        mkdir($dir, 0755, true);
+    }
     if ($file['error'] !== UPLOAD_ERR_OK) return ['error' => 'Upload failed.'];
     if ($file['size'] > MAX_UPLOAD_SIZE) return ['error' => 'File too large (max 2MB).'];
     if (!in_array($file['type'], ALLOWED_IMAGE_TYPES)) return ['error' => 'Invalid file type.'];

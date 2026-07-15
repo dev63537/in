@@ -2,7 +2,7 @@
 // pages/shop.php — Enhanced Shop Listing with Grid/List View + Advanced Filters
 require_once __DIR__ . '/../includes/functions.php';
 startSession();
-$pageTitle = "Shop — Devendra's Shop";
+$pageTitle = "Shop — Gujju Clothing";
 $metaDesc  = "Browse our full collection of premium fashion for men, women and kids.";
 
 // ── Filters ────────────────────────────────────────────────────────────────

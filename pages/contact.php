@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../includes/functions.php';
-$pageTitle = "Contact Us — Devendra's Shop";
+$pageTitle = "Contact Us — Gujju Clothing";
 $sent = false; $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name    = trim($_POST['name'] ?? '');
@@ -19,7 +19,7 @@ include __DIR__ . '/../includes/header.php';
       <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:24px">Get In Touch</h2>
       <div class="contact-info-item"><div class="contact-icon"><i class="fa fa-map-marker-alt"></i></div><div><h4>Our Store</h4><p style="color:#888">42 Fashion Street, Mumbai, Maharashtra 400001, India</p></div></div>
       <div class="contact-info-item"><div class="contact-icon"><i class="fa fa-phone"></i></div><div><h4>Phone</h4><p style="color:#888">+91 98765 43210</p></div></div>
-      <div class="contact-info-item"><div class="contact-icon"><i class="fa fa-envelope"></i></div><div><h4>Email</h4><p style="color:#888">info@devendras.com</p></div></div>
+      <div class="contact-info-item"><div class="contact-icon"><i class="fa fa-envelope"></i></div><div><h4>Email</h4><p style="color:#888">info@gujjuclothing.com</p></div></div>
       <div class="contact-info-item"><div class="contact-icon"><i class="fa fa-clock"></i></div><div><h4>Hours</h4><p style="color:#888">Mon-Sat: 10:00 AM – 7:00 PM IST</p></div></div>
     </div>
     <div class="contact-form-wrap">

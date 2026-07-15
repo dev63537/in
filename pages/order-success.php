@@ -16,7 +16,7 @@ unset($_SESSION['last_order_number'], $_SESSION['last_order_id']);
 $order     = $orderId ? dbFetchOne("SELECT * FROM orders WHERE id=?", [$orderId]) : null;
 $orderItems = $orderId ? dbFetchAll("SELECT * FROM order_items WHERE order_id=?", [$orderId]) : [];
 
-$pageTitle = "Order Confirmed! — Devendra's Shop";
+$pageTitle = "Order Confirmed! — Gujju Clothing";
 include __DIR__ . '/../includes/header.php';
 ?>
 <div style="min-height:80vh;background:linear-gradient(135deg,#f9f7f4 0%,#fff 100%);padding:60px 20px">
@@ -28,7 +28,7 @@ include __DIR__ . '/../includes/header.php';
         <i class="fa fa-check" style="font-size:2.2rem;color:#fff"></i>
       </div>
       <h1 style="font-family:'Playfair Display',serif;font-size:2.2rem;color:#0f0f0f;margin-bottom:8px">Order Confirmed!</h1>
-      <p style="color:#555;font-size:1.05rem">Thank you for shopping with Devendra's Shop 🎉</p>
+      <p style="color:#555;font-size:1.05rem">Thank you for shopping with Gujju Clothing 🎉</p>
       <div style="display:inline-block;background:#e8f8f0;border:1px solid #a8e6bc;border-radius:50px;padding:8px 24px;margin-top:12px;font-weight:700;color:#27ae60;font-size:1rem">
         Order #<?= e($orderNumber) ?>
       </div>

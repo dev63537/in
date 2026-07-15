@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../includes/functions.php';
-$pageTitle = "Track Your Order — Devendra's Shop";
-$metaDesc  = "Track your Devendra's Shop order in real-time. Enter your order number to see shipping status.";
+$pageTitle = "Track Your Order — Gujju Clothing";
+$metaDesc  = "Track your Gujju Clothing order in real-time. Enter your order number to see shipping status.";
 
 $order = null;
 $orderItems = [];

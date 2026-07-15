@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/includes/functions.php';
-$pageTitle = "Devendra's Shop — Premium Fashion Online";
-$metaDesc  = "Shop the latest fashion trends at Devendra's Shop. Premium clothing for women, men and kids.";
+$pageTitle = "Gujju Clothing — Premium Fashion Online";
+$metaDesc  = "Shop the latest fashion trends at Gujju Clothing. Premium clothing for women, men and kids.";
 
 $featured    = getProducts(8, 0, ['featured_only' => false, 'tag' => 'featured']);
 $newArrivals = getProducts(4, 0, ['tag' => 'new']);
@@ -219,7 +219,7 @@ include __DIR__ . '/includes/header.php';
   <div class="container">
     <div class="section-header animate-on-scroll">
       <h2>What Our Customers Say</h2>
-      <p>Real reviews from real Devendra's Shop shoppers</p>
+      <p>Real reviews from real Gujju Clothing shoppers</p>
     </div>
     <div class="testimonials-grid">
       <?php foreach ($reviews as $rv): ?>

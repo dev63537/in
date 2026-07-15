@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../includes/functions.php';
-$pageTitle = "Returns & Exchanges — Devendra's Shop";
-$metaDesc  = "Easy 15-day returns and exchanges at Devendra's Shop. Learn how to return or exchange your order.";
+$pageTitle = "Returns & Exchanges — Gujju Clothing";
+$metaDesc  = "Easy 15-day returns and exchanges at Gujju Clothing. Learn how to return or exchange your order.";
 include __DIR__ . '/../includes/header.php';
 ?>
 <section class="page-hero">
@@ -83,7 +83,7 @@ include __DIR__ . '/../includes/header.php';
   <!-- Contact -->
   <div style="background:linear-gradient(135deg,#0f0f0f,#1a1a1a);border-radius:16px;padding:36px;text-align:center;color:#fff">
     <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:8px">Need to start a return?</h3>
-    <p style="color:rgba(255,255,255,.7);margin-bottom:8px">Email: <a href="mailto:returns@devendras.com" style="color:#c9a96e">returns@devendras.com</a></p>
+    <p style="color:rgba(255,255,255,.7);margin-bottom:8px">Email: <a href="mailto:returns@gujjuclothing.com" style="color:#c9a96e">returns@gujjuclothing.com</a></p>
     <p style="color:rgba(255,255,255,.7);margin-bottom:24px">Phone: <a href="tel:+919876543210" style="color:#c9a96e">+91 98765 43210</a> (Mon–Sat, 10AM–7PM)</p>
     <a href="<?= SITE_URL ?>/pages/contact.php" class="btn btn-primary"><i class="fa fa-envelope"></i> Contact Support</a>
   </div>

@@ -1,13 +1,13 @@
 <?php
 require_once __DIR__ . '/../includes/functions.php';
-$pageTitle = "Sitemap — Devendra's Shop";
+$pageTitle = "Sitemap — Gujju Clothing";
 include __DIR__ . '/../includes/header.php';
 $categories = getCategories();
 ?>
 <section class="page-hero">
   <div class="container">
     <h1>Sitemap</h1>
-    <p>All pages on Devendra's Shop</p>
+    <p>All pages on Gujju Clothing</p>
     <nav class="breadcrumb"><a href="<?= SITE_URL ?>/index.php">Home</a> / Sitemap</nav>
   </div>
 </section>

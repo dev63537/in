@@ -1,6 +1,6 @@
 
 ================================================================================
-  Devendra's Shop — CLOTHING STORE WEBSITE
+  Gujju Clothing — CLOTHING STORE WEBSITE
   COMPLETE SETUP & DEPLOYMENT GUIDE
   For InfinityFree Free Hosting
 ================================================================================
@@ -142,7 +142,7 @@ STEP 1 — Sign Up
 
 STEP 2 — Create a Hosting Account
   • After login, click "New Account"
-  • Choose a free subdomain like: devendras.rf.gd
+  • Choose a free subdomain like: Gujjus.rf.gd
     OR use your own domain (requires DNS setup)
   • Set a password for your hosting account
   • Click "Create Account"
@@ -197,7 +197,7 @@ Change these lines with YOUR real values:
   define('DB_USER', 'if0_12345678_luxeuser');      // Your DB username
   define('DB_PASS', 'YourStrongPassword123');       // Your DB password
 
-  define('SITE_URL', 'https://devendras.rf.gd');    // Your site URL (no trailing slash)
+  define('SITE_URL', 'https://Gujjus.rf.gd');    // Your site URL (no trailing slash)
   define('DEBUG_MODE', false);                      // Keep false on live site!
 
 IMPORTANT: Never share config.php publicly. Never upload it to GitHub.
@@ -279,14 +279,14 @@ STEP 3 — Verify
 10. TEST YOUR WEBSITE
 ================================================================================
 
-  1. Visit your domain: https://devendras.rf.gd
+  1. Visit your domain: https://Gujjus.rf.gd
   2. Homepage should load with products
   3. Test registration: /auth/register.php
   4. Test login: /auth/login.php
   5. Browse products: /pages/shop.php
   6. Add to cart → view cart → checkout
   7. Test admin panel: /admin/index.php
-     (Login with admin@devendras.com / Admin@1234)
+     (Login with admin@gujjuclothing.com / Admin@1234)
   8. Try adding/editing/deleting a product
 
 
@@ -390,7 +390,7 @@ FREE HOSTING LIMITS (InfinityFree):
 ================================================================================
 
   URL:      https://yourdomain.com/admin/index.php
-  Email:    admin@devendras.com
+  Email:    admin@gujjuclothing.com
   Password: Admin@1234
 
   !! CHANGE THESE IMMEDIATELY after your first login !!
@@ -406,5 +406,5 @@ FREE HOSTING LIMITS (InfinityFree):
   FileZilla Guide:      https://wiki.filezilla-project.org
 
 ================================================================================
-  END OF GUIDE — Devendra's Shop v1.0
+  END OF GUIDE — Gujju Clothing v1.0
 ================================================================================

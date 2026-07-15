@@ -32,7 +32,7 @@ $total     = (float)$order['total_amount'];
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Invoice #<?= e($order['order_number']) ?> — Devendra's Shop</title>
+  <title>Invoice #<?= e($order['order_number']) ?> — Gujju Clothing</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -154,7 +154,7 @@ $total     = (float)$order['total_amount'];
   <!-- Header -->
   <div class="inv-header">
     <div class="inv-brand">
-      Devendra's Shop
+      Gujju Clothing
       <small>Premium Fashion &amp; Lifestyle</small>
     </div>
     <div class="inv-meta">
@@ -184,8 +184,8 @@ $total     = (float)$order['total_amount'];
     <div class="inv-box">
       <h4>From</h4>
       <p>
-        <strong>Devendra's Shop</strong><br>
-        support@devendrashop.com<br>
+        <strong>Gujju Clothing</strong><br>
+        support@gujjuclothing.com<br>
         India
       </p>
     </div>
@@ -270,7 +270,7 @@ $total     = (float)$order['total_amount'];
     </div>
     <div style="text-align:right">
       <p style="font-size:11px;color:#aaa">Generated on <?= date('d M Y, h:i A') ?></p>
-      <p style="font-size:11px;color:#aaa">Devendra's Shop — devendrashop.com</p>
+      <p style="font-size:11px;color:#aaa">Gujju Clothing — gujjuclothing.com</p>
     </div>
   </div>
 
@@ -281,7 +281,7 @@ $total     = (float)$order['total_amount'];
   <?php endif; ?>
 
   <div class="inv-note" style="margin-top:16px">
-    Thank you for shopping with Devendra's Shop! For any queries, please contact us at support@devendrashop.com.
+    Thank you for shopping with Gujju Clothing! For any queries, please contact us at support@gujjuclothing.com.
     This is a computer-generated invoice and does not require a signature.
   </div>
 

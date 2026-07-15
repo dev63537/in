@@ -9,9 +9,9 @@ define('DB_NAME', 'if0_41941799_cshop'); // ← REPLACE with your EXACT DB name 
 define('DB_USER', 'if0_41941799');    // e.g. if0_123456789
 define('DB_PASS', 'KGmQJFj1LOz8iNK');
 
-define('SITE_NAME', "Devendra's Shop");
+define('SITE_NAME', "Gujju Clothing");
 define('SITE_URL', 'https://devenra-s.great-site.net'); // NO trailing slash
-define('SITE_EMAIL', 'info@devendras.com');
+define('SITE_EMAIL', 'info@gujjuclothing.com');
 define('CURRENCY', '₹');
 define('CURRENCY_CODE', 'INR');
 

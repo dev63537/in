@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../includes/functions.php';
-$pageTitle = "Collections — Devendra's Shop";
+$pageTitle = "Collections — Gujju Clothing";
 $categories = getCategories();
 $catImages = [
   1=>'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=800',

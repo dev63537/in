@@ -72,7 +72,7 @@ if ($product['stock'] == 0) {
 }
 
 // ── SEO ──
-$pageTitle = e($product['meta_title'] ?: $product['name'] . " — Devendra's Shop");
+$pageTitle = e($product['meta_title'] ?: $product['name'] . " — Gujju Clothing");
 $metaDesc  = e($product['meta_description']
     ?: $product['short_description']
     ?: substr(strip_tags($product['description'] ?? ''), 0, 160));
@@ -426,7 +426,7 @@ $schema = [
     'description' => $product['short_description'] ?: substr(strip_tags($product['description'] ?? ''), 0, 200),
     'sku'         => $product['sku'] ?? '',
     'image'       => [$product['image']],
-    'brand'       => ['@type' => 'Brand', 'name' => $product['brand_name'] ?: "Devendra's Shop"],
+    'brand'       => ['@type' => 'Brand', 'name' => $product['brand_name'] ?: "Gujju Clothing"],
     'offers'      => [
         '@type'         => 'Offer',
         'price'         => (string)$displayPrice,

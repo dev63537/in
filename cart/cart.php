@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../includes/functions.php';
 startSession();
-$pageTitle = "Shopping Cart — Devendra's Shop";
+$pageTitle = "Shopping Cart — Gujju Clothing";
 $cart = $_SESSION['cart'] ?? [];
 include __DIR__ . '/../includes/header.php';
 ?>

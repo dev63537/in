@@ -1,6 +1,6 @@
 /**
  * drawers.js — Cart & Wishlist Side Drawer + Toast System
- * Devendra's Shop — Pure vanilla JS, no dependencies
+ * Gujju Clothing — Pure vanilla JS, no dependencies
  */
 
 (function () {

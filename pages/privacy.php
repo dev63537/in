@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../includes/functions.php';
-$pageTitle = "Privacy Policy — Devendra's Shop";
-$metaDesc  = "Read Devendra's Shop's privacy policy to understand how we collect, use and protect your personal information.";
+$pageTitle = "Privacy Policy — Gujju Clothing";
+$metaDesc  = "Read Gujju Clothing's privacy policy to understand how we collect, use and protect your personal information.";
 include __DIR__ . '/../includes/header.php';
 ?>
 <section class="page-hero">
@@ -52,7 +52,7 @@ include __DIR__ . '/../includes/header.php';
     ['Your Rights', 'fa-user-shield', '#c9a96e', [
       '<strong>Access:</strong> You can view all personal data we hold about you by logging into your account or contacting us.',
       '<strong>Correction:</strong> Update your account information at any time from your profile page.',
-      '<strong>Deletion:</strong> Request deletion of your account and data by emailing privacy@devendras.com.',
+      '<strong>Deletion:</strong> Request deletion of your account and data by emailing privacy@gujjuclothing.com.',
       '<strong>Opt-Out:</strong> Unsubscribe from marketing emails via the link in any email we send.',
       '<strong>Data Portability:</strong> Request a copy of your data in CSV format.',
     ]],
@@ -66,7 +66,7 @@ include __DIR__ . '/../includes/header.php';
     ]],
     ['Contact Us', 'fa-envelope', '#c9a96e', [
       'For any privacy-related queries or requests, contact our Data Protection Officer:',
-      'Email: <a href="mailto:privacy@devendras.com" style="color:#c9a96e">privacy@devendras.com</a>',
+      'Email: <a href="mailto:privacy@gujjuclothing.com" style="color:#c9a96e">privacy@gujjuclothing.com</a>',
       'Phone: +91 98765 43210',
       'Address: 42 Fashion Street, Mumbai, Maharashtra 400001, India',
     ]],

@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
-$pageTitle = "Login — Devendra's Shop";
+$pageTitle = "Login — Gujju Clothing";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +41,7 @@ $pageTitle = "Login — Devendra's Shop";
 <main class="auth-page">
   <div class="auth-card">
     <div class="auth-logo">
-      <span><i class="fa fa-gem" style="color:#c9a96e"></i> DEVENDRA'S <span class="accent">SHOP</span></span>
+      <span><i class="fa fa-gem" style="color:#c9a96e"></i> GUJJU <span class="accent">CLOTHING</span></span>
     </div>
     <h1 class="auth-title">Welcome Back</h1>
     <p class="auth-subtitle">Sign in to your account</p>

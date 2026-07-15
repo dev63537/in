@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../includes/functions.php';
-$pageTitle = "FAQ — Devendra's Shop";
-$metaDesc  = "Frequently asked questions about shipping, returns, payments and more at Devendra's Shop.";
+$pageTitle = "FAQ — Gujju Clothing";
+$metaDesc  = "Frequently asked questions about shipping, returns, payments and more at Gujju Clothing.";
 include __DIR__ . '/../includes/header.php';
 ?>
 <section class="page-hero">
@@ -35,7 +35,7 @@ include __DIR__ . '/../includes/header.php';
     ],
     'Returns & Exchanges' => [
       ['Q: What is your return policy?',      'A: We offer hassle-free 15-day returns from the date of delivery. Items must be unworn, unwashed, and in original packaging with tags intact.'],
-      ['Q: How do I initiate a return?',      'A: Simply contact us at info@devendras.com or call +91 98765 43210 with your order number. We will arrange a pickup within 2–3 business days.'],
+      ['Q: How do I initiate a return?',      'A: Simply contact us at info@gujjuclothing.com or call +91 98765 43210 with your order number. We will arrange a pickup within 2–3 business days.'],
       ['Q: When will I get my refund?',       'A: Refunds are processed within 5–7 business days after we receive and inspect the returned item. UPI/Bank transfers are instant once initiated.'],
       ['Q: Can I exchange for a different size?', 'A: Absolutely! Exchanges for different sizes (subject to availability) are processed free of charge within the 15-day window.'],
     ],

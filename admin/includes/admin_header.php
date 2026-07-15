@@ -9,7 +9,7 @@ $currentAdmin = basename($_SERVER['PHP_SELF']);
 <html lang="en">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title><?= e($pageTitle ?? "Admin — Devendra's Shop") ?></title>
+  <title><?= e($pageTitle ?? "Admin — Gujju Clothing") ?></title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
@@ -23,7 +23,7 @@ $currentAdmin = basename($_SERVER['PHP_SELF']);
 <aside class="admin-sidebar" id="admin-sidebar">
   <div class="admin-brand">
     <i class="fa fa-gem"></i>
-    <span>Devendra's Shop</span>
+    <span>Gujju Clothing</span>
   </div>
   <nav class="admin-nav">
     <div class="admin-nav-section">Main</div>

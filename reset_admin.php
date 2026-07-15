@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin Reset — Devendra's Shop</title>
+  <title>Admin Reset — Gujju Clothing</title>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet"/>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <?php else: ?>
     <h1>&#128274; Admin Reset</h1>
-    <p class="subtitle">Devendra's Shop — One-Time Admin Credentials Reset</p>
+    <p class="subtitle">Gujju Clothing — One-Time Admin Credentials Reset</p>
 
     <div class="warning">
       &#9888; <strong>Security Notice:</strong> Delete this file from your server immediately after use!
@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form method="POST" action="">
       <label>Secret Key *</label>
       <input type="password" name="secret_key" placeholder="Enter the secret key" required />
-      <p class="hint">Default key: devendra2025reset</p>
+      <p class="hint">Default key: Gujju2025reset</p>
 
       <label>New Admin Email *</label>
       <input type="email" name="new_email" placeholder="admin@yourdomain.com" required

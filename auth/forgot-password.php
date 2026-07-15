@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$pageTitle = "Forgot Password — Devendra's Shop";
+$pageTitle = "Forgot Password — Gujju Clothing";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +44,7 @@ $pageTitle = "Forgot Password — Devendra's Shop";
 <main class="auth-page">
   <div class="auth-card">
     <div class="auth-logo">
-      <span><i class="fa fa-gem" style="color:#c9a96e"></i> DEVENDRA'S <span class="accent">SHOP</span></span>
+      <span><i class="fa fa-gem" style="color:#c9a96e"></i> GUJJU <span class="accent">CLOTHING</span></span>
     </div>
 
     <?php if (!$success): ?>
@@ -85,7 +85,7 @@ $pageTitle = "Forgot Password — Devendra's Shop";
 
       <div style="background:#f9f7f4;border-radius:10px;padding:16px;text-align:left;margin-bottom:20px;font-size:.85rem;color:#555">
         <strong style="display:block;margin-bottom:8px"><i class="fa fa-info-circle" style="color:#c9a96e"></i> For Demo Purposes</strong>
-        Since this is a demo, password resets are handled by the admin. Please contact support at <a href="mailto:info@devendras.com" style="color:#c9a96e">info@devendras.com</a> to reset your password.
+        Since this is a demo, password resets are handled by the admin. Please contact support at <a href="mailto:info@gujjuclothing.com" style="color:#c9a96e">info@gujjuclothing.com</a> to reset your password.
       </div>
     </div>
     <?php endif; ?>

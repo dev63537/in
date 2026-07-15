@@ -1,10 +1,10 @@
 
 ╔══════════════════════════════════════════════════════════════════════════════════╗
-║          DEVENDRA'S SHOP — COMPLETE HOSTING GUIDE (guid.txt)                   ║
+║          Gujju Clothing — COMPLETE HOSTING GUIDE (guid.txt)                   ║
 ║          Local (XAMPP)  +  Live (InfinityFree)  +  Error Fix Guide             ║
 ╚══════════════════════════════════════════════════════════════════════════════════╝
 
-Project: Devendra's Clothing Shop (PHP + MySQL)
+Project: Gujju Clothing Clothing Shop (PHP + MySQL)
 Guide Written: June 2026
 Author Note: Follow EVERY step in order. Do NOT skip any step.
 

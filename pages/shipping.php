@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../includes/functions.php';
-$pageTitle = "Shipping Policy — Devendra's Shop";
-$metaDesc  = "Learn about our shipping rates, delivery timelines, and courier partners at Devendra's Shop.";
+$pageTitle = "Shipping Policy — Gujju Clothing";
+$metaDesc  = "Learn about our shipping rates, delivery timelines, and courier partners at Gujju Clothing.";
 include __DIR__ . '/../includes/header.php';
 ?>
 <section class="page-hero">

@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../includes/functions.php';
-$pageTitle = "Terms of Service — Devendra's Shop";
-$metaDesc  = "Read the terms and conditions governing your use of Devendra's Shop website and services.";
+$pageTitle = "Terms of Service — Gujju Clothing";
+$metaDesc  = "Read the terms and conditions governing your use of Gujju Clothing website and services.";
 include __DIR__ . '/../includes/header.php';
 ?>
 <section class="page-hero">
@@ -14,7 +14,7 @@ include __DIR__ . '/../includes/header.php';
 
 <div class="container" style="max-width:860px;padding:60px 20px">
   <div style="background:#f9f7f4;border-radius:10px;padding:18px 22px;margin-bottom:36px;color:#555;font-size:.92rem;line-height:1.7">
-    By accessing or using Devendra's Shop ("the Site"), you agree to these Terms of Service. Please read them carefully. If you do not agree with these terms, please do not use our website.
+    By accessing or using Gujju Clothing ("the Site"), you agree to these Terms of Service. Please read them carefully. If you do not agree with these terms, please do not use our website.
   </div>
 
   <?php $sections = [
@@ -52,7 +52,7 @@ include __DIR__ . '/../includes/header.php';
       'Refunds are processed within 5–7 business days of receiving and inspecting the returned item.',
     ]],
     ['7. Intellectual Property', [
-      'All content on the Site — including logos, images, text, and design — is owned by Devendra\'s Shop and protected by copyright laws.',
+      'All content on the Site — including logos, images, text, and design — is owned by Gujju\'s Shop and protected by copyright laws.',
       'You may not reproduce, distribute, or create derivative works from our content without prior written permission.',
     ]],
     ['8. Prohibited Conduct', [
@@ -62,7 +62,7 @@ include __DIR__ . '/../includes/header.php';
       'You must not attempt to gain unauthorized access to any part of the Site.',
     ]],
     ['9. Limitation of Liability', [
-      'Devendra\'s Shop is not liable for any indirect, incidental, or consequential damages arising from your use of the Site.',
+      'Gujju\'s Shop is not liable for any indirect, incidental, or consequential damages arising from your use of the Site.',
       'Our total liability for any claim arising from these terms shall not exceed the amount you paid for the order in question.',
     ]],
     ['10. Governing Law', [
@@ -73,7 +73,7 @@ include __DIR__ . '/../includes/header.php';
       'Continued use of the Site after changes constitutes your acceptance of the new terms.',
     ]],
     ['12. Contact', [
-      'For any questions about these terms, contact us at: <a href="mailto:legal@devendras.com" style="color:#c9a96e">legal@devendras.com</a>',
+      'For any questions about these terms, contact us at: <a href="mailto:legal@gujjuclothing.com" style="color:#c9a96e">legal@gujjuclothing.com</a>',
     ]],
   ]; foreach ($sections as $s): ?>
   <div style="margin-bottom:28px">

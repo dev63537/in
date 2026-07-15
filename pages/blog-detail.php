@@ -26,7 +26,7 @@ $posts = [
 $post = $posts[$slug] ?? null;
 if (!$post) redirect(SITE_URL . '/pages/blog.php');
 
-$pageTitle = e($post['title']) . " — Devendra's Shop Blog";
+$pageTitle = e($post['title']) . " — Gujju Clothing Blog";
 $metaDesc  = substr(strip_tags($post['content']), 0, 155);
 include __DIR__ . '/../includes/header.php';
 ?>

@@ -24,8 +24,8 @@ if (!empty($wishlistIds)) {
     $products = dbFetchAll("SELECT p.*, c.name AS category_name FROM products p LEFT JOIN categories c ON p.category_id=c.id WHERE p.id IN ($in) AND p.status='active'");
 }
 
-$pageTitle = "My Wishlist — Devendra's Shop";
-$metaDesc  = "Your saved items on Devendra's Shop. Add them to cart anytime.";
+$pageTitle = "My Wishlist — Gujju Clothing";
+$metaDesc  = "Your saved items on Gujju Clothing. Add them to cart anytime.";
 include __DIR__ . '/../includes/header.php';
 ?>
 <section class="page-hero">

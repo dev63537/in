@@ -31,13 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['user_name'] = $name;
                 $_SESSION['user_role'] = 'customer';
                 session_regenerate_id(true);
-                setFlash('success', "Welcome to Devendra's Shop, " . $name . '!');
+                setFlash('success', "Welcome to Gujju Clothing, " . $name . '!');
                 redirect(SITE_URL . '/index.php');
             }
         }
     }
 }
-$pageTitle = "Register — Devendra's Shop";
+$pageTitle = "Register — Gujju Clothing";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,10 +52,10 @@ $pageTitle = "Register — Devendra's Shop";
 <main class="auth-page">
   <div class="auth-card">
     <div class="auth-logo">
-      <span><i class="fa fa-gem" style="color:#c9a96e"></i> DEVENDRA'S <span class="accent">SHOP</span></span>
+      <span><i class="fa fa-gem" style="color:#c9a96e"></i> GUJJU <span class="accent">CLOTHING</span></span>
     </div>
     <h1 class="auth-title">Create Account</h1>
-    <p class="auth-subtitle">Join the Devendra's Shop family</p>
+    <p class="auth-subtitle">Join the Gujju Clothing family</p>
 
     <?php if ($errors): ?>
       <div class="flash-message flash-error" style="position:static;margin-bottom:18px;flex-direction:column;align-items:flex-start;gap:4px">

@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../includes/functions.php';
-$pageTitle = "Affiliate Program — Devendra's Shop";
-$metaDesc  = "Earn up to 15% commission by promoting Devendra's Shop products. Join our affiliate program today.";
+$pageTitle = "Affiliate Program — Gujju Clothing";
+$metaDesc  = "Earn up to 15% commission by promoting Gujju Clothing products. Join our affiliate program today.";
 include __DIR__ . '/../includes/header.php';
 ?>
 <section class="page-hero">

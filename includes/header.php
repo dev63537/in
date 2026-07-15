@@ -14,10 +14,10 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="<?= e($metaDesc ?? "Devendra's Shop — Premium Fashion for Every Occasion. Shop Trendy Clothing Online.") ?>" />
+  <meta name="description" content="<?= e($metaDesc ?? "Gujju Clothing — Premium Fashion for Every Occasion. Shop Trendy Clothing Online.") ?>" />
   <meta name="keywords" content="clothing store, fashion, trendy clothes, online shopping" />
   <meta name="theme-color" content="#0f0f0f" />
-  <title><?= e($pageTitle ?? "Devendra's Shop — Premium Fashion") ?></title>
+  <title><?= e($pageTitle ?? "Gujju Clothing — Premium Fashion") ?></title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -51,7 +51,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
     <!-- Logo -->
     <a href="<?= SITE_URL ?>/index.php" class="nav-logo">
       <span class="logo-icon"><i class="fa fa-gem"></i></span>
-      <span class="logo-text">DEVENDRA'S <span class="logo-accent">SHOP</span></span>
+      <span class="logo-text">GUJJU <span class="logo-accent">CLOTHING</span></span>
     </a>
 
     <!-- Desktop Navigation Links -->

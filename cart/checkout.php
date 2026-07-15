@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
-$pageTitle = "Checkout — Devendra's Shop";
+$pageTitle = "Checkout — Gujju Clothing";
 $subtotal  = getCartTotal();
 $shipping  = $subtotal >= 999 ? 0 : 99;
 $discount  = 0;

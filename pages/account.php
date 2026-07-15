@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $orders = dbFetchAll("SELECT id, order_number, total_amount, status, created_at FROM orders WHERE user_id=? ORDER BY created_at DESC LIMIT 5", [$userId]);
 
-$pageTitle = "My Account — Devendra's Shop";
+$pageTitle = "My Account — Gujju Clothing";
 include __DIR__ . '/../includes/header.php';
 ?>
 <section class="page-hero">

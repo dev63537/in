@@ -9,7 +9,7 @@
   <div class="container">
     <div class="newsletter-inner">
       <div class="newsletter-text">
-        <h3>Join the Devendra's Shop Circle</h3>
+        <h3>Join the Gujju Clothing Circle</h3>
         <p>Get exclusive deals, early access to new arrivals & style inspiration.</p>
       </div>
       <form class="newsletter-form" id="newsletter-form" action="<?= SITE_URL ?>/pages/newsletter.php" method="POST">
@@ -29,7 +29,7 @@
       <!-- Brand Column -->
       <div class="footer-col footer-brand">
         <a href="<?= SITE_URL ?>/index.php" class="footer-logo">
-          <i class="fa fa-gem"></i> Devendra's Shop
+          <i class="fa fa-gem"></i> Gujju Clothing
         </a>
         <p>Premium fashion for every occasion. Curated styles that define your identity.</p>
         <div class="social-links">
@@ -96,7 +96,7 @@
   <!-- Footer Bottom -->
   <div class="footer-bottom">
     <div class="container">
-      <p>&copy; <?= date('Y') ?> <strong>Devendra's Shop</strong>. All Rights Reserved. Made with <i class="fa fa-heart" style="color:#e74c3c"></i> in India.</p>
+      <p>&copy; <?= date('Y') ?> <strong>Gujju Clothing</strong>. All Rights Reserved. Made with <i class="fa fa-heart" style="color:#e74c3c"></i> in India.</p>
       <p class="footer-bottom-links">
         <a href="<?= SITE_URL ?>/pages/privacy.php">Privacy</a> &bull;
         <a href="<?= SITE_URL ?>/pages/terms.php">Terms</a> &bull;

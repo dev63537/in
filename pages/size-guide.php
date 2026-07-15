@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../includes/functions.php';
-$pageTitle = "Size Guide — Devendra's Shop";
-$metaDesc  = "Find your perfect fit with our comprehensive size guide for women, men and kids clothing at Devendra's Shop.";
+$pageTitle = "Size Guide — Gujju Clothing";
+$metaDesc  = "Find your perfect fit with our comprehensive size guide for women, men and kids clothing at Gujju Clothing.";
 include __DIR__ . '/../includes/header.php';
 ?>
 <section class="page-hero">
