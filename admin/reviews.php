@@ -29,7 +29,7 @@ $filter  = $_GET['status'] ?? 'all';
 $where   = $filter !== 'all' ? "WHERE r.status='$filter'" : '';
 $reviews = dbFetchAll("SELECT r.*, p.name AS product_name FROM reviews r LEFT JOIN products p ON r.product_id=p.id $where ORDER BY r.created_at DESC");
 
-include __DIR__ . '/../includes/admin_header.php';
+include __DIR__ . '/includes/admin_header.php';
 ?>
 
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:14px">
@@ -90,4 +90,4 @@ include __DIR__ . '/../includes/admin_header.php';
     </table>
   </div>
 </div>
-<?php require_once __DIR__ . '/../includes/admin_footer.php'; ?>
+<?php require_once __DIR__ . '/includes/admin_footer.php'; ?>

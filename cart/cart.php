@@ -72,15 +72,32 @@ include __DIR__ . '/../includes/header.php';
     <!-- Cart Summary -->
     <div class="cart-summary">
       <h3>Order Summary</h3>
-      <?php $subtotal = getCartTotal(); $shipping = $subtotal >= 999 ? 0 : 99; $total = $subtotal + $shipping; ?>
+      <?php 
+      $subtotal = getCartTotal(); 
+      $shipping = $subtotal >= 999 ? 0 : 99; 
+      $discount = 0;
+      if (isset($_SESSION['coupon'])) {
+          $c = $_SESSION['coupon'];
+          if ($subtotal >= $c['min_order']) {
+              $discount = $c['type'] === 'percent' ? ($subtotal * $c['value'] / 100) : $c['value'];
+              if ($discount > $subtotal) $discount = $subtotal;
+          } else {
+              unset($_SESSION['coupon']);
+          }
+      }
+      $total = $subtotal - $discount + $shipping; 
+      ?>
       <div class="summary-row"><span>Subtotal</span><span><?= formatPrice($subtotal) ?></span></div>
       <div class="summary-row"><span>Shipping</span><span><?= $shipping == 0 ? '<span style="color:#27ae60">FREE</span>' : formatPrice($shipping) ?></span></div>
       <?php if ($shipping > 0): ?>
       <div class="summary-row" style="font-size:.8rem;color:#888"><span colspan="2">Add <?= formatPrice(999 - $subtotal) ?> more for free shipping</span></div>
       <?php endif; ?>
+      <?php if ($discount > 0): ?>
+      <div class="summary-row" style="color:#27ae60"><span>Discount (<?= e($_SESSION['coupon']['code']) ?>)</span><span>-<?= formatPrice($discount) ?></span></div>
+      <?php endif; ?>
       <div class="coupon-wrap">
-        <input type="text" id="coupon-input" placeholder="Coupon code"/>
-        <button type="button" id="apply-coupon-btn">Apply</button>
+        <input type="text" id="coupon-input" placeholder="Coupon code" value="<?= isset($_SESSION['coupon']) ? e($_SESSION['coupon']['code']) : '' ?>" <?= isset($_SESSION['coupon']) ? 'disabled' : '' ?>/>
+        <button type="button" id="apply-coupon-btn"><?= isset($_SESSION['coupon']) ? 'Remove' : 'Apply' ?></button>
       </div>
       <div class="summary-row total"><span>Total</span><span id="order-total"><?= formatPrice($total) ?></span></div>
       <a href="<?= SITE_URL ?>/cart/checkout.php" class="btn btn-primary btn-full" style="margin-top:16px">
@@ -95,3 +112,22 @@ include __DIR__ . '/../includes/header.php';
 </div>
 
 <?php include __DIR__ . '/../includes/footer.php'; ?>
+<script>
+document.getElementById('apply-coupon-btn')?.addEventListener('click', function() {
+    let isRemove = this.innerText.trim() === 'Remove';
+    let code = document.getElementById('coupon-input').value.trim();
+    if (!code && !isRemove) return;
+    
+    fetch('<?= SITE_URL ?>/cart/cart_actions.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ action: isRemove ? 'remove_coupon' : 'apply_coupon', code: code })
+    }).then(r => r.json()).then(res => {
+        if (res.success) {
+            location.reload();
+        } else {
+            alert(res.message || 'Invalid coupon');
+        }
+    });
+});
+</script>

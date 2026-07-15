@@ -24,18 +24,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!$errors) {
             $subtotal = getCartTotal();
             $shipping = $subtotal >= 999 ? 0 : 99;
-            $total    = $subtotal + $shipping;
+            $discount = 0;
+            if (isset($_SESSION['coupon'])) {
+                $c = $_SESSION['coupon'];
+                if ($subtotal >= $c['min_order']) {
+                    $discount = $c['type'] === 'percent' ? ($subtotal * $c['value'] / 100) : $c['value'];
+                    if ($discount > $subtotal) $discount = $subtotal;
+                }
+            }
+            $total    = $subtotal - $discount + $shipping;
             $orderNum = 'DSH' . strtoupper(substr(uniqid(), -7));
 
-            dbExecute("INSERT INTO orders (user_id,order_number,total_amount,shipping_charge,payment_method,shipping_name,shipping_email,shipping_phone,shipping_address,shipping_city,shipping_state,shipping_pincode) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
-                [$_SESSION['user_id'], $orderNum, $total, $shipping, $method, $name, $email, $phone, $address, $city, $state, $pincode]);
+            dbExecute("INSERT INTO orders (user_id,order_number,total_amount,discount,shipping_charge,payment_method,shipping_name,shipping_email,shipping_phone,shipping_address,shipping_city,shipping_state,shipping_pincode) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                [$_SESSION['user_id'], $orderNum, $total, $discount, $shipping, $method, $name, $email, $phone, $address, $city, $state, $pincode]);
             $orderId = dbLastId();
 
             foreach ($cart as $item) {
                 dbExecute("INSERT INTO order_items (order_id,product_id,product_name,product_image,size,color,quantity,unit_price,subtotal) VALUES (?,?,?,?,?,?,?,?,?)",
                     [$orderId, $item['product_id'], $item['name'], $item['image'], $item['size'], $item['color'], $item['quantity'], $item['price'], $item['price']*$item['quantity']]);
             }
+            if ($discount > 0 && isset($_SESSION['coupon']['id'])) {
+                dbExecute("UPDATE coupon_codes SET used_count = used_count + 1 WHERE id=?", [$_SESSION['coupon']['id']]);
+            }
             unset($_SESSION['cart']);
+            unset($_SESSION['coupon']);
             $_SESSION['last_order_number'] = $orderNum;
             $_SESSION['last_order_id']     = $orderId;
             redirect(SITE_URL . '/pages/order-success.php');
@@ -45,7 +57,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $pageTitle = "Checkout — Devendra's Shop";
 $subtotal  = getCartTotal();
 $shipping  = $subtotal >= 999 ? 0 : 99;
-$total     = $subtotal + $shipping;
+$discount  = 0;
+if (isset($_SESSION['coupon'])) {
+    $c = $_SESSION['coupon'];
+    if ($subtotal >= $c['min_order']) {
+        $discount = $c['type'] === 'percent' ? ($subtotal * $c['value'] / 100) : $c['value'];
+        if ($discount > $subtotal) $discount = $subtotal;
+    }
+}
+$total     = $subtotal - $discount + $shipping;
 include __DIR__ . '/../includes/header.php';
 ?>
 <section class="page-hero">
@@ -105,6 +125,9 @@ include __DIR__ . '/../includes/header.php';
       <?php endforeach; ?>
       <div class="summary-row"><span>Subtotal</span><span><?= formatPrice($subtotal) ?></span></div>
       <div class="summary-row"><span>Shipping</span><span><?= $shipping == 0 ? '<span style="color:#27ae60">FREE</span>' : formatPrice($shipping) ?></span></div>
+      <?php if ($discount > 0): ?>
+      <div class="summary-row" style="color:#27ae60"><span>Discount (<?= e($_SESSION['coupon']['code']) ?>)</span><span>-<?= formatPrice($discount) ?></span></div>
+      <?php endif; ?>
       <div class="summary-row total"><span>Total</span><span><?= formatPrice($total) ?></span></div>
     </div>
   </div>

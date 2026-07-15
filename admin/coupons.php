@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $coupons = dbFetchAll("SELECT * FROM coupon_codes ORDER BY id DESC");
 
-include __DIR__ . '/../includes/admin_header.php';
+include __DIR__ . '/includes/admin_header.php';
 ?>
 
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:14px">
@@ -151,4 +151,4 @@ function toggleForm() {
   f.style.display = f.style.display === 'none' ? '' : 'none';
 }
 </script>
-<?php require_once __DIR__ . '/../includes/admin_footer.php'; ?>
+<?php require_once __DIR__ . '/includes/admin_footer.php'; ?>

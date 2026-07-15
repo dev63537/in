@@ -102,6 +102,39 @@ if ($action === 'add') {
         'count'    => count($products),
     ]);
 
+} elseif ($action === 'apply_coupon') {
+    $code = strtoupper(trim($_POST['code'] ?? ''));
+    if (!$code) { echo json_encode(['success'=>false, 'message'=>'Please enter a code.']); exit; }
+    
+    $coupon = dbFetchOne("SELECT * FROM coupon_codes WHERE code=? AND status='active'", [$code]);
+    if (!$coupon) {
+        echo json_encode(['success'=>false, 'message'=>'Invalid or inactive coupon.']); exit;
+    }
+    if ($coupon['expires_at'] && strtotime($coupon['expires_at']) < time()) {
+        echo json_encode(['success'=>false, 'message'=>'Coupon has expired.']); exit;
+    }
+    if ($coupon['usage_limit'] > 0 && $coupon['used_count'] >= $coupon['usage_limit']) {
+        echo json_encode(['success'=>false, 'message'=>'Coupon usage limit reached.']); exit;
+    }
+    
+    $subtotal = getCartTotal();
+    if ($subtotal < $coupon['min_order']) {
+        echo json_encode(['success'=>false, 'message'=>'Minimum order of ₹' . $coupon['min_order'] . ' required.']); exit;
+    }
+    
+    $_SESSION['coupon'] = [
+        'id' => $coupon['id'],
+        'code' => $coupon['code'],
+        'type' => $coupon['type'],
+        'value' => $coupon['value'],
+        'min_order' => $coupon['min_order']
+    ];
+    echo json_encode(['success'=>true, 'message'=>'Coupon applied!']);
+
+} elseif ($action === 'remove_coupon') {
+    unset($_SESSION['coupon']);
+    echo json_encode(['success'=>true, 'message'=>'Coupon removed.']);
+
 } else {
     echo json_encode(['success'=>false,'message'=>'Unknown action.']);
 }
