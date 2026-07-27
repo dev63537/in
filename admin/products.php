@@ -26,12 +26,21 @@ $whereSQL = implode(' AND ', $where);
 $total    = (int)(dbFetchOne("SELECT COUNT(*) AS cnt FROM products p WHERE $whereSQL", $params)['cnt'] ?? 0);
 $pages    = max(1, ceil($total / $perPage));
 
+<<<<<<< HEAD
 $qParams  = array_merge($params, [$perPage, $offset]);
+=======
+$limit    = (int)$perPage;
+$offsetInt = (int)$offset;
+>>>>>>> origin/master
 $products = dbFetchAll("SELECT p.*, c.name AS cat_name, b.name AS brand_name
   FROM products p
   LEFT JOIN categories c ON p.category_id = c.id
   LEFT JOIN brands b     ON p.brand_id    = b.id
+<<<<<<< HEAD
   WHERE $whereSQL ORDER BY p.id DESC LIMIT ? OFFSET ?", $qParams);
+=======
+  WHERE $whereSQL ORDER BY p.id DESC LIMIT $limit OFFSET $offsetInt", $params);
+>>>>>>> origin/master
 
 $categories = getCategories();
 $brands     = dbFetchAll("SELECT id, name FROM brands WHERE status='active' ORDER BY name");

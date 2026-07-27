@@ -28,8 +28,4 @@ include __DIR__ . '/../includes/header.php';
     </div>
   <?php endif; ?>
 </div>
-<<<<<<< HEAD
 <?php include __DIR__ . '/../includes/footer.php'; ?>
-=======
-<?php include __DIR__ . '/../includes/footer.php'; ?>
->>>>>>> origin/master

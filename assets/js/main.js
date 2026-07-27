@@ -107,6 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
     qtyPlus.addEventListener('click',  () => { if (parseInt(qtyInput.value) < 99) qtyInput.value++; });
   }
 
+<<<<<<< HEAD
   // ── AJAX Add to Cart (uses window.SITE_URL for correct absolute path)
   document.querySelectorAll('.add-to-cart-form').forEach(form => {
     form.addEventListener('submit', function (e) {
@@ -137,6 +138,9 @@ document.addEventListener('DOMContentLoaded', function () {
         .finally(() => { setTimeout(() => { btn.innerHTML = orig; btn.disabled = false; }, 2000); });
     });
   });
+=======
+  // ── AJAX Add to Cart is handled exclusively by drawers.js to prevent duplicate requests
+>>>>>>> origin/master
 
   // ── Cart quantity update
   document.querySelectorAll('.cart-qty-input').forEach(input => {

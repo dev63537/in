@@ -49,13 +49,8 @@ $products = dbFetchAll("SELECT p.*, c.name AS category_name, b.name AS brand_nam
     LEFT JOIN brands b     ON p.brand_id    = b.id
     WHERE $whereSQL
     ORDER BY $order
-<<<<<<< HEAD
-    LIMIT ? OFFSET ?",
-    array_merge($params, [$limit, $offset]));
-=======
     LIMIT $limit OFFSET $offset",
     $params);
->>>>>>> origin/master
 
 $categories = getCategories();
 $brands     = dbFetchAll("SELECT id, name FROM brands WHERE status='active' ORDER BY name");

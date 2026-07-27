@@ -25,8 +25,4 @@ include __DIR__ . '/../includes/header.php';
     <p style="color:#555;max-width:600px;margin:0 auto;line-height:1.8">To make premium fashion accessible to everyone — by combining quality craftsmanship, sustainable practices, and stunning design at honest prices.</p>
   </div>
 </div>
-<<<<<<< HEAD
 <?php include __DIR__ . '/../includes/footer.php'; ?>
-=======
-<?php include __DIR__ . '/../includes/footer.php'; ?>
->>>>>>> origin/master
