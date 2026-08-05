@@ -22,8 +22,4 @@ $users = dbFetchAll("SELECT id, name, email, role, status, created_at FROM users
     </tbody>
   </table>
 </div>
-<<<<<<< HEAD
 <?php include __DIR__ . '/includes/admin_footer.php'; ?>
-=======
-<?php include __DIR__ . '/includes/admin_footer.php'; ?>
->>>>>>> origin/master

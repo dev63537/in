@@ -73,12 +73,13 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   function nextSlide() { showSlide((current + 1) % slides.length); }
   if (slides.length > 1) {
-    timer = setInterval(nextSlide, 5000);
-    dots.forEach((d, i) => d.addEventListener('click', () => { clearInterval(timer); showSlide(i); timer = setInterval(nextSlide, 5000); }));
+    const SLIDE_INTERVAL = 2500; // Reduced slider duration (2.5 sec)
+    timer = setInterval(nextSlide, SLIDE_INTERVAL);
+    dots.forEach((d, i) => d.addEventListener('click', () => { clearInterval(timer); showSlide(i); timer = setInterval(nextSlide, SLIDE_INTERVAL); }));
     const prev = document.getElementById('hero-prev');
     const next = document.getElementById('hero-next');
-    prev && prev.addEventListener('click', () => { clearInterval(timer); showSlide((current - 1 + slides.length) % slides.length); timer = setInterval(nextSlide, 5000); });
-    next && next.addEventListener('click', () => { clearInterval(timer); nextSlide(); timer = setInterval(nextSlide, 5000); });
+    prev && prev.addEventListener('click', () => { clearInterval(timer); showSlide((current - 1 + slides.length) % slides.length); timer = setInterval(nextSlide, SLIDE_INTERVAL); });
+    next && next.addEventListener('click', () => { clearInterval(timer); nextSlide(); timer = setInterval(nextSlide, SLIDE_INTERVAL); });
   }
 
   // ── Product image gallery
@@ -107,40 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
     qtyPlus.addEventListener('click',  () => { if (parseInt(qtyInput.value) < 99) qtyInput.value++; });
   }
 
-<<<<<<< HEAD
-  // ── AJAX Add to Cart (uses window.SITE_URL for correct absolute path)
-  document.querySelectorAll('.add-to-cart-form').forEach(form => {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const btn = this.querySelector('[type=submit]');
-      const orig = btn.innerHTML;
-      btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Adding…';
-      btn.disabled = true;
-      fetch(CART_URL, { method: 'POST', body: new FormData(this) })
-        .then(r => r.json())
-        .then(data => {
-          if (data.success) {
-            btn.innerHTML = '<i class="fa fa-check"></i> Added!';
-            const badge = document.querySelector('.cart-badge');
-            if (badge) badge.textContent = data.cart_count;
-            else {
-              const cartBtn = document.querySelector('.cart-btn');
-              if (cartBtn) cartBtn.insertAdjacentHTML('beforeend', `<span class="cart-badge">${data.cart_count}</span>`);
-            }
-            showToast('Item added to cart!', 'success');
-          } else {
-            btn.innerHTML = orig;
-            btn.disabled = false;
-            showToast(data.message || 'Error adding item.', 'error');
-          }
-        })
-        .catch(() => showToast('Network error. Please try again.', 'error'))
-        .finally(() => { setTimeout(() => { btn.innerHTML = orig; btn.disabled = false; }, 2000); });
-    });
-  });
-=======
   // ── AJAX Add to Cart is handled exclusively by drawers.js to prevent duplicate requests
->>>>>>> origin/master
 
   // ── Cart quantity update
   document.querySelectorAll('.cart-qty-input').forEach(input => {

@@ -49,13 +49,8 @@ $products = dbFetchAll("SELECT p.*, c.name AS category_name, b.name AS brand_nam
     LEFT JOIN brands b     ON p.brand_id    = b.id
     WHERE $whereSQL
     ORDER BY $order
-<<<<<<< HEAD
-    LIMIT ? OFFSET ?",
-    array_merge($params, [$limit, $offset]));
-=======
     LIMIT $limit OFFSET $offset",
     $params);
->>>>>>> origin/master
 
 $categories = getCategories();
 $brands     = dbFetchAll("SELECT id, name FROM brands WHERE status='active' ORDER BY name");
@@ -177,7 +172,10 @@ include __DIR__ . '/../includes/header.php';
       <!-- Toolbar -->
       <div class="shop-toolbar">
         <div class="shop-results">
-          <?= $total ?> product<?= $total!=1?'s':'' ?> found
+          <button type="button" class="btn btn-outline shop-sidebar-toggle" id="filter-toggle">
+            <i class="fa fa-sliders-h"></i> Filters
+          </button>
+          <span><?= $total ?> product<?= $total!=1?'s':'' ?> found</span>
           <?php if ($search): ?><span style="color:var(--gray)"> for "<?= e($search) ?>"</span><?php endif; ?>
         </div>
         <div style="display:flex;align-items:center;gap:12px">

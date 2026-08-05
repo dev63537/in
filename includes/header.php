@@ -21,7 +21,8 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Faculty+Glyphic&family=Marcellus&display=swap" rel="stylesheet" />
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -56,22 +57,12 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
     <!-- Desktop Navigation Links -->
     <ul class="nav-links" id="nav-links">
-      <li><a href="<?= SITE_URL ?>/index.php" class="<?= $currentPage === 'index.php' ? 'active' : '' ?>">Home</a></li>
-      <li class="has-dropdown">
-        <a href="<?= SITE_URL ?>/pages/shop.php">Shop <i class="fa fa-chevron-down fa-xs"></i></a>
-        <div class="nav-dropdown">
-          <?php foreach ($categories as $cat): ?>
-            <a href="<?= SITE_URL ?>/pages/shop.php?category=<?= e($cat['id']) ?>">
-              <i class="fa fa-tag"></i> <?= e($cat['name']) ?>
-            </a>
-          <?php endforeach; ?>
-          <a href="<?= SITE_URL ?>/pages/shop.php?tag=new"><i class="fa fa-star"></i> New Arrivals</a>
-          <a href="<?= SITE_URL ?>/pages/shop.php?tag=sale"><i class="fa fa-fire"></i> Sale</a>
-        </div>
-      </li>
-      <li><a href="<?= SITE_URL ?>/pages/collections.php">Collections</a></li>
-      <li><a href="<?= SITE_URL ?>/pages/about.php">About</a></li>
-      <li><a href="<?= SITE_URL ?>/pages/contact.php">Contact</a></li>
+      <li><a href="<?= SITE_URL ?>/index.php" class="<?= $currentPage === 'index.php' ? 'active' : '' ?>">HOME</a></li>
+      <li><a href="<?= SITE_URL ?>/pages/shop.php?gender=men">MEN</a></li>
+      <li><a href="<?= SITE_URL ?>/pages/shop.php?gender=women">WOMEN</a></li>
+      <li><a href="<?= SITE_URL ?>/pages/shop.php?tag=new">NEW ARRIVALS</a></li>
+      <li><a href="<?= SITE_URL ?>/pages/shop.php?tag=sale">SALE</a></li>
+      <li><a href="<?= SITE_URL ?>/pages/about.php">ABOUT US</a></li>
     </ul>
 
     <!-- Right Actions -->
