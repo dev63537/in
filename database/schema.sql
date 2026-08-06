@@ -114,12 +114,8 @@ INSERT INTO `users` (`name`,`email`,`password`,`role`,`status`) VALUES
 ('Rahul Gupta','rahul@example.com','$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi','customer','active');
 
 INSERT INTO `categories` (`name`,`slug`,`description`,`status`,`sort_order`) VALUES
-('Womens Fashion','womens-fashion','Trendy styles for women','active',1),
-('Mens Fashion','mens-fashion','Premium menswear collection','active',2),
-('Kids Wear','kids-wear','Fun and comfortable kids clothing','active',3),
-('Ethnic Wear','ethnic-wear','Traditional and fusion ethnic wear','active',4),
-('Accessories','accessories','Complete your look','active',5),
-('Western Wear','western-wear','Modern western clothing','active',6);
+('Women\'s Clothing','women','Trendy styles and luxury wear for women','active',1),
+('Men\'s Clothing','men','Premium menswear and curated clothing','active',2);
 
 INSERT INTO `products`
 (`category_id`,`name`,`slug`,`description`,`price`,`sale_price`,`stock`,`sizes`,`colors`,`image`,`tags`,`featured`) VALUES
