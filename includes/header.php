@@ -51,8 +51,11 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
     <!-- Logo -->
     <a href="<?= SITE_URL ?>/index.php" class="nav-logo">
-      <span class="logo-icon"><i class="fa fa-gem"></i></span>
-      <span class="logo-text">GUJJU <span class="logo-accent">CLOTHING</span></span>
+      <img src="<?= SITE_URL ?>/assets/images/logo.jpg" alt="<?= e(SITE_NAME) ?>" class="site-logo-img" style="max-height:48px;width:auto;object-fit:contain;" onError="if(this.src.indexOf('assets')!=-1){this.src='<?= SITE_URL ?>/logo.jpg';}else{this.style.display='none';this.nextElementSibling.style.display='flex';}" />
+      <span class="logo-fallback" style="display:none;align-items:center;gap:10px;">
+        <span class="logo-icon"><i class="fa fa-gem"></i></span>
+        <span class="logo-text">GUJJU <span class="logo-accent">CLOTHING</span></span>
+      </span>
     </a>
 
     <!-- Desktop Navigation Links -->

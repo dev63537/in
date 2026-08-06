@@ -29,7 +29,8 @@
       <!-- Brand Column -->
       <div class="footer-col footer-brand">
         <a href="<?= SITE_URL ?>/index.php" class="footer-logo">
-          <i class="fa fa-gem"></i> Gujju Clothing
+          <img src="<?= SITE_URL ?>/assets/images/logo.jpg" alt="<?= e(SITE_NAME) ?>" style="max-height:45px;width:auto;object-fit:contain;margin-bottom:14px;" onError="if(this.src.indexOf('assets')!=-1){this.src='<?= SITE_URL ?>/logo.jpg';}else{this.style.display='none';this.nextElementSibling.style.display='inline-block';}" />
+          <span style="display:none;"><i class="fa fa-gem"></i> Gujju Clothing</span>
         </a>
         <p>Premium fashion for every occasion. Curated styles that define your identity.</p>
         <div class="social-links">
