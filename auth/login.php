@@ -41,7 +41,7 @@ $pageTitle = "Login — Gujju Clothing";
 <main class="auth-page">
   <div class="auth-card">
     <div class="auth-logo">
-      <img src="<?= SITE_URL ?>/assets/images/logo.jpg" alt="Logo" style="max-height:55px;width:auto;object-fit:contain;margin:0 auto 10px;display:block;" onError="if(this.src.indexOf('assets')!=-1){this.src='<?= SITE_URL ?>/logo.jpg';}else{this.style.display='none';this.nextElementSibling.style.display='block';}" />
+      <img src="<?= SITE_URL ?>/assets/images/logo.svg" alt="Logo" style="max-height:55px;width:auto;object-fit:contain;margin:0 auto 10px;display:block;" onError="if(this.src.indexOf('svg')!=-1){this.src='<?= SITE_URL ?>/assets/images/logo.jpg';}else{this.style.display='none';this.nextElementSibling.style.display='block';}" />
       <span style="display:none;"><i class="fa fa-gem" style="color:var(--copper)"></i> GUJJU <span class="accent">CLOTHING</span></span>
     </div>
     <h1 class="auth-title">Welcome Back</h1>
