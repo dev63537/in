@@ -8,8 +8,7 @@ include __DIR__ . '/../includes/header.php';
 <section class="page-hero">
   <div class="container">
     <h1>Shopping Cart</h1>
-    <nav class="breadcrumb"><a href="<?= SITE_URL ?>/index.php">Home</a> / Cart</nav>
-  </div>
+</div>
 </section>
 
 <div class="container">

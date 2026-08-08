@@ -38,8 +38,7 @@ include __DIR__ . '/../includes/header.php';
   <div class="container">
     <h1>Track Your Order</h1>
     <p>Get real-time updates on your delivery status</p>
-    <nav class="breadcrumb"><a href="<?= SITE_URL ?>/index.php">Home</a> / Track Order</nav>
-  </div>
+</div>
 </section>
 
 <div class="container" style="max-width:800px;padding:60px 20px">

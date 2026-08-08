@@ -8,8 +8,7 @@ include __DIR__ . '/../includes/header.php';
   <div class="container">
     <h1>Privacy Policy</h1>
     <p>Last updated: January 1, 2025</p>
-    <nav class="breadcrumb"><a href="<?= SITE_URL ?>/index.php">Home</a> / Privacy Policy</nav>
-  </div>
+</div>
 </section>
 
 <div class="container" style="max-width:860px;padding:60px 20px">

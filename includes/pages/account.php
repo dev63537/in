@@ -57,8 +57,7 @@ include __DIR__ . '/../includes/header.php';
   <div class="container">
     <h1>My Account</h1>
     <p>Manage your profile, password and orders</p>
-    <nav class="breadcrumb"><a href="<?= SITE_URL ?>/index.php">Home</a> / My Account</nav>
-  </div>
+</div>
 </section>
 
 <div class="container" style="padding:50px 20px">

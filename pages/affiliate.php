@@ -8,8 +8,7 @@ include __DIR__ . '/../includes/header.php';
   <div class="container">
     <h1>Affiliate Program</h1>
     <p>Earn money by promoting fashion you love</p>
-    <nav class="breadcrumb"><a href="<?= SITE_URL ?>/index.php">Home</a> / Affiliate Program</nav>
-  </div>
+</div>
 </section>
 
 <div class="container" style="padding:60px 20px">

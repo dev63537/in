@@ -8,8 +8,7 @@ include __DIR__ . '/../includes/header.php';
   <div class="container">
     <h1>Returns &amp; Exchanges</h1>
     <p>Hassle-free 15-day returns — no questions asked</p>
-    <nav class="breadcrumb"><a href="<?= SITE_URL ?>/index.php">Home</a> / Returns &amp; Exchanges</nav>
-  </div>
+</div>
 </section>
 
 <div class="container" style="max-width:900px;padding:60px 20px">

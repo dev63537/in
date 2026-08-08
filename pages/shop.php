@@ -65,15 +65,7 @@ include __DIR__ . '/../includes/header.php';
 <section class="page-hero">
   <div class="container">
     <h1><?= $search ? 'Search: ' . e($search) : ($activeCat ? e($activeCat['name']) : 'All Products') ?></h1>
-    <nav class="breadcrumb">
-      <a href="<?= SITE_URL ?>/index.php">Home</a> /
-      <?php if ($activeCat): ?>
-        <a href="<?= SITE_URL ?>/pages/shop.php">Shop</a> / <?= e($activeCat['name']) ?>
-      <?php else: ?>
-        Shop
-      <?php endif; ?>
-    </nav>
-  </div>
+</div>
 </section>
 
 <div class="container">

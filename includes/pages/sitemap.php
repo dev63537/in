@@ -8,8 +8,7 @@ $categories = getCategories();
   <div class="container">
     <h1>Sitemap</h1>
     <p>All pages on Gujju Clothing</p>
-    <nav class="breadcrumb"><a href="<?= SITE_URL ?>/index.php">Home</a> / Sitemap</nav>
-  </div>
+</div>
 </section>
 
 <div class="container" style="max-width:960px;padding:60px 20px">

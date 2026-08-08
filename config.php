@@ -1,21 +1,24 @@
 <?php
 // ============================================================
-// configloc.php — LOCAL XAMPP Configuration
+// config.php — LIVE INFINITYFREE Configuration
 // ============================================================
 // HOW TO USE:
-//   1. Delete configin.php from your XAMPP folder
-//   2. Rename THIS file to: config.php
-//   Then run the site at: http://localhost/cshop/
+//   1. Open your InfinityFree Control Panel (vPanel)
+//   2. Go to "MySQL Databases" to find your exact Host, Username, and Password
+//   3. Replace the values below with your actual details
 // ============================================================
 
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'cshop_local');
-define('DB_USER', 'root');
-define('DB_PASS', '');              // XAMPP default — no password
+// 1. UPDATE THESE 4 LINES WITH YOUR INFINITYFREE DETAILS:
+define('DB_HOST', 'sqlXXX.infinityfree.com'); // e.g. sql108.infinityfree.com
+define('DB_NAME', 'if0_41941799_cshop');      // Your vPanel Database Name
+define('DB_USER', 'if0_41941799');            // Your vPanel Username
+define('DB_PASS', 'YOUR_VPANEL_PASSWORD');    // Your vPanel Password (Find this in vPanel)
 
 define('SITE_NAME', "Gujju Clothing");
 
-define('SITE_URL', 'https://localhost/i%20test'); // NO trailing slash
+// Automatically detect the site URL so you don't have to change it!
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+define('SITE_URL', $protocol . $_SERVER['HTTP_HOST']); 
 
 define('SITE_EMAIL', 'info@gujjuclothing.com');
 define('CURRENCY', '₹');
@@ -30,8 +33,8 @@ define('UPLOAD_URL', SITE_URL . '/uploads/products/');
 define('MAX_UPLOAD_SIZE', 2 * 1024 * 1024); // 2 MB
 define('ALLOWED_IMAGE_TYPES', ['image/jpeg', 'image/png', 'image/webp']);
 
-// Show errors locally for easy debugging
-define('DEBUG_MODE', true);
+// Show errors locally for easy debugging (Keep FALSE on live server for security)
+define('DEBUG_MODE', false);
 
 if (DEBUG_MODE) {
     ini_set('display_errors', 1);

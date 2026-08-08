@@ -8,8 +8,7 @@ include __DIR__ . '/../includes/header.php';
   <div class="container">
     <h1>Careers at Gujju Clothing</h1>
     <p>Join our passionate team and help shape the future of fashion</p>
-    <nav class="breadcrumb"><a href="<?= SITE_URL ?>/index.php">Home</a> / Careers</nav>
-  </div>
+</div>
 </section>
 
 <div class="container" style="padding:60px 20px">

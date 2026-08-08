@@ -71,8 +71,7 @@ include __DIR__ . '/../includes/header.php';
 <section class="page-hero">
   <div class="container">
     <h1>Checkout</h1>
-    <nav class="breadcrumb"><a href="<?= SITE_URL ?>/index.php">Home</a> / <a href="<?= SITE_URL ?>/cart/cart.php">Cart</a> / Checkout</nav>
-  </div>
+</div>
 </section>
 
 <div class="container" style="padding:40px 20px">

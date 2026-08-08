@@ -39,12 +39,7 @@ include __DIR__ . '/../includes/header.php';
         <i class="fa fa-calendar"></i> <?= $post['date'] ?> &nbsp;·&nbsp; <i class="fa fa-clock"></i> <?= $post['read'] ?> read
       </div>
     </div>
-    <nav class="breadcrumb" style="justify-content:center;margin-top:16px">
-      <a href="<?= SITE_URL ?>/index.php">Home</a> /
-      <a href="<?= SITE_URL ?>/pages/blog.php">Blog</a> /
-      <?= e($post['title']) ?>
-    </nav>
-  </div>
+</div>
 </section>
 
 <div class="container" style="max-width:820px;padding:60px 20px">

@@ -22,7 +22,7 @@ $currentAdmin = basename($_SERVER['PHP_SELF']);
 <!-- Sidebar -->
 <aside class="admin-sidebar" id="admin-sidebar">
   <div class="admin-brand">
-    <img src="<?= SITE_URL ?>/assets/images/logo.svg" alt="Admin Logo" style="max-height:38px;width:auto;object-fit:contain;" onError="if(this.src.indexOf('svg')!=-1){this.src='<?= SITE_URL ?>/assets/images/logo.jpg';}else{this.style.display='none';this.nextElementSibling.style.display='inline-flex';}" />
+    <img src="<?= SITE_URL ?>/assets/images/logo.png" alt="Admin Logo" style="max-height:100px;width:auto;object-fit:contain;" onError="if(this.src.indexOf('png')!=-1){this.src='<?= SITE_URL ?>/assets/images/logo.jpg';}else{this.style.display='none';this.nextElementSibling.style.display='inline-flex';}" />
     <span style="display:none;align-items:center;gap:10px;"><i class="fa fa-gem"></i> Gujju Clothing</span>
   </div>
   <nav class="admin-nav">

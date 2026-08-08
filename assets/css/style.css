@@ -29,7 +29,7 @@ ul{list-style:none}
 /* ── NAVBAR ── */
 .navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(41,36,33,.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(167,95,55,.2);transition:var(--trans)}
 .navbar.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.3)}
-.nav-container{max-width:1280px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:70px}
+.nav-container{max-width:1280px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:120px}
 .nav-logo{display:flex;align-items:center;gap:10px;color:var(--white);font-family:'Marcellus',serif;font-weight:700;font-size:1.35rem;letter-spacing:2px}
 .logo-icon{color:var(--primary);font-size:1.2rem}
 .logo-accent{color:var(--tan)}
@@ -67,7 +67,7 @@ ul{list-style:none}
 .search-form input:focus{border-color:var(--primary)}
 .search-form button{padding:10px 20px;background:var(--primary);color:var(--white);border:none;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit}
 .search-close{position:absolute;right:20px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--gray);font-size:1.1rem;cursor:pointer}
-.nav-spacer{height:70px}
+.nav-spacer{height:154px}
 /* ── HERO ── */
 .hero{position:relative;height:100vh;min-height:600px;overflow:hidden}
 .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity .8s ease;background-size:cover;background-position:center}
@@ -401,7 +401,7 @@ ul{list-style:none}
 }
 @media(max-width:768px){
   /* Navbar */
-  .nav-links{position:fixed;top:70px;left:0;width:80%;max-width:300px;height:calc(100vh - 70px);background:var(--dark2);flex-direction:column;align-items:flex-start;padding:20px 0;gap:0;transform:translateX(-100%);transition:var(--trans);z-index:1000;overflow-y:auto}
+  .nav-links{position:fixed;top:154px;left:0;width:80%;max-width:300px;height:calc(100vh - 154px);background:var(--dark2);flex-direction:column;align-items:flex-start;padding:20px 0;gap:0;transform:translateX(-100%);transition:var(--trans);z-index:1000;overflow-y:auto}
   .nav-links.open{transform:translateX(0)}
   .nav-links a{width:100%;padding:14px 24px;border-radius:0;border-bottom:1px solid rgba(255,255,255,.06)}
   .has-dropdown .nav-dropdown{position:static;opacity:1;visibility:visible;transform:none;background:rgba(255,255,255,.04);border:none;box-shadow:none;display:none}

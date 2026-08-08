@@ -83,17 +83,7 @@ include __DIR__ . '/../includes/header.php';
 <!-- ── Breadcrumb ── -->
 <section class="page-hero" style="padding:28px 0">
   <div class="container">
-    <nav class="breadcrumb">
-      <a href="<?= SITE_URL ?>/index.php">Home</a> /
-      <a href="<?= SITE_URL ?>/pages/shop.php">Shop</a> /
-      <?php if ($product['category_name']): ?>
-        <a href="<?= SITE_URL ?>/pages/shop.php?category=<?= $product['category_id'] ?>">
-          <?= e($product['category_name']) ?>
-        </a> /
-      <?php endif; ?>
-      <?= e($product['name']) ?>
-    </nav>
-  </div>
+</div>
 </section>
 
 <div class="container">

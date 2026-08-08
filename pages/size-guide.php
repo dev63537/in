@@ -8,8 +8,7 @@ include __DIR__ . '/../includes/header.php';
   <div class="container">
     <h1>Size Guide</h1>
     <p>Find your perfect fit every time</p>
-    <nav class="breadcrumb"><a href="<?= SITE_URL ?>/index.php">Home</a> / Size Guide</nav>
-  </div>
+</div>
 </section>
 
 <div class="container" style="max-width:960px;padding:60px 20px">

@@ -18,8 +18,7 @@ include __DIR__ . '/../includes/header.php';
   <div class="container">
     <h1>Style Blog</h1>
     <p>Fashion tips, trends, and style inspiration</p>
-    <nav class="breadcrumb"><a href="<?= SITE_URL ?>/index.php">Home</a> / Blog</nav>
-  </div>
+</div>
 </section>
 
 <div class="container" style="padding:60px 20px">

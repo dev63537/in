@@ -32,8 +32,7 @@ include __DIR__ . '/../includes/header.php';
   <div class="container">
     <h1>My Wishlist</h1>
     <p><?= count($products) ?> item<?= count($products) != 1 ? 's' : '' ?> saved</p>
-    <nav class="breadcrumb"><a href="<?= SITE_URL ?>/index.php">Home</a> / Wishlist</nav>
-  </div>
+</div>
 </section>
 
 <div class="container" style="padding:50px 20px">

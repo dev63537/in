@@ -47,11 +47,16 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
 <!-- ===== NAVBAR ===== -->
 <nav class="navbar" id="navbar">
+  <!-- ===== ANNOUNCEMENT BAR ===== -->
+  <div class="announcement-bar" style="background-color: var(--primary, #c9a96e); color: #fff; text-align: center; padding: 8px 35px; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; width: 100%; position: relative;">
+    FREE SHIPPING ON ALL ORDERS OVER <?= CURRENCY ?>999
+    <button onclick="this.parentElement.style.display='none';" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #fff; font-size: 1.2rem; cursor: pointer; padding: 0;">&times;</button>
+  </div>
   <div class="nav-container">
 
     <!-- Logo -->
     <a href="<?= SITE_URL ?>/index.php" class="nav-logo">
-      <img src="<?= SITE_URL ?>/assets/images/logo.svg" alt="<?= e(SITE_NAME) ?>" class="site-logo-img" style="max-height:48px;width:auto;object-fit:contain;" onError="if(this.src.indexOf('svg')!=-1){this.src='<?= SITE_URL ?>/assets/images/logo.jpg';}else{this.style.display='none';this.nextElementSibling.style.display='flex';}" />
+      <img src="<?= SITE_URL ?>/assets/images/logo.png" alt="<?= e(SITE_NAME) ?>" class="site-logo-img" style="max-height:100px;width:auto;object-fit:contain;" onError="if(this.src.indexOf('png')!=-1){this.src='<?= SITE_URL ?>/assets/images/logo.jpg';}else{this.style.display='none';this.nextElementSibling.style.display='flex';}" />
       <span class="logo-fallback" style="display:none;align-items:center;gap:10px;">
         <span class="logo-icon"><i class="fa fa-gem"></i></span>
         <span class="logo-text">GUJJU <span class="logo-accent">CLOTHING</span></span>
@@ -60,7 +65,6 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
     <!-- Desktop Navigation Links -->
     <ul class="nav-links" id="nav-links">
-      <li><a href="<?= SITE_URL ?>/index.php" class="<?= $currentPage === 'index.php' ? 'active' : '' ?>">HOME</a></li>
       <li><a href="<?= SITE_URL ?>/pages/shop.php?gender=men">MEN</a></li>
       <li><a href="<?= SITE_URL ?>/pages/shop.php?gender=women">WOMEN</a></li>
       <li><a href="<?= SITE_URL ?>/pages/shop.php?tag=new">NEW ARRIVALS</a></li>
