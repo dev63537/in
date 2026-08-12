@@ -47,13 +47,6 @@ include __DIR__ . '/includes/header.php';
       </div>
     </div>
   </div>
-  <button class="hero-arrow" id="hero-prev"><i class="fa fa-chevron-left"></i></button>
-  <button class="hero-arrow" id="hero-next"><i class="fa fa-chevron-right"></i></button>
-  <div class="hero-controls">
-    <button class="hero-dot active"></button>
-    <button class="hero-dot"></button>
-    <button class="hero-dot"></button>
-  </div>
 </section>
 
 <!-- ===== FEATURES STRIP ===== -->

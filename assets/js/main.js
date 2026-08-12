@@ -6,10 +6,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // ── Navbar scroll effect
   const navbar = document.getElementById('navbar');
+  let lastScrollY = window.scrollY;
   window.addEventListener('scroll', () => {
-    navbar && (navbar.classList.toggle('scrolled', window.scrollY > 50));
+    if (!navbar) return;
+    const currentScrollY = window.scrollY;
+    
+    // Toggle solid background
+    navbar.classList.toggle('scrolled', currentScrollY > 50);
+    
+    // Hide/Show navbar based on scroll direction
+    if (currentScrollY > lastScrollY && currentScrollY > 150) {
+      navbar.classList.add('navbar-hidden');
+    } else {
+      navbar.classList.remove('navbar-hidden');
+    }
+    lastScrollY = currentScrollY;
+
     const btn = document.getElementById('back-to-top');
-    btn && (btn.classList.toggle('visible', window.scrollY > 400));
+    btn && (btn.classList.toggle('visible', currentScrollY > 400));
   });
 
   // ── Hamburger menu

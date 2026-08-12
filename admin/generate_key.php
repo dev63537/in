@@ -16,7 +16,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_id'])) {
         
         dbExecute("INSERT INTO password_reset_keys (user_id, secret_key, expires_at) VALUES (?, ?, ?)", [$userId, $secretKey, $expiresAt]);
         
-        $successMsg = "Successfully generated recovery key for <strong>" . e($user['name']) . "</strong>.<br><br><strong>Key: </strong> <span style='font-family:monospace;background:rgba(255,255,255,0.1);padding:4px 8px;border-radius:4px;user-select:all;'>" . $secretKey . "</span><br><br>Share this key with the user. It will expire in $durationHours hours.";
+        $_SESSION['flash_key_success'] = "Successfully generated recovery key for <strong>" . e($user['name']) . "</strong>.<br><br><strong>Key: </strong> <span style='font-family:monospace;background:rgba(0,0,0,0.05);padding:4px 8px;border-radius:4px;user-select:all;'>" . $secretKey . "</span><br><br>Share this key with the user. It will expire in $durationHours hours.";
+        
+        header("Location: generate_key.php");
+        exit;
     }
 }
 
@@ -32,6 +35,12 @@ $activeKeys = dbFetchAll("
     LIMIT 50
 ");
 
+// Check for success message
+$successMsg = '';
+if (isset($_SESSION['flash_key_success'])) {
+    $successMsg = $_SESSION['flash_key_success'];
+    unset($_SESSION['flash_key_success']);
+}
 ?>
 <div class="admin-card" style="margin-bottom: 20px;">
   <div class="admin-card-header"><h3>Generate Recovery Key</h3></div>
@@ -43,19 +52,19 @@ $activeKeys = dbFetchAll("
     <?php endif; ?>
     <form method="post" action="">
         <div class="form-group" style="margin-bottom: 15px;">
-            <label style="display:block;margin-bottom:5px;font-weight:600;">Select User</label>
-            <select name="user_id" required style="width: 100%; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 4px; font-family: inherit;">
-                <option value="" style="color:#000">-- Choose User --</option>
+            <label>Select User</label>
+            <select name="user_id" required class="form-control">
+                <option value="">-- Choose User --</option>
                 <?php foreach ($users as $u): ?>
-                    <option value="<?= $u['id'] ?>" style="color:#000"><?= e($u['name']) ?> (<?= e($u['email']) ?>) - <?= ucfirst($u['role']) ?></option>
+                    <option value="<?= $u['id'] ?>"><?= e($u['name']) ?> (<?= e($u['email']) ?>) - <?= ucfirst($u['role']) ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
         <div class="form-group" style="margin-bottom: 15px;">
-            <label style="display:block;margin-bottom:5px;font-weight:600;">Valid For (Hours)</label>
-            <input type="number" name="duration" value="24" min="1" max="168" required style="width: 100%; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 4px; font-family: inherit;">
+            <label>Valid For (Hours)</label>
+            <input type="number" name="duration" value="24" min="1" max="168" required class="form-control">
         </div>
-        <button type="submit" class="btn btn-primary" style="padding: 10px 20px; background: var(--primary); color: #fff; border: none; border-radius: 4px; font-weight: 600; cursor: pointer;">Generate Key</button>
+        <button type="submit" class="btn btn-primary">Generate Key</button>
     </form>
   </div>
 </div>
@@ -80,7 +89,12 @@ $activeKeys = dbFetchAll("
         ?>
         <tr>
             <td><?= e($k['name']) ?><br><small style="color:#888"><?= e($k['email']) ?></small></td>
-            <td style="font-family:monospace;"><?= substr($k['secret_key'], 0, 8) ?>...</td>
+            <td style="font-family:monospace; white-space:nowrap;">
+                <?= substr($k['secret_key'], 0, 8) ?>...
+                <button type="button" onclick="copyKey('<?= $k['secret_key'] ?>', this)" style="border:none;background:none;color:var(--primary);cursor:pointer;margin-left:5px;" title="Copy Full Key">
+                    <i class="fa fa-copy"></i>
+                </button>
+            </td>
             <td><?= date('d M Y H:i', strtotime($k['created_at'])) ?></td>
             <td><?= date('d M Y H:i', strtotime($k['expires_at'])) ?></td>
             <td><?= $status ?></td>
@@ -92,4 +106,19 @@ $activeKeys = dbFetchAll("
     </tbody>
   </table>
 </div>
+<script>
+function copyKey(text, btn) {
+    navigator.clipboard.writeText(text).then(function() {
+        let icon = btn.querySelector('i');
+        icon.className = 'fa fa-check';
+        icon.style.color = '#27ae60';
+        setTimeout(function() {
+            icon.className = 'fa fa-copy';
+            icon.style.color = '';
+        }, 2000);
+    }).catch(function(err) {
+        console.error('Could not copy text: ', err);
+    });
+}
+</script>
 <?php include __DIR__ . '/includes/admin_footer.php'; ?>
