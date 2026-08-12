@@ -1,117 +1,104 @@
 <?php
-// ============================================================
-// reset_admin.php — One-Time Admin Password Reset Tool
-// INSTRUCTIONS:
-//   1. Upload this file to your /htdocs/ folder
-//   2. Visit: http://yourdomain.com/reset_admin.php
-//   3. Fill in the form and submit
-//   4. DELETE this file immediately after use!
-// ============================================================
 require_once __DIR__ . '/includes/functions.php';
+startSession();
 
-$done  = false;
+// ==========================================
+// HARDCODED ADMIN SECRET KEY
+// Change this to whatever you want!
+$ADMIN_SECRET_KEY = "GujjuAdmin2026";
+// ==========================================
+
 $error = '';
+$success = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $new_email    = trim($_POST['new_email'] ?? '');
-    $new_password = trim($_POST['new_password'] ?? '');
-    $secret_key   = trim($_POST['secret_key'] ?? '');
-
-    // Simple protection — you must know this key to use the script
-    if ($secret_key !== '27_01_2007') {
-        $error = 'Wrong secret key. Access denied.';
-    } elseif (!filter_var($new_email, FILTER_VALIDATE_EMAIL)) {
-        $error = 'Please enter a valid email address.';
-    } elseif (strlen($new_password) < 6) {
-        $error = 'Password must be at least 6 characters.';
+    if (!verifyCsrf($_POST['csrf_token'] ?? '')) {
+        $error = 'Invalid request.';
     } else {
-        $hashed = password_hash($new_password, PASSWORD_DEFAULT);
-
-        // Check if admin exists
-        $admin = dbFetchOne("SELECT id FROM users WHERE role = 'admin' LIMIT 1");
-
-        if ($admin) {
-            dbExecute(
-                "UPDATE users SET email = ?, password = ? WHERE role = 'admin'",
-                [$new_email, $hashed]
-            );
+        $email = trim($_POST['email'] ?? '');
+        $key = trim($_POST['key'] ?? '');
+        $password = $_POST['password'] ?? '';
+        $confirm = $_POST['confirm_password'] ?? '';
+        
+        if (!$email || !$key || !$password || !$confirm) {
+            $error = 'Please fill in all fields.';
+        } elseif ($key !== $ADMIN_SECRET_KEY) {
+            $error = 'Invalid Secret Key!';
+        } elseif (strlen($password) < 6) {
+            $error = 'Password must be at least 6 characters.';
+        } elseif ($password !== $confirm) {
+            $error = 'Passwords do not match.';
         } else {
-            // Create admin if not exists
-            dbExecute(
-                "INSERT INTO users (name, email, password, role, status) VALUES (?, ?, ?, 'admin', 'active')",
-                ['Admin', $new_email, $hashed]
-            );
+            // Check if admin exists
+            $admin = dbFetchOne("SELECT id FROM users WHERE email = ? AND role = 'admin'", [$email]);
+            
+            if (!$admin) {
+                $error = 'No admin account found with that email address.';
+            } else {
+                // Update password
+                $hashed = password_hash($password, PASSWORD_DEFAULT);
+                dbExecute("UPDATE users SET password = ? WHERE id = ?", [$hashed, $admin['id']]);
+                
+                $success = 'Admin Password has been successfully updated! You can now <a href="auth/login.php" style="color:var(--primary);text-decoration:underline;">login</a>.';
+            }
         }
-        $done = true;
     }
 }
+
+$pageTitle = "Admin Password Recovery — Gujju Clothing";
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin Reset — Gujju Clothing</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet"/>
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Outfit',sans-serif;background:#0f0f0f;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
-    .card{background:#fff;border-radius:16px;padding:40px;width:100%;max-width:420px;box-shadow:0 8px 48px rgba(0,0,0,.3)}
-    h1{font-size:1.4rem;margin-bottom:6px;color:#0f0f0f}
-    .subtitle{color:#888;font-size:.88rem;margin-bottom:28px}
-    label{display:block;font-size:.85rem;font-weight:600;margin-bottom:6px;color:#333}
-    input{width:100%;padding:12px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-family:inherit;font-size:.95rem;outline:none;margin-bottom:16px;transition:.3s}
-    input:focus{border-color:#c9a96e;box-shadow:0 0 0 3px rgba(201,169,110,.12)}
-    button{width:100%;padding:14px;background:#c9a96e;color:#0f0f0f;border:none;border-radius:8px;font-family:inherit;font-size:1rem;font-weight:700;cursor:pointer;transition:.3s}
-    button:hover{background:#a8844d}
-    .error{background:#fdedec;color:#e74c3c;padding:12px 16px;border-radius:8px;margin-bottom:16px;font-size:.88rem}
-    .success{background:#e8f8f0;color:#27ae60;padding:20px;border-radius:8px;text-align:center}
-    .success h2{margin-bottom:8px}
-    .warning{background:#fef9e7;border:1px solid #f39c12;color:#856404;padding:12px 16px;border-radius:8px;margin-bottom:20px;font-size:.82rem}
-    .hint{font-size:.78rem;color:#aaa;margin-top:-10px;margin-bottom:16px}
-  </style>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title><?= e($pageTitle) ?></title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="<?= SITE_URL ?>/assets/css/style.css"/>
 </head>
 <body>
-<div class="card">
-
-  <?php if ($done): ?>
-    <div class="success">
-      <h2>&#10003; Admin Updated!</h2>
-      <p>Your admin email and password have been changed successfully.</p>
-      <br>
-      <p><strong>Next step:</strong> Go to your hosting File Manager and <strong>DELETE this file</strong> (reset_admin.php) immediately!</p>
-      <br>
-      <a href="/admin/index.php" style="color:#c9a96e;font-weight:700">Go to Admin Panel &rarr;</a>
+<main class="auth-page">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <img src="<?= SITE_URL ?>/assets/images/logo.png" alt="Logo" style="max-height:100px;width:auto;object-fit:contain;margin:0 auto 10px;display:block;" onError="if(this.src.indexOf('png')!=-1){this.src='<?= SITE_URL ?>/assets/images/logo.jpg';}else{this.style.display='none';this.nextElementSibling.style.display='block';}" />
+      <span style="display:none;"><i class="fa fa-gem" style="color:var(--copper)"></i> GUJJU <span class="accent">CLOTHING</span></span>
     </div>
-
-  <?php else: ?>
-    <h1>&#128274; Admin Reset</h1>
-    <p class="subtitle">Gujju Clothing — One-Time Admin Credentials Reset</p>
-
-    <div class="warning">
-      &#9888; <strong>Security Notice:</strong> Delete this file from your server immediately after use!
-    </div>
+    <h1 class="auth-title">Admin Recovery</h1>
+    <p class="auth-subtitle">Use the Master Secret Key to reset your admin password</p>
 
     <?php if ($error): ?>
-      <div class="error">&#10007; <?= htmlspecialchars($error) ?></div>
+      <div class="alert alert-danger" style="margin-bottom:15px;text-align:center;"><?= e($error) ?></div>
     <?php endif; ?>
-
-    <form method="POST" action="">
-      <label>Secret Key *</label>
-      <input type="password" name="secret_key" placeholder="Enter the secret key" required />
-      <p class="hint">Default key: Gujju2025reset</p>
-
-      <label>New Admin Email *</label>
-      <input type="email" name="new_email" placeholder="admin@yourdomain.com" required
-             value="<?= htmlspecialchars($_POST['new_email'] ?? '') ?>"/>
-
-      <label>New Password *</label>
-      <input type="password" name="new_password" placeholder="Minimum 6 characters" required />
-
-      <button type="submit">&#128274; Update Admin Credentials</button>
-    </form>
-  <?php endif; ?>
-
-</div>
+    <?php if ($success): ?>
+      <div class="alert alert-success" style="margin-bottom:15px;text-align:center;"><?= $success ?></div>
+    <?php else: ?>
+        <form action="" method="post">
+          <input type="hidden" name="csrf_token" value="<?= csrfToken() ?>">
+          
+          <div class="form-group">
+            <label>Admin Email</label>
+            <input type="email" name="email" class="form-control" placeholder="admin@gujjuclothing.com" required>
+          </div>
+          <div class="form-group">
+            <label>Master Secret Key</label>
+            <input type="password" name="key" class="form-control" placeholder="Enter the secret key from the code" required autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label>New Password</label>
+            <input type="password" name="password" class="form-control" placeholder="At least 6 characters" required>
+          </div>
+          <div class="form-group">
+            <label>Confirm New Password</label>
+            <input type="password" name="confirm_password" class="form-control" placeholder="Confirm your new password" required>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Force Reset Password</button>
+        </form>
+    <?php endif; ?>
+    
+    <div style="text-align:center; margin-top:20px; font-size:0.9rem;">
+      <a href="<?= SITE_URL ?>/auth/login.php" style="color:#aaa;">Back to Login</a>
+    </div>
+  </div>
+</main>
 </body>
 </html>

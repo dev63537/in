@@ -39,6 +39,9 @@ $currentAdmin = basename($_SERVER['PHP_SELF']);
     <a href="<?= SITE_URL ?>/admin/users.php" class="admin-nav-item <?= $currentAdmin==='users.php'?'active':'' ?>">
       <i class="fa fa-users"></i> Customers
     </a>
+    <a href="<?= SITE_URL ?>/admin/generate_key.php" class="admin-nav-item <?= $currentAdmin==='generate_key.php'?'active':'' ?>">
+      <i class="fa fa-key"></i> Recovery Keys
+    </a>
     <div class="admin-nav-section">Catalogue</div>
     <a href="<?= SITE_URL ?>/admin/categories.php" class="admin-nav-item <?= $currentAdmin==='categories.php'?'active':'' ?>">
       <i class="fa fa-tags"></i> Categories

@@ -1,0 +1,17 @@
+CHANGES SINCE LAST COMMIT:
+
+1. ADMIN CAN CHANGE PASSWORD (HARDCODED SECRET KEY SYSTEM)
+   -> BY URL "/reset_admin.php"
+   -> The Admin enters their Email, New Password, and a Master Secret Key.
+   -> The Master Secret Key is written directly in the code of "reset_admin.php" (not stored in the database).
+   -> IF the email belongs to an admin AND the key matches the code, the password is changed.
+
+2. FORGOT PASSWORD PAGE UPDATED
+   -> BY URL "/auth/forgot-password.php"
+   -> Added a link at the bottom saying "Admin? Reset your password here" linking to "/reset_admin.php".
+
+3. REMOVED EXTRA/UNWANTED CODE
+   -> Deleted unused and dangerous files (phpinfo.php, old index.html, guid.txt, project_summary.txt)
+   -> Removed leftover breadcrumb HTML comments from all PHP files
+   -> Removed old breadcrumb CSS styles from assets/css/style.css
+   -> Safely deleted the redundant "includes/pages" folder

@@ -79,8 +79,6 @@ $metaDesc  = e($product['meta_description']
 
 include __DIR__ . '/../includes/header.php';
 ?>
-
-<!-- ── Breadcrumb ── -->
 <section class="page-hero" style="padding:28px 0">
   <div class="container">
 </div>

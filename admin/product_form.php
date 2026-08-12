@@ -44,8 +44,6 @@ $brands       = dbFetchAll("SELECT id, name FROM brands WHERE status='active' OR
 .upload-zone i{font-size:2rem;color:var(--gray);margin-bottom:8px;display:block}
 @media(max-width:768px){.pf-grid,.pf-grid-3{grid-template-columns:1fr}.pf-tabs{overflow-x:auto}}
 </style>
-
-<!-- Breadcrumb -->
 <div style="margin-bottom:20px;font-size:.88rem;color:var(--gray)">
   <a href="<?= SITE_URL ?>/admin/products.php" style="color:var(--primary)"><i class="fa fa-box"></i> Products</a>
   <i class="fa fa-chevron-right" style="margin:0 8px;font-size:.7rem"></i>

@@ -27,6 +27,17 @@ function getDB() {
               `sort_order` INT(11) DEFAULT 0,
               `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+            
+            // Ensure password_reset_keys table exists
+            $pdo->exec("CREATE TABLE IF NOT EXISTS `password_reset_keys` (
+              `id` INT(11) AUTO_INCREMENT PRIMARY KEY,
+              `user_id` INT(11) UNSIGNED NOT NULL,
+              `secret_key` VARCHAR(100) NOT NULL UNIQUE,
+              `expires_at` DATETIME NOT NULL,
+              `used` TINYINT(1) DEFAULT 0,
+              `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+              FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
         } catch (PDOException $e) {
             if (DEBUG_MODE) {
                 die("Database Connection Failed: " . $e->getMessage());
