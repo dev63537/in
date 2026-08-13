@@ -16,9 +16,7 @@ define('DB_PASS', 'YOUR_VPANEL_PASSWORD');    // Your vPanel Password (Find this
 
 define('SITE_NAME', "Gujju Clothing");
 
-// Automatically detect the site URL so you don't have to change it!
-$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-define('SITE_URL', $protocol . $_SERVER['HTTP_HOST']); 
+define('SITE_URL', 'https://localhost/i%20test');
 
 define('SITE_EMAIL', 'info@gujjuclothing.com');
 define('CURRENCY', '₹');
