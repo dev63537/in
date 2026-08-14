@@ -481,7 +481,7 @@ ul {
 }
 
 .nav-spacer {
-  height: 0
+  height: 80px
 }
 
 /* ── HERO ── */
@@ -1447,6 +1447,7 @@ ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 5px;
   margin-bottom: 24px;
   gap: 16px;
   flex-wrap: wrap

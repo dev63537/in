@@ -6,16 +6,34 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // ── Navbar scroll effect
   const navbar = document.getElementById('navbar');
+  const hasHero = document.querySelector('.hero') !== null;
+
+  // If no hero on this page, immediately make navbar solid
+  if (!hasHero && navbar) {
+    navbar.classList.add('scrolled');
+    // Calculate actual navbar height dynamically (includes announcement bar)
+    const spacer = document.querySelector('.nav-spacer');
+    if (spacer) spacer.style.height = navbar.offsetHeight + 'px';
+  }
+
+  // If hero page, set spacer to 0 so hero fills full screen
+  if (hasHero) {
+    const spacer = document.querySelector('.nav-spacer');
+    if (spacer) spacer.style.height = '0';
+  }
+
   let lastScrollY = window.scrollY;
   window.addEventListener('scroll', () => {
     if (!navbar) return;
     const currentScrollY = window.scrollY;
 
-    // Transparent at top, solid white when scrolled down
-    if (currentScrollY <= 20) {
-      navbar.classList.remove('scrolled');
-    } else {
-      navbar.classList.add('scrolled');
+    // Transparent at top only if hero page, solid otherwise
+    if (hasHero) {
+      if (currentScrollY <= 20) {
+        navbar.classList.remove('scrolled');
+      } else {
+        navbar.classList.add('scrolled');
+      }
     }
 
     // Hide navbar on scroll down, show on scroll up
