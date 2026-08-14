@@ -10,11 +10,15 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('scroll', () => {
     if (!navbar) return;
     const currentScrollY = window.scrollY;
-    
-    // Toggle solid background
-    navbar.classList.toggle('scrolled', currentScrollY > 50);
-    
-    // Hide/Show navbar based on scroll direction
+
+    // Transparent at top, solid white when scrolled down
+    if (currentScrollY <= 20) {
+      navbar.classList.remove('scrolled');
+    } else {
+      navbar.classList.add('scrolled');
+    }
+
+    // Hide navbar on scroll down, show on scroll up
     if (currentScrollY > lastScrollY && currentScrollY > 150) {
       navbar.classList.add('navbar-hidden');
     } else {

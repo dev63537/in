@@ -159,15 +159,16 @@ ul {
   left: 0;
   width: 100%;
   z-index: 1000;
-
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
-  transition: var(--trans);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: transparent;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .navbar.scrolled {
-  box-shadow: 0 4px 24px rgba(0, 0, 0, .3)
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .navbar-hidden {
@@ -188,11 +189,16 @@ ul {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #1a1a1a;
+  color: rgba(255, 255, 255, 0.95);
   font-family: 'Marcellus', serif;
   font-weight: 700;
   font-size: 1.35rem;
-  letter-spacing: 2px
+  letter-spacing: 2px;
+  transition: color 0.4s ease
+}
+
+.navbar.scrolled .nav-logo {
+  color: #1a1a1a
 }
 
 .logo-icon {
@@ -211,13 +217,17 @@ ul {
 }
 
 .nav-links a {
-  color: rgb(0, 0, 0);
+  color: rgba(255, 255, 255, 0.9);
   font-size: .92rem;
   font-weight: 600;
   padding: 8px 14px;
   border-radius: var(--radius-sm);
   letter-spacing: 1px;
   transition: var(--trans)
+}
+
+.navbar.scrolled .nav-links a {
+  color: #1a1a1a
 }
 
 .nav-links a:hover,
@@ -275,7 +285,7 @@ ul {
 .nav-btn {
   background: none;
   border: none;
-  color: rgba(0, 0, 0, 0.68);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 1.1rem;
   cursor: pointer;
   padding: 8px;
@@ -287,6 +297,10 @@ ul {
   justify-content: center;
   width: 40px;
   height: 40px
+}
+
+.navbar.scrolled .nav-btn {
+  color: rgba(0, 0, 0, 0.7)
 }
 
 .nav-btn:hover {
@@ -373,9 +387,13 @@ ul {
   display: block;
   width: 24px;
   height: 2px;
-  background: #1a1a1a;
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 2px;
   transition: var(--trans)
+}
+
+.navbar.scrolled .hamburger span {
+  background: #1a1a1a
 }
 
 .hamburger.active span:nth-child(1) {
@@ -463,7 +481,7 @@ ul {
 }
 
 .nav-spacer {
-  height: 114px
+  height: 0
 }
 
 /* ── HERO ── */

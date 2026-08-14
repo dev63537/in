@@ -48,9 +48,8 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 <!-- ===== NAVBAR ===== -->
 <nav class="navbar" id="navbar">
   <!-- ===== ANNOUNCEMENT BAR ===== -->
-  <div class="announcement-bar" style="background-color: var(--primary, #c9a96e); color: #fff; text-align: center; padding: 8px 35px; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; width: 100%; position: relative;">
+  <div class="announcement-bar" style="background-color: var(--primary, #c9a96e); color: #fff; text-align: center; padding: 8px 20px; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; width: 100%;">
     FREE SHIPPING ON ALL ORDERS OVER <?= CURRENCY ?>999
-    <button onclick="this.parentElement.style.display='none'; let sp = document.querySelector('.nav-spacer'); if(sp) sp.style.height = '80px';" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #fff; font-size: 1.2rem; cursor: pointer; padding: 0;">&times;</button>
   </div>
   <div class="nav-container">
 

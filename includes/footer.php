@@ -97,12 +97,7 @@
   <!-- Footer Bottom -->
   <div class="footer-bottom">
     <div class="container">
-      <p>&copy; <?= date('Y') ?> <strong>Gujju Clothing</strong>. All Rights Reserved. Made with <i class="fa fa-heart" style="color:#e74c3c"></i> in India.</p>
-      <p class="footer-bottom-links">
-        <a href="<?= SITE_URL ?>/pages/privacy.php">Privacy</a> &bull;
-        <a href="<?= SITE_URL ?>/pages/terms.php">Terms</a> &bull;
-        <a href="<?= SITE_URL ?>/pages/sitemap.php">Sitemap</a>
-      </p>
+      <p>&copy; <?= date('Y') ?> <strong>Gujju Clothing</strong>. All Rights Reserved. Made with in India.</p>
     </div>
   </div>
 </footer>
