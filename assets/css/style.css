@@ -2029,19 +2029,19 @@ color: var(--tan)
 .back-to-top {
   position: fixed;
   bottom: 28px;
-  left: 28px;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--primary);
-  color: var(--dark);
-  border: none;
+  right: 28px;
+  width: 46px;
+  height: 46px;
+  border-radius: 2px;
+  background: var(--dark);
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.1);
   cursor: pointer;
-  font-size: .9rem;
+  font-size: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 16px rgba(201, 169, 110, .4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .4);
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
@@ -2056,8 +2056,10 @@ color: var(--tan)
 }
 
 .back-to-top:hover {
-  background: var(--primary-dark);
-  transform: translateY(-3px)
+  background: var(--primary);
+  color: var(--dark);
+  border-color: var(--primary);
+  transform: translateY(-4px)
 }
 
 /* ── ANIMATE ON SCROLL ── */
