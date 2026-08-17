@@ -1,0 +1,246 @@
+/* ============================================
+   InventMitra — Final Sections
+   Screenshots, Advantages & Future Scope,
+   Conclusion, and Thank You
+   ============================================ */
+
+/* ─── Screenshots Gallery ─── */
+.screenshots-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-6);
+    width: 100%;
+    max-width: var(--container-max);
+}
+
+.screenshot-item {
+    position: relative;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    aspect-ratio: 16/9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--duration-normal) var(--ease-out);
+    cursor: pointer;
+}
+
+.screenshot-item:hover {
+    transform: scale(1.02);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.1);
+}
+
+.screenshot-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-3);
+    color: var(--text-muted);
+    transition: color var(--duration-fast);
+}
+
+.screenshot-item:hover .screenshot-icon {
+    color: var(--accent-blue-light);
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.screenshot-label {
+    font-size: var(--text-body);
+    font-weight: var(--weight-semibold);
+    color: var(--text-secondary);
+    transition: color var(--duration-fast);
+}
+
+.screenshot-item:hover .screenshot-label {
+    color: var(--text-primary);
+}
+
+/* ─── Advantages & Future Scope ─── */
+.split-sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+    width: 100%;
+    max-width: var(--container-max);
+}
+
+.split-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-8);
+    position: relative;
+    overflow: hidden;
+}
+
+.split-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+}
+
+.card-advantages::before { background: var(--gradient-primary); }
+.card-future::before { background: linear-gradient(90deg, #a78bfa, #f472b6); }
+
+.split-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+}
+
+.split-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-advantages .split-icon {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--accent-blue-light);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.card-future .split-icon {
+    background: rgba(167, 139, 250, 0.1);
+    color: #c084fc;
+    border: 1px solid rgba(167, 139, 250, 0.2);
+}
+
+.split-title {
+    font-size: var(--text-h3);
+    font-weight: var(--weight-bold);
+}
+
+.split-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.split-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    font-size: var(--text-body);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+}
+
+.split-list li svg {
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
+.card-advantages .split-list li svg { color: var(--accent-blue-light); }
+.card-future .split-list li svg { color: #c084fc; }
+
+/* ─── Conclusion ─── */
+.conclusion-box {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.03), transparent);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-10) var(--space-8);
+    position: relative;
+}
+
+.conclusion-box::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 20%;
+    right: 20%;
+    height: 1px;
+    background: var(--gradient-primary);
+    opacity: 0.5;
+}
+
+.conclusion-text {
+    font-size: var(--text-h3);
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin-bottom: var(--space-6);
+}
+
+.conclusion-author {
+    font-size: var(--text-small);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+}
+
+/* ─── Thank You ─── */
+.thank-you-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    text-align: center;
+    position: relative;
+}
+
+.thank-you-title {
+    font-size: clamp(4rem, 10vw, 8rem);
+    font-weight: var(--weight-extrabold);
+    line-height: 1;
+    margin-bottom: var(--space-6);
+    background: linear-gradient(to bottom right, #0f172a, #334155);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+}
+
+.thank-you-subtitle {
+    font-size: var(--text-h3);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-10);
+}
+
+.qa-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: var(--radius-full);
+    color: var(--accent-blue-light);
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-body);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 960px) {
+    .split-sections { grid-template-columns: 1fr; }
+    .conclusion-text { font-size: var(--text-body); }
+}

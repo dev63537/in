@@ -1,0 +1,235 @@
+/* ============================================
+   InventMitra — Technical Sections
+   Styles for SDLC, Technology Stack, and
+   System Architecture
+   ============================================ */
+
+/* ─── SDLC Timeline ─── */
+.sdlc-timeline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    max-width: var(--container-max);
+    width: 100%;
+    margin-top: var(--space-8);
+    gap: var(--space-4);
+}
+
+.sdlc-line {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 0;
+}
+
+.sdlc-line-fill {
+    height: 100%;
+    background: var(--gradient-primary);
+    width: 0%; /* Can be animated via JS or CSS */
+    transition: width 1.5s var(--ease-out);
+}
+
+.section.in-view .sdlc-line-fill {
+    width: 100%;
+}
+
+.sdlc-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    width: 140px;
+}
+
+.sdlc-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    border: 2px solid var(--glass-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-4);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    transition: all var(--duration-normal) var(--ease-out);
+}
+
+.sdlc-step:hover .sdlc-icon {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+    transform: scale(1.1);
+}
+
+.sdlc-title {
+    font-size: var(--text-small);
+    font-weight: var(--weight-bold);
+    color: var(--text-primary);
+    text-align: center;
+}
+
+/* ─── Technology Stack Grid ─── */
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    max-width: 900px;
+    width: 100%;
+}
+
+.tech-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    transition: all var(--duration-normal) var(--ease-out);
+}
+
+.tech-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Hover colors for each tech */
+.tech-html:hover { border-color: rgba(227, 79, 38, 0.4); box-shadow: 0 10px 30px rgba(227, 79, 38, 0.1); }
+.tech-css:hover  { border-color: rgba(38, 77, 228, 0.4); box-shadow: 0 10px 30px rgba(38, 77, 228, 0.1); }
+.tech-js:hover   { border-color: rgba(247, 223, 30, 0.4); box-shadow: 0 10px 30px rgba(247, 223, 30, 0.1); }
+.tech-php:hover  { border-color: rgba(119, 123, 179, 0.4); box-shadow: 0 10px 30px rgba(119, 123, 179, 0.1); }
+.tech-mysql:hover { border-color: rgba(0, 117, 143, 0.4); box-shadow: 0 10px 30px rgba(0, 117, 143, 0.1); }
+.tech-bs:hover   { border-color: rgba(113, 44, 249, 0.4); box-shadow: 0 10px 30px rgba(113, 44, 249, 0.1); }
+
+.tech-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-lg);
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.tech-info h4 {
+    font-size: var(--text-body);
+    font-weight: var(--weight-bold);
+    margin-bottom: 2px;
+}
+
+.tech-info p {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+}
+
+/* ─── System Architecture ─── */
+.arch-diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-10);
+    max-width: var(--container-max);
+    width: 100%;
+    margin-top: var(--space-6);
+}
+
+.arch-node {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 260px;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.arch-node.frontend { border-color: rgba(59, 130, 246, 0.3); background: linear-gradient(to bottom, rgba(59, 130, 246, 0.05), transparent); }
+.arch-node.backend  { border-color: rgba(139, 92, 246, 0.3); background: linear-gradient(to bottom, rgba(139, 92, 246, 0.05), transparent); }
+.arch-node.database { border-color: rgba(6, 182, 212, 0.3); background: linear-gradient(to bottom, rgba(6, 182, 212, 0.05), transparent); }
+
+.arch-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: var(--space-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arch-title {
+    font-size: var(--text-h3);
+    font-weight: var(--weight-bold);
+    margin-bottom: var(--space-2);
+}
+
+.arch-desc {
+    font-size: var(--text-small);
+    color: var(--text-muted);
+}
+
+.arch-connector {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.arch-connector-line {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1));
+    position: relative;
+}
+
+.arch-connector-line::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    right: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 8px solid rgba(0, 0, 0, 0.5);
+}
+
+.arch-connector-line.reverse::after {
+    right: auto;
+    left: 0;
+    border-left: none;
+    border-right: 8px solid rgba(0, 0, 0, 0.5);
+}
+
+.arch-connector-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 960px) {
+    .sdlc-timeline { flex-direction: column; gap: var(--space-8); }
+    .sdlc-line { top: 0; bottom: 0; left: 50%; right: auto; width: 2px; height: 100%; transform: translateX(-50%); }
+    .sdlc-line-fill { width: 100%; height: 0%; transition: height 1.5s var(--ease-out); }
+    .section.in-view .sdlc-line-fill { height: 100%; }
+    
+    .tech-grid { grid-template-columns: repeat(2, 1fr); }
+    
+    .arch-diagram { flex-direction: column; }
+    .arch-connector-line { width: 2px; height: 40px; background: linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)); }
+    .arch-connector-line::after { top: auto; bottom: -4px; right: -4px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 8px solid rgba(0, 0, 0, 0.5); }
+    .arch-connector-line.reverse::after { bottom: auto; top: -4px; border-top: none; border-bottom: 8px solid rgba(0, 0, 0, 0.5); }
+}
+
+@media (max-width: 640px) {
+    .tech-grid { grid-template-columns: 1fr; }
+}

@@ -5,7 +5,7 @@ startSession();
 // ==========================================
 // HARDCODED ADMIN SECRET KEY
 // Change this to whatever you want!
-$ADMIN_SECRET_KEY = "GujjuAdmin2026";
+$ADMIN_SECRET_KEY = "27_01_2007";
 // ==========================================
 
 $error = '';

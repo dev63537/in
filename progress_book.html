@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Progress Book — Gujju Clothing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #eff6ff;
+      --accent: #d97706;
+      --text: #1f2937;
+      --text-muted: #4b5563;
+      --border: #d1d5db;
+      --bg: #f3f4f6;
+      --card-bg: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 30px 15px;
+    }
+
+    .toolbar {
+      max-width: 900px;
+      margin: 0 auto 25px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ffffff;
+      padding: 15px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    }
+
+    .toolbar h1 {
+      font-size: 1.25rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .print-btn {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .print-btn:hover {
+      background: #172554;
+      transform: translateY(-1px);
+    }
+
+    .page-container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 35px;
+    }
+
+    .book-page {
+      background: var(--card-bg);
+      padding: 50px 60px;
+      border-radius: 12px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.07);
+      position: relative;
+      min-height: 1100px;
+    }
+
+    .page-tag {
+      position: absolute;
+      top: 25px;
+      right: 35px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: 1px solid #e5e7eb;
+      padding: 3px 12px;
+      border-radius: 20px;
+    }
+
+    /* Title Page Styling */
+    .title-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+      border: 6px double #cbd5e1;
+      padding: 60px 45px;
+    }
+
+    .title-header h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      letter-spacing: 2px;
+      color: #111827;
+      margin-bottom: 8px;
+    }
+
+    .title-header h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    .project-name-box {
+      margin: 40px 0;
+      padding: 30px;
+      background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+    }
+
+    .project-name-box h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .project-name-box p {
+      font-size: 1.15rem;
+      color: #4b5563;
+      font-style: italic;
+    }
+
+    .college-name {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin: 15px 0 35px 0;
+      letter-spacing: 0.5px;
+    }
+
+    .title-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      text-align: left;
+      margin: 30px 0;
+      padding: 25px;
+      background: #fafafa;
+      border-radius: 10px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .meta-col h4 {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--primary);
+      margin-bottom: 10px;
+      border-bottom: 1px dashed #d1d5db;
+      padding-bottom: 5px;
+    }
+
+    .meta-col p {
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+      color: #374151;
+    }
+
+    .university-box {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 2px solid #e5e7eb;
+    }
+
+    .university-box h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      color: #111827;
+      letter-spacing: 1.5px;
+    }
+
+    .university-box p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* Content Styling */
+    h2.section-title {
+      font-size: 1.45rem;
+      color: var(--primary);
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h3.sub-title {
+      font-size: 1.15rem;
+      color: #1f2937;
+      margin: 20px 0 10px 0;
+    }
+
+    p {
+      margin-bottom: 14px;
+      color: #374151;
+      text-align: justify;
+    }
+
+    ul {
+      margin-left: 25px;
+      margin-bottom: 18px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      color: #374151;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.9rem;
+    }
+
+    table th, table td {
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    table th {
+      background: #f8fafc;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    table tr:nth-child(even) td {
+      background: #fafafa;
+    }
+
+    .badge-pk {
+      background: #dbeafe;
+      color: #1e40af;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.75rem;
+    }
+
+    .badge-fk {
+      background: #fef3c7;
+      color: #92400e;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.75rem;
+    }
+
+    /* Q&A Cards */
+    .qa-box {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 12px;
+    }
+
+    .qa-question {
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 6px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .qa-question span {
+      color: var(--primary);
+    }
+
+    .qa-answer {
+      color: #4b5563;
+      padding-left: 24px;
+    }
+
+    /* Tree Diagram & Code */
+    pre.code-tree {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 20px;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      line-height: 1.5;
+      overflow-x: auto;
+      margin: 15px 0;
+    }
+
+    /* Diagram Containers */
+    .diagram-card {
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+      background: #ffffff;
+      text-align: center;
+    }
+
+    .sdlc-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .sdlc-step {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-left: 4px solid var(--primary);
+      padding: 15px;
+      border-radius: 6px;
+      text-align: left;
+    }
+
+    .sdlc-step h4 {
+      color: var(--primary);
+      font-size: 0.95rem;
+      margin-bottom: 5px;
+    }
+
+    .sdlc-step p {
+      font-size: 0.85rem;
+      margin: 0;
+    }
+
+    .note-callout {
+      background: #eff6ff;
+      border-left: 4px solid #2563eb;
+      padding: 14px 18px;
+      margin: 15px 0;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.9rem;
+    }
+
+    .note-callout strong {
+      color: #1e40af;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+      }
+      .toolbar {
+        display: none;
+      }
+      .page-container {
+        gap: 0;
+      }
+      .book-page {
+        box-shadow: none;
+        border-radius: 0;
+        padding: 40px 30px;
+        page-break-after: always;
+        min-height: 100vh;
+      }
+      .title-page {
+        border: 4px double #000;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar">
+    <h1><i class="fa fa-book-open"></i> Project Progress Book & Academic Report</h1>
+    <button class="print-btn" onclick="window.print()">
+      <i class="fa fa-print"></i> Print / Save as PDF
+    </button>
+  </div>
+
+  <div class="page-container">
+
+    <!-- PAGE 1: TITLE PAGE -->
+    <div class="book-page title-page">
+      <div class="page-tag">Page 1</div>
+      
+      <div class="title-header">
+        <h2>A Project Report On</h2>
+        <h3>E-Commerce Web Application</h3>
+      </div>
+
+      <div class="project-name-box">
+        <h1>"GUJJU CLOTHING"</h1>
+        <p>Premium Apparel, Ethnic Wear & Western Fashion E-Commerce System</p>
+      </div>
+
+      <div class="college-name">
+        Kamani Science & Prataprai Arts College
+      </div>
+
+      <div class="title-meta-grid">
+        <div class="meta-col">
+          <h4>Developed By:</h4>
+          <p><strong>1. [Student Name 1]</strong><br><small>Enrollment No: 24150021410XXXX</small></p>
+          <p style="margin-top: 10px;"><strong>2. [Student Name 2]</strong><br><small>Enrollment No: 24150021410YYYY</small></p>
+        </div>
+        <div class="meta-col">
+          <h4>Under the Guidance of:</h4>
+          <p><strong>Prof. Rekha Madam Kanak</strong></p>
+          <p><small>Department of Computer Science / Applications</small></p>
+          <h4 style="margin-top: 15px;">Year of Submission:</h4>
+          <p><strong>Academic Year: 2026 - 2027</strong></p>
+        </div>
+      </div>
+
+      <div class="university-box">
+        <h3>Saurashtra University</h3>
+        <p>Rajkot, Gujarat (India)</p>
+      </div>
+    </div>
+
+    <!-- PAGE 2: INTRODUCTION -->
+    <div class="book-page">
+      <div class="page-tag">Page 2</div>
+      <h2 class="section-title"><i class="fa fa-file-lines"></i> Introduction of Project</h2>
+      
+      <p>
+        <strong>Gujju Clothing</strong> is a comprehensive, responsive, and database-driven e-Commerce web application developed to provide a seamless shopping experience for apparel, ethnic fashion, western outfits, and lifestyle clothing. The platform connects modern fashion enthusiasts with curated apparel collections across Men, Women, and Kids categories.
+      </p>
+
+      <p>
+        The platform addresses the contemporary needs of digital retail by offering an elegant user interface, smooth product discovery, multi-attribute filtering (by Category, Subcategory, Brand, Gender, Price Range, and Size), interactive cart management, dynamic coupon code discounts, and real-time order tracking.
+      </p>
+
+      <div class="note-callout">
+        <strong>Key Architectural Focus:</strong> The project is engineered with high security (Bcrypt password hashing, SQL injection prevention via PDO prepared statements, and session protection) alongside a rich Back-Office Admin Control Suite that provides complete visibility over catalog inventory, low-stock notifications, customer orders, and commercial invoicing.
+      </div>
+
+      <h3 class="sub-title">Core Highlight Features:</h3>
+      <ul>
+        <li><strong>Multi-Category Catalog:</strong> Dynamic categorization across Men's, Women's, and Kids' apparel with multi-angle image galleries.</li>
+        <li><strong>Interactive Shopping Cart:</strong> Real-time quantity adjustments, price calculations, and subtotal summaries.</li>
+        <li><strong>Discount Engine:</strong> Flexible promotional coupon validation with percentage and flat monetary deductions.</li>
+        <li><strong>Billing & Invoicing:</strong> Instant generation of itemized, printable tax invoices with shipping breakdowns.</li>
+        <li><strong>Admin Operations:</strong> Unified dashboard with sales metrics, product SKU tracking, brand controls, and order dispatch workflow.</li>
+      </ul>
+    </div>
+
+    <!-- PAGE 3: SYSTEM ANALYSIS & OBJECTIVES -->
+    <div class="book-page">
+      <div class="page-tag">Page 3</div>
+      
+      <h2 class="section-title"><i class="fa fa-magnifying-glass-chart"></i> 1. System Analysis</h2>
+      <p>
+        System Analysis is the process of examining business workflows, identifying stakeholder needs, and designing a cohesive software solution that satisfies both functional requirements and performance standards.
+      </p>
+      <p>
+        The analysis for <strong>Gujju Clothing</strong> was conducted across two primary user groups:
+      </p>
+      <ul>
+        <li><strong>Customers / Shoppers:</strong> Need a fast, secure, and visually appealing web platform to discover clothing, check size and fabric specifications, manage cart items, apply discounts, and track order fulfillment.</li>
+        <li><strong>Administrators / Store Owners:</strong> Require an administrative dashboard to manage inventory levels, receive low-stock alerts, process customer orders, issue commercial invoices, and moderate customer reviews.</li>
+      </ul>
+      <p>
+        The proposed web system bridges these requirements through an intuitive user interface, persistent database storage, and optimized PHP-MySQL architecture.
+      </p>
+
+      <h2 class="section-title" style="margin-top: 30px;"><i class="fa fa-bullseye"></i> 2. Objective of Project</h2>
+      <p>The primary objectives of the Gujju Clothing web application are:</p>
+      <ul>
+        <li><strong>24/7 Digital Presence:</strong> To establish an always-accessible online store eliminating the constraints of physical shopping hours.</li>
+        <li><strong>Rich Product Presentation:</strong> To showcase clothing items with multi-image galleries, material details, size guides, and star ratings.</li>
+        <li><strong>Secure User Authentication:</strong> To offer secure customer registration, login, profile updates, and encrypted password storage.</li>
+        <li><strong>Streamlined Order & Checkout:</strong> To provide a seamless cart-to-checkout pipeline with flexible payment options (COD / Online).</li>
+        <li><strong>Automated Billing & Invoicing:</strong> To generate formal itemized invoices with tax and shipping breakdowns.</li>
+        <li><strong>Efficient Admin Management:</strong> To equip store administrators with full CRUD control over products, brands, stock, and orders.</li>
+        <li><strong>Cross-Platform Responsiveness:</strong> To ensure high responsiveness across mobile phones, tablets, laptops, and desktops.</li>
+      </ul>
+    </div>
+
+    <!-- PAGE 4: PROBLEM DEFINITION & REQUIREMENT GATHERING -->
+    <div class="book-page">
+      <div class="page-tag">Page 4</div>
+      
+      <h2 class="section-title"><i class="fa fa-triangle-exclamation"></i> 3. Problem Definition</h2>
+      <ul>
+        <li><strong>Physical Store Limitations:</strong> Traditional retail stores are limited by geographic location and fixed operating hours, making shopping inconvenient for distant or busy customers.</li>
+        <li><strong>Difficult Size & Inventory Lookup:</strong> Customers often spend extensive time searching physical racks without knowing whether their specific size or color is in stock.</li>
+        <li><strong>Manual Billing & Inefficiency:</strong> Traditional manual billing processes are prone to calculation errors, lack centralized records, and delay customer checkouts.</li>
+        <li><strong>Lack of Real-Time Tracking:</strong> Conventional stores cannot provide instant order tracking updates or historical purchase statements to customers.</li>
+      </ul>
+      <p>
+        <strong>The Proposed Solution:</strong> Gujju Clothing provides an automated, centralized web platform allowing users to browse thousands of apparel styles, verify size availability, apply promo codes, checkout securely, receive instant invoices, and monitor their order delivery status in real-time.
+      </p>
+
+      <h2 class="section-title" style="margin-top: 30px;"><i class="fa fa-list-check"></i> 4. Requirement Gathering</h2>
+      
+      <h3 class="sub-title">A. Functional Requirements:</h3>
+      <ul>
+        <li>User registration, login, logout, and password recovery.</li>
+        <li>Dynamic catalog browsing with search and multi-criteria filters (Category, Brand, Gender, Price).</li>
+        <li>Interactive product details with size guide charts, color options, and image zoom gallery.</li>
+        <li>Shopping cart with real-time AJAX quantity updates and wishlist management.</li>
+        <li>Promotional coupon code engine with minimum purchase validation.</li>
+        <li>Multi-step checkout with delivery address capture and order placement.</li>
+        <li>Printable commercial tax invoice generation (<code>admin/invoice.php</code>).</li>
+        <li>Admin Control Suite for inventory, stock threshold alerts, order lifecycle, and customer reviews.</li>
+      </ul>
+
+      <h3 class="sub-title">B. Non-Functional Requirements:</h3>
+      <ul>
+        <li><strong>Usability:</strong> Intuitive navigation with responsive design for all screen resolutions.</li>
+        <li><strong>Performance:</strong> Fast page load times through optimized CSS and relational MySQL indexing.</li>
+        <li><strong>Security:</strong> Secure Bcrypt hashing, PDO prepared statements, and session authorization guards.</li>
+      </ul>
+    </div>
+
+    <!-- PAGE 5: HARDWARE & SDLC -->
+    <div class="book-page">
+      <div class="page-tag">Page 5</div>
+      
+      <h2 class="section-title"><i class="fa fa-server"></i> Hardware & Software Requirements</h2>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Hardware Resource</th>
+            <th>Minimum Requirement</th>
+            <th>Recommended Specification</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Processor (CPU)</strong></td>
+            <td>Intel Core i3 / AMD Ryzen 3</td>
+            <td>Intel Core i5 / AMD Ryzen 5 or higher</td>
+          </tr>
+          <tr>
+            <td><strong>Memory (RAM)</strong></td>
+            <td>4 GB RAM</td>
+            <td>8 GB DDR4 or higher</td>
+          </tr>
+          <tr>
+            <td><strong>Storage</strong></td>
+            <td>20 GB Free Space</td>
+            <td>256 GB NVMe SSD</td>
+          </tr>
+          <tr>
+            <td><strong>Display</strong></td>
+            <td>1366 x 768 Resolution</td>
+            <td>1920 x 1080 (Full HD)</td>
+          </tr>
+          <tr>
+            <td><strong>Network</strong></td>
+            <td>Localhost Connection</td>
+            <td>High-Speed Broadband Internet</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 class="section-title" style="margin-top: 30px;"><i class="fa fa-arrows-spin"></i> SDLC (Software Development Life Cycle) — 6 Steps</h2>
+      
+      <div class="sdlc-grid">
+        <div class="sdlc-step">
+          <h4>1. Requirement Analysis</h4>
+          <p>Gathered business requirements, user stories, and catalog structure for apparel retail.</p>
+        </div>
+        <div class="sdlc-step">
+          <h4>2. System Design</h4>
+          <p>Constructed DFDs, ER diagrams, database schemas, and responsive UI layouts.</p>
+        </div>
+        <div class="sdlc-step">
+          <h4>3. Development & Coding</h4>
+          <p>Implemented PHP backend logic, MySQL relational database, and frontend styling.</p>
+        </div>
+        <div class="sdlc-step">
+          <h4>4. Testing & Verification</h4>
+          <p>Executed functional tests, session checks, input validation, and billing verification.</p>
+        </div>
+        <div class="sdlc-step">
+          <h4>5. Deployment</h4>
+          <p>Configured project on XAMPP Apache/MySQL environment and prepared for live hosting.</p>
+        </div>
+        <div class="sdlc-step">
+          <h4>6. Maintenance & Updates</h4>
+          <p>Provided ongoing support for inventory additions, security tuning, and feature upgrades.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 6: QUESTIONS (Q1 TO Q11) -->
+    <div class="book-page">
+      <div class="page-tag">Page 6</div>
+      
+      <div class="qa-box">
+        <div class="qa-question"><span>Q=1)</span> What is the Name of Your Project?</div>
+        <div class="qa-answer"><strong>&rarr;</strong> E-Commerce Website For Clothing &amp; Fashion (Gujju Clothing)</div>
+      </div>
+
+      <div class="qa-box">
+        <div class="qa-question"><span>Q=2)</span> Who Can Use this System Or Site?</div>
+        <div class="qa-answer"><strong>&rarr;</strong> Users (Customers) and Owner (Admin)</div>
+      </div>
+
+      <div class="qa-box">
+        <div class="qa-question"><span>Q=3)</span> Which Technology You Uses in it?</div>
+        <div class="qa-answer"><strong>&rarr;</strong> Front-end &rarr; HTML, CSS, JS, FontAwesome<br><strong>&rarr;</strong> Back-end &rarr; PHP, MySQL</div>
+      </div>
+
+      <div class="qa-box">
+        <div class="qa-question"><span>Q=4)</span> What is the reason to build that store?</div>
+        <div class="qa-answer"><strong>&rarr;</strong> Because many brands and apparel styles are active in market that you can buy any clothing fashion in one store.</div>
+      </div>
+
+      <div class="qa-box">
+        <div class="qa-question"><span>Q=5)</span> What Information will the System Share?</div>
+        <div class="qa-answer"><strong>&rarr;</strong> Clothing's specification, size guide charts, fabric material, and stock availability.</div>
+      </div>
+
+      <div class="qa-box">
+        <div class="qa-question"><span>Q=6)</span> How will Users register and log in?</div>
+        <div class="qa-answer"><strong>&rarr;</strong> In that user have email and authenticating it on their strong password (Bcrypt encryption).</div>
+      </div>
+
+      <div class="qa-box">
+        <div class="qa-question"><span>Q=7)</span> Which Payment methods will the System Support?</div>
+        <div class="qa-answer"><strong>&rarr;</strong> In that site have Cash On Delivery (COD) and Online / Card Payment simulation support.</div>
+      </div>
+
+      <div class="qa-box">
+        <div class="qa-question"><span>Q=8)</span> What is the return and Warranty Policy?</div>
+        <div class="qa-answer"><strong>&rarr;</strong> Any customer have 7 days return and exchange if clothing is damaged or not same as their order, and free shipping over ₹999.</div>
+      </div>
+
+      <div class="qa-box">
+        <div class="qa-question"><span>Q=9)</span> Can Users Save Items to a wishlist?</div>
+        <div class="qa-answer"><strong>&rarr;</strong> Yes.</div>
+      </div>
+
+      <div class="qa-box">
+        <div class="qa-question"><span>Q=10)</span> Will You show Stock availability?</div>
+        <div class="qa-answer"><strong>&rarr;</strong> Yes, in Admin Panel shows what apparel items are at low stocks.</div>
+      </div>
+
+      <div class="qa-box">
+        <div class="qa-question"><span>Q=11)</span> What Speciality in clothes at site?</div>
+        <div class="qa-answer"><strong>&rarr;</strong> All clothing have their detailed information, fabric specifications, and size chart guides.</div>
+      </div>
+    </div>
+
+    <!-- PAGE 7: QUESTIONS (Q12 TO Q15) & 4. PROFILE PAGE -->
+    <div class="book-page">
+      <div class="page-tag">Page 7</div>
+      
+      <div class="qa-box">
+        <div class="qa-question"><span>Q=12)</span> How Many clothing brands are in it?</div>
+        <div class="qa-answer"><strong>&rarr;</strong> 8+ brands in site (Zara, H&amp;M, Fabindia, Allen Solly, Levi's, W for Woman...)</div>
+      </div>
+
+      <div class="qa-box">
+        <div class="qa-question"><span>Q=13)</span> What types of clothing are in?</div>
+        <div class="qa-answer"><strong>&rarr;</strong> Men's, Women's, Kids', Ethnic Kurta Sets, Western Wear, Casual Shirts, Denim.</div>
+      </div>
+
+      <div class="qa-box">
+        <div class="qa-question"><span>Q=14)</span> Who is the target Audience?</div>
+        <div class="qa-answer"><strong>&rarr;</strong> Fashion enthusiasts, working professionals, students, and families.</div>
+      </div>
+
+      <div class="qa-box">
+        <div class="qa-question"><span>Q=15)</span> What will buy that site's widely or what is the price range?</div>
+        <div class="qa-answer"><strong>&rarr;</strong> Men's and Women's clothing are in and their price range from ₹499 to ₹5,000+.</div>
+      </div>
+
+      <div style="margin-top: 30px; border-top: 2px solid #e5e7eb; padding-top: 20px;">
+        <h2 class="section-title"><i class="fa fa-user"></i> 4. Profile Page</h2>
+        <p>
+          The Profile Page is designed to manage and display the personal information and order-related details of the logged-in user. It provides a convenient interface for users to view their account information and track their orders.
+        </p>
+
+        <h3 class="sub-title">Key Features:</h3>
+        <ul>
+          <li><strong>User Information Management:</strong> Displays the user's basic details, including Full Name, Email Address, and Phone Number.</li>
+          <li><strong>Order History:</strong> Provides a detailed table containing all previous orders with Order ID, Order Date, Total Amount, Payment Method, and current Order Status.</li>
+          <li><strong>Order Status Tracking:</strong> Allows users to track the real-time fulfillment status of their orders, such as Pending, Processing, Shipped, and Delivered.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PAGE 8: PROFILE PAGE (CONT.) & 5. HARDWARE AND SOFTWARE REQUIREMENT -->
+    <div class="book-page">
+      <div class="page-tag">Page 8</div>
+      
+      <ul style="margin-bottom: 25px;">
+        <li><strong>Session &amp; Security Validation:</strong> Ensures that only authenticated users can access the Profile Pages. If a user is not logged in, they are automatically redirected to the login page.</li>
+      </ul>
+
+      <h2 class="section-title"><i class="fa fa-laptop-code"></i> 5. Hardware and Software Requirement</h2>
+      
+      <h3 class="sub-title">* Software Requirement:</h3>
+      <ul>
+        <li><strong>Operating System:</strong> Windows 10 / Windows 11 / Linux / macOS</li>
+        <li><strong>Web Server:</strong> Apache 2.4+ (via XAMPP)</li>
+        <li><strong>Server-side Scripting:</strong> PHP 8.0+</li>
+        <li><strong>Database Engine:</strong> MySQL 8.0+ / phpMyAdmin</li>
+        <li><strong>Frontend Technologies:</strong> HTML5, CSS3, JavaScript (ES6+), Bootstrap 5.3, FontAwesome Icons</li>
+        <li><strong>Development IDE:</strong> Visual Studio Code</li>
+        <li><strong>Web Browser:</strong> Google Chrome / Mozilla Firefox / MS Edge</li>
+      </ul>
+
+      <table style="margin-top: 20px;">
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Technology / Environment</th>
+            <th>Version / Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Operating System</strong></td>
+            <td>Windows 10 / 11 / Linux / macOS</td>
+            <td>Development &amp; Host Environment</td>
+          </tr>
+          <tr>
+            <td><strong>Web Server</strong></td>
+            <td>Apache HTTP Server</td>
+            <td>Version 2.4+ (via XAMPP)</td>
+          </tr>
+          <tr>
+            <td><strong>Backend Language</strong></td>
+            <td>PHP (Hypertext Preprocessor)</td>
+            <td>PHP 8.0+ (PDO Extension)</td>
+          </tr>
+          <tr>
+            <td><strong>Database Engine</strong></td>
+            <td>MySQL / MariaDB</td>
+            <td>Version 8.0+ / phpMyAdmin</td>
+          </tr>
+          <tr>
+            <td><strong>Frontend Tech</strong></td>
+            <td>HTML5, CSS3, JavaScript</td>
+            <td>ES6+ &amp; FontAwesome 6.5</td>
+          </tr>
+          <tr>
+            <td><strong>Code Editor</strong></td>
+            <td>Visual Studio Code</td>
+            <td>Source Code Development</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PAGE 9: HARDWARE REQUIREMENTS & 6. PROJECT STRUCTURE DIAGRAM -->
+    <div class="book-page">
+      <div class="page-tag">Page 9</div>
+      
+      <h3 class="sub-title" style="margin-top: 0;">* Hardware Requirements:</h3>
+      <ul>
+        <li><strong>Processor:</strong> Intel Core i3 / AMD Ryzen 3 (8-core recommended)</li>
+        <li><strong>RAM:</strong> Minimum 4 GB (8 GB recommended)</li>
+        <li><strong>Storage:</strong> 20 GB free disk space (SSD recommended)</li>
+        <li><strong>Display Resolution:</strong> 1366 x 768 minimum</li>
+        <li><strong>Network:</strong> Active internet connection</li>
+      </ul>
+
+      <table style="margin-bottom: 25px;">
+        <thead>
+          <tr>
+            <th>Hardware Resource</th>
+            <th>Minimum Requirement</th>
+            <th>Recommended Specification</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Processor (CPU)</strong></td>
+            <td>Intel Core i3 / AMD Ryzen 3</td>
+            <td>Intel Core i5 / AMD Ryzen 5 or higher</td>
+          </tr>
+          <tr>
+            <td><strong>Memory (RAM)</strong></td>
+            <td>4 GB RAM</td>
+            <td>8 GB DDR4 or higher</td>
+          </tr>
+          <tr>
+            <td><strong>Storage</strong></td>
+            <td>20 GB Free Space</td>
+            <td>256 GB NVMe SSD</td>
+          </tr>
+          <tr>
+            <td><strong>Display Resolution</strong></td>
+            <td>1366 x 768 pixels</td>
+            <td>1920 x 1080 (Full HD)</td>
+          </tr>
+          <tr>
+            <td><strong>Network</strong></td>
+            <td>Localhost Connection</td>
+            <td>High-Speed Broadband Internet</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 class="section-title"><i class="fa fa-folder-tree"></i> 6. Project Structure Diagram</h2>
+      <p>The hierarchical folder and file architecture of the <strong>Gujju Clothing</strong> project:</p>
+
+      <pre class="code-tree">
+gujju_clothing (Root Directory: /i_test)
+ │
+ ├── config.php                  # Database credentials, site constants, &amp; global settings
+ ├── index.php                   # Homepage with hero slider, featured, &amp; trending apparel
+ ├── reset_admin.php             # Emergency secure admin password reset utility
+ ├── .htaccess                   # URL rewriting, compression, and security rules
+ │
+ ├── /pages/                     # Public Storefront Pages
+ │    ├── shop.php               # Catalog with category/brand/gender/price filters
+ │    ├── product.php            # Detailed product page with gallery &amp; size selector
+ │    ├── account.php            # Customer account profile &amp; address editor
+ │    ├── orders.php             # Customer order history table
+ │    ├── track-order.php        # Live order shipment tracking by Order ID
+ │    ├── wishlist.php           # Saved favorite items list
+ │    ├── quick_view.php         # Fast product preview popup modal
+ │    ├── size-guide.php         # Interactive apparel measurement charts
+ │    ├── contact.php            # Customer inquiry submission form
+ │    ├── about.php              # Company brand story &amp; mission statement
+ │    ├── faq.php                # Frequently asked questions &amp; answers
+ │    ├── returns.php            # 7-day return &amp; exchange guidelines
+ │    ├── shipping.php           # Shipping rates and delivery time info
+ │    ├── terms.php              # Terms and conditions of service
+ │    └── privacy.php            # Data privacy &amp; security policy
+ │
+ ├── /cart/                      # Cart, Checkout &amp; Reviews
+ │    ├── cart.php               # Shopping cart table with quantity modifiers
+ │    ├── cart_actions.php       # AJAX backend for add/remove/update cart
+ │    ├── checkout.php           # Multi-step checkout &amp; payment selection
+ │    ├── order-success.php      # Order confirmation &amp; receipt summary
+ │    └── submit_review.php      # Customer star rating &amp; feedback handler
+ │
+ ├── /auth/                      # Authentication Module
+ │    ├── login.php              # Customer login with Bcrypt verification
+ │    ├── register.php           # New user sign-up form
+ │    ├── forgot-password.php    # Password recovery workflow
+ │    └── logout.php             # Session destruction &amp; redirect
+ │
+ ├── /admin/                     # Admin Back-Office Module
+ │    ├── index.php              # Admin Dashboard with live stats &amp; revenue metrics
+ │    ├── products.php           # Product inventory catalog table with search
+ │    ├── product_form.php       # Add / Edit product with multi-image gallery upload
+ │    ├── categories.php         # Category &amp; subcategory manager
+ │    ├── brands.php             # Clothing brand management
+ │    ├── orders.php             # Order processing &amp; status updater
+ │    ├── invoice.php            # Printable commercial invoice generator
+ │    ├── coupons.php            # Discount coupon code generator
+ │    ├── reviews.php            # Customer review approval &amp; moderation
+ │    ├── users.php              # Registered user database management
+ │    ├── /actions/              # Admin CRUD Action Handlers (add/edit/delete/bulk)
+ │    └── /includes/             # Admin header &amp; footer components
+ │
+ ├── /includes/                  # Shared Core Includes
+ │    ├── db.php                 # PDO database connection &amp; query wrappers
+ │    ├── functions.php          # Global helper functions, auth guards, flash messages
+ │    ├── header.php             # Global site navbar, search bar, &amp; cart counter
+ │    └── footer.php             # Global footer with navigation links &amp; newsletter form
+ │
+ ├── /database/                  # Database Schema Files
+ │    ├── schema.sql             # Primary database tables &amp; seed records
+ │    └── upgrade_products.sql   # Extended product attributes, brands, &amp; gallery schema
+ │
+ ├── /assets/                    # Static Assets
+ │    ├── /css/style.css         # Main application stylesheet
+ │    ├── /js/script.js          # Main client-side interactivity &amp; AJAX
+ │    └── /images/               # UI graphics, logos, and banners
+ │
+ └── /uploads/products/          # Uploaded product photographs &amp; galleries
+      </pre>
+    </div>
+
+    <!-- PAGE 10: DATA DICTIONARY (PART 1) -->
+    <div class="book-page">
+      <div class="page-tag">Page 10</div>
+      
+      <h2 class="section-title"><i class="fa fa-database"></i> 7. Data Dictionary (Part 1)</h2>
+      
+      <h3 class="sub-title">1. Table: <code>users</code></h3>
+      <table>
+        <thead><tr><th>Field Name</th><th>Data Type</th><th>Key / Constraint</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>INT(11) UNSIGNED</td><td><span class="badge-pk">PK, AI</span></td><td>Unique user identifier</td></tr>
+          <tr><td><code>name</code></td><td>VARCHAR(100)</td><td>NOT NULL</td><td>User full name</td></tr>
+          <tr><td><code>email</code></td><td>VARCHAR(150)</td><td>UNIQUE, NOT NULL</td><td>Login email address</td></tr>
+          <tr><td><code>password</code></td><td>VARCHAR(255)</td><td>NOT NULL</td><td>Bcrypt encrypted password hash</td></tr>
+          <tr><td><code>phone</code></td><td>VARCHAR(20)</td><td>NULL</td><td>Contact mobile number</td></tr>
+          <tr><td><code>address</code></td><td>TEXT</td><td>NULL</td><td>Default shipping street address</td></tr>
+          <tr><td><code>role</code></td><td>ENUM('customer','admin')</td><td>DEFAULT 'customer'</td><td>Access level role</td></tr>
+          <tr><td><code>status</code></td><td>ENUM('active','inactive')</td><td>DEFAULT 'active'</td><td>Account status</td></tr>
+          <tr><td><code>created_at</code></td><td>TIMESTAMP</td><td>CURRENT_TIMESTAMP</td><td>Account creation timestamp</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-title">2. Table: <code>categories</code></h3>
+      <table>
+        <thead><tr><th>Field Name</th><th>Data Type</th><th>Key / Constraint</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>INT(11) UNSIGNED</td><td><span class="badge-pk">PK, AI</span></td><td>Category identifier</td></tr>
+          <tr><td><code>name</code></td><td>VARCHAR(100)</td><td>NOT NULL</td><td>Category display name (Men, Women)</td></tr>
+          <tr><td><code>slug</code></td><td>VARCHAR(110)</td><td>UNIQUE, NOT NULL</td><td>URL search slug</td></tr>
+          <tr><td><code>description</code></td><td>TEXT</td><td>NULL</td><td>Category summary</td></tr>
+          <tr><td><code>status</code></td><td>ENUM('active','inactive')</td><td>DEFAULT 'active'</td><td>Visibility status</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-title">3. Table: <code>brands</code></h3>
+      <table>
+        <thead><tr><th>Field Name</th><th>Data Type</th><th>Key / Constraint</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>INT(11) UNSIGNED</td><td><span class="badge-pk">PK, AI</span></td><td>Brand identifier</td></tr>
+          <tr><td><code>name</code></td><td>VARCHAR(100)</td><td>NOT NULL</td><td>Brand name (Zara, H&M, Fabindia)</td></tr>
+          <tr><td><code>slug</code></td><td>VARCHAR(110)</td><td>UNIQUE, NOT NULL</td><td>Brand URL slug</td></tr>
+          <tr><td><code>logo</code></td><td>VARCHAR(255)</td><td>NULL</td><td>Brand logo image URL</td></tr>
+          <tr><td><code>status</code></td><td>ENUM('active','inactive')</td><td>DEFAULT 'active'</td><td>Brand status</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PAGE 11: DATA DICTIONARY (PART 2) -->
+    <div class="book-page">
+      <div class="page-tag">Page 11</div>
+      
+      <h2 class="section-title"><i class="fa fa-database"></i> 7. Data Dictionary (Part 2)</h2>
+
+      <h3 class="sub-title">4. Table: <code>products</code></h3>
+      <table>
+        <thead><tr><th>Field Name</th><th>Data Type</th><th>Key / Constraint</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>INT(11) UNSIGNED</td><td><span class="badge-pk">PK, AI</span></td><td>Unique product ID</td></tr>
+          <tr><td><code>sku</code></td><td>VARCHAR(80)</td><td>UNIQUE, NULL</td><td>Stock Keeping Unit code</td></tr>
+          <tr><td><code>category_id</code></td><td>INT(11) UNSIGNED</td><td><span class="badge-fk">FK</span></td><td>References <code>categories.id</code></td></tr>
+          <tr><td><code>brand_id</code></td><td>INT(11) UNSIGNED</td><td><span class="badge-fk">FK</span></td><td>References <code>brands.id</code></td></tr>
+          <tr><td><code>name</code></td><td>VARCHAR(200)</td><td>NOT NULL</td><td>Product title</td></tr>
+          <tr><td><code>slug</code></td><td>VARCHAR(220)</td><td>UNIQUE, NOT NULL</td><td>Product URL slug</td></tr>
+          <tr><td><code>gender</code></td><td>ENUM('men','women','kids','unisex')</td><td>DEFAULT 'unisex'</td><td>Target gender category</td></tr>
+          <tr><td><code>material</code></td><td>VARCHAR(200)</td><td>NULL</td><td>Fabric (Cotton, Silk, Denim)</td></tr>
+          <tr><td><code>price</code></td><td>DECIMAL(10,2)</td><td>NOT NULL</td><td>Standard retail price</td></tr>
+          <tr><td><code>sale_price</code></td><td>DECIMAL(10,2)</td><td>DEFAULT 0.00</td><td>Discounted offer price</td></tr>
+          <tr><td><code>stock</code></td><td>INT(11)</td><td>DEFAULT 0</td><td>Available warehouse stock</td></tr>
+          <tr><td><code>low_stock_alert</code></td><td>INT(11)</td><td>DEFAULT 5</td><td>Low stock alert threshold</td></tr>
+          <tr><td><code>sizes</code></td><td>VARCHAR(200)</td><td>DEFAULT 'XS,S,M,L,XL'</td><td>Available size options</td></tr>
+          <tr><td><code>colors</code></td><td>VARCHAR(200)</td><td>DEFAULT 'Black,White'</td><td>Available color options</td></tr>
+          <tr><td><code>image</code></td><td>VARCHAR(255)</td><td>NULL</td><td>Primary product image</td></tr>
+          <tr><td><code>featured</code></td><td>TINYINT(1)</td><td>DEFAULT 0</td><td>Featured on homepage flag</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-title">5. Table: <code>product_images</code></h3>
+      <table>
+        <thead><tr><th>Field Name</th><th>Data Type</th><th>Key / Constraint</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>INT(11) UNSIGNED</td><td><span class="badge-pk">PK, AI</span></td><td>Gallery image ID</td></tr>
+          <tr><td><code>product_id</code></td><td>INT(11) UNSIGNED</td><td><span class="badge-fk">FK</span></td><td>References <code>products.id</code></td></tr>
+          <tr><td><code>image_path</code></td><td>VARCHAR(255)</td><td>NOT NULL</td><td>Image filename / URL</td></tr>
+          <tr><td><code>sort_order</code></td><td>INT(11)</td><td>DEFAULT 0</td><td>Display order sequence</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PAGE 12: DATA DICTIONARY (PART 3) -->
+    <div class="book-page">
+      <div class="page-tag">Page 12</div>
+      
+      <h2 class="section-title"><i class="fa fa-database"></i> 7. Data Dictionary (Part 3)</h2>
+
+      <h3 class="sub-title">6. Table: <code>orders</code></h3>
+      <table>
+        <thead><tr><th>Field Name</th><th>Data Type</th><th>Key / Constraint</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>INT(11) UNSIGNED</td><td><span class="badge-pk">PK, AI</span></td><td>Order record ID</td></tr>
+          <tr><td><code>user_id</code></td><td>INT(11) UNSIGNED</td><td><span class="badge-fk">FK</span></td><td>References <code>users.id</code></td></tr>
+          <tr><td><code>order_number</code></td><td>VARCHAR(30)</td><td>UNIQUE, NOT NULL</td><td>Order tracking number</td></tr>
+          <tr><td><code>total_amount</code></td><td>DECIMAL(10,2)</td><td>NOT NULL</td><td>Final invoice payable total</td></tr>
+          <tr><td><code>discount</code></td><td>DECIMAL(10,2)</td><td>DEFAULT 0.00</td><td>Coupon discount deducted</td></tr>
+          <tr><td><code>shipping_charge</code></td><td>DECIMAL(10,2)</td><td>DEFAULT 0.00</td><td>Applied shipping fee</td></tr>
+          <tr><td><code>status</code></td><td>ENUM('pending','processing','shipped','delivered','cancelled')</td><td>DEFAULT 'pending'</td><td>Order fulfillment status</td></tr>
+          <tr><td><code>payment_method</code></td><td>VARCHAR(50)</td><td>DEFAULT 'COD'</td><td>Payment mode (COD/Online)</td></tr>
+          <tr><td><code>shipping_name</code></td><td>VARCHAR(100)</td><td>NOT NULL</td><td>Recipient customer name</td></tr>
+          <tr><td><code>shipping_phone</code></td><td>VARCHAR(20)</td><td>NOT NULL</td><td>Contact phone number</td></tr>
+          <tr><td><code>shipping_address</code></td><td>TEXT</td><td>NOT NULL</td><td>Delivery street address</td></tr>
+          <tr><td><code>shipping_city</code></td><td>VARCHAR(80)</td><td>NOT NULL</td><td>Destination city</td></tr>
+          <tr><td><code>shipping_pincode</code></td><td>VARCHAR(10)</td><td>NOT NULL</td><td>Postal PIN code</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-title">7. Table: <code>order_items</code></h3>
+      <table>
+        <thead><tr><th>Field Name</th><th>Data Type</th><th>Key / Constraint</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>INT(11) UNSIGNED</td><td><span class="badge-pk">PK, AI</span></td><td>Order line-item ID</td></tr>
+          <tr><td><code>order_id</code></td><td>INT(11) UNSIGNED</td><td><span class="badge-fk">FK</span></td><td>References <code>orders.id</code></td></tr>
+          <tr><td><code>product_id</code></td><td>INT(11) UNSIGNED</td><td><span class="badge-fk">FK</span></td><td>References <code>products.id</code></td></tr>
+          <tr><td><code>product_name</code></td><td>VARCHAR(200)</td><td>NOT NULL</td><td>Item name at purchase</td></tr>
+          <tr><td><code>size</code></td><td>VARCHAR(20)</td><td>NULL</td><td>Selected size (S, M, L)</td></tr>
+          <tr><td><code>color</code></td><td>VARCHAR(50)</td><td>NULL</td><td>Selected color option</td></tr>
+          <tr><td><code>quantity</code></td><td>INT(11)</td><td>NOT NULL</td><td>Purchased quantity</td></tr>
+          <tr><td><code>unit_price</code></td><td>DECIMAL(10,2)</td><td>NOT NULL</td><td>Unit price charged</td></tr>
+          <tr><td><code>subtotal</code></td><td>DECIMAL(10,2)</td><td>NOT NULL</td><td>Quantity x Unit Price</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-title">8. Table: <code>coupon_codes</code></h3>
+      <table>
+        <thead><tr><th>Field Name</th><th>Data Type</th><th>Key / Constraint</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td>INT(11) UNSIGNED</td><td><span class="badge-pk">PK, AI</span></td><td>Coupon record ID</td></tr>
+          <tr><td><code>code</code></td><td>VARCHAR(30)</td><td>UNIQUE, NOT NULL</td><td>Promo code string</td></tr>
+          <tr><td><code>type</code></td><td>ENUM('percent','fixed')</td><td>DEFAULT 'percent'</td><td>Discount calculation type</td></tr>
+          <tr><td><code>value</code></td><td>DECIMAL(10,2)</td><td>NOT NULL</td><td>Discount value (% or ₹)</td></tr>
+          <tr><td><code>min_order</code></td><td>DECIMAL(10,2)</td><td>DEFAULT 0.00</td><td>Minimum order required</td></tr>
+          <tr><td><code>status</code></td><td>ENUM('active','inactive')</td><td>DEFAULT 'active'</td><td>Coupon validity status</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PAGE 13: DATA FLOW DIAGRAMS -->
+    <div class="book-page">
+      <div class="page-tag">Page 13</div>
+      
+      <h2 class="section-title"><i class="fa fa-diagram-project"></i> 8. Data Flow Diagrams (0 Level &amp; 1 Level)</h2>
+
+      <h3 class="sub-title">A. Level 0 DFD (Context Level Diagram)</h3>
+      <p>The Context Diagram illustrates the system boundary and external entities interacting with the 0.0 Gujju Clothing System:</p>
+
+      <div class="diagram-card" style="padding: 15px 10px; background: #ffffff;">
+        <svg viewBox="0 0 850 490" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="font-family: 'Segoe UI', Arial, sans-serif;">
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="#1e3a8a" />
+            </marker>
+            <marker id="arrow-admin" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="#047857" />
+            </marker>
+            <marker id="arrow-pay" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="#b45309" />
+            </marker>
+          </defs>
+
+          <!-- TOP ENTITY: ADMIN -->
+          <rect x="330" y="15" width="190" height="50" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="2.5" />
+          <text x="425" y="46" font-size="16" font-weight="bold" fill="#065f46" text-anchor="middle">admin</text>
+
+          <!-- CENTER PROCESS: 0.0 GUJJU CLOTHING -->
+          <circle cx="425" cy="245" r="78" fill="#eff6ff" stroke="#1d4ed8" stroke-width="3" />
+          <line x1="347" y1="230" x2="503" y2="230" stroke="#1d4ed8" stroke-width="2" />
+          <text x="425" y="215" font-size="18" font-weight="bold" fill="#1e3a8a" text-anchor="middle">0.0</text>
+          <text x="425" y="252" font-size="13" font-weight="bold" fill="#1e3a8a" text-anchor="middle">Gujju Clothing</text>
+          <text x="425" y="270" font-size="12" font-weight="600" fill="#3b82f6" text-anchor="middle">E-Commerce System</text>
+
+          <!-- BOTTOM LEFT ENTITY: PAYMENT GATEWAY -->
+          <rect x="35" y="405" width="200" height="60" rx="8" fill="#fffbeb" stroke="#d97706" stroke-width="2.5" />
+          <text x="135" y="440" font-size="15" font-weight="bold" fill="#92400e" text-anchor="middle">Payment Gateway</text>
+
+          <!-- BOTTOM RIGHT ENTITY: CUSTOMER / USER -->
+          <rect x="615" y="395" width="200" height="75" rx="8" fill="#eef2ff" stroke="#4338ca" stroke-width="2.5" />
+          <text x="715" y="432" font-size="16" font-weight="bold" fill="#312e81" text-anchor="middle">Customer / User</text>
+          <text x="715" y="452" font-size="11" fill="#4338ca" text-anchor="middle">(Shopper / Client)</text>
+
+          <!-- ADMIN TO PROCESS (LEFT FLOW) -->
+          <path d="M 370 65 L 370 175" fill="none" stroke="#047857" stroke-width="1.8" marker-end="url(#arrow-admin)" />
+          <text x="360" y="110" font-size="11" font-weight="600" fill="#047857" text-anchor="end">• New Apparel Data</text>
+          <text x="360" y="125" font-size="11" font-weight="600" fill="#047857" text-anchor="end">• Product Updates</text>
+          <text x="360" y="140" font-size="11" font-weight="600" fill="#047857" text-anchor="end">• User Profile Access</text>
+
+          <!-- PROCESS TO ADMIN (RIGHT FLOW) -->
+          <path d="M 480 175 L 480 65" fill="none" stroke="#047857" stroke-width="1.8" marker-end="url(#arrow-admin)" />
+          <text x="490" y="110" font-size="11" font-weight="600" fill="#047857" text-anchor="start">• Sales Reports</text>
+          <text x="490" y="125" font-size="11" font-weight="600" fill="#047857" text-anchor="start">• Inventory Alert</text>
+          <text x="490" y="140" font-size="11" font-weight="600" fill="#047857" text-anchor="start">• User Activity Log</text>
+
+          <!-- USER TO PROCESS FLOW -->
+          <path d="M 660 395 C 620 310, 560 270, 505 255" fill="none" stroke="#1e3a8a" stroke-width="1.8" marker-end="url(#arrow)" />
+          <text x="630" y="270" font-size="11" font-weight="600" fill="#1e3a8a" text-anchor="start">• Login / Register</text>
+          <text x="630" y="285" font-size="11" font-weight="600" fill="#1e3a8a" text-anchor="start">• Product Inquiry</text>
+          <text x="630" y="300" font-size="11" font-weight="600" fill="#1e3a8a" text-anchor="start">• Add to Cart</text>
+          <text x="630" y="315" font-size="11" font-weight="600" fill="#1e3a8a" text-anchor="start">• Purchase Request</text>
+
+          <!-- PROCESS TO USER FLOW -->
+          <path d="M 495 285 C 535 340, 580 375, 620 405" fill="none" stroke="#1e3a8a" stroke-width="1.8" marker-end="url(#arrow)" />
+          <text x="500" y="360" font-size="11" font-weight="600" fill="#1e3a8a" text-anchor="end">• Product Details</text>
+          <text x="500" y="375" font-size="11" font-weight="600" fill="#1e3a8a" text-anchor="end">• Order Confirmation</text>
+          <text x="500" y="390" font-size="11" font-weight="600" fill="#1e3a8a" text-anchor="end">• Transaction Status</text>
+
+          <!-- PROCESS TO PAYMENT GATEWAY -->
+          <path d="M 355 275 C 290 320, 230 365, 175 405" fill="none" stroke="#b45309" stroke-width="1.8" marker-end="url(#arrow-pay)" />
+          <text x="215" y="330" font-size="11" font-weight="600" fill="#b45309" text-anchor="end">• Payment Details</text>
+
+          <!-- PAYMENT GATEWAY TO PROCESS -->
+          <path d="M 135 405 C 170 315, 275 255, 347 245" fill="none" stroke="#b45309" stroke-width="1.8" marker-end="url(#arrow-pay)" />
+          <text x="180" y="270" font-size="11" font-weight="600" fill="#b45309" text-anchor="start">• Payment Status</text>
+        </svg>
+      </div>
+
+      <h3 class="sub-title" style="margin-top: 35px;">B. Level 1 DFD (Sub-Processes &amp; Data Stores)</h3>
+      <p>Detailed sub-processes interacting directly with relational database data stores (D1 to D4):</p>
+
+      <div class="diagram-card" style="padding: 15px 10px; background: #ffffff;">
+        <svg viewBox="0 0 850 820" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="font-family: 'Segoe UI', Arial, sans-serif;">
+          <defs>
+            <marker id="arr1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="#1e3a8a" />
+            </marker>
+            <marker id="arr-store" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="#0f766e" />
+            </marker>
+          </defs>
+
+          <!-- EXTERNAL ENTITY: USER (LEFT) -->
+          <rect x="25" y="160" width="110" height="75" rx="8" fill="#eef2ff" stroke="#3730a3" stroke-width="2.5" />
+          <text x="80" y="195" font-size="16" font-weight="bold" fill="#312e81" text-anchor="middle">User</text>
+          <text x="80" y="215" font-size="11" fill="#4338ca" text-anchor="middle">(Customer)</text>
+
+          <!-- EXTERNAL ENTITY: ADMIN (BOTTOM LEFT) -->
+          <rect x="25" y="680" width="110" height="75" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="2.5" />
+          <text x="80" y="723" font-size="16" font-weight="bold" fill="#065f46" text-anchor="middle">admin</text>
+
+          <!-- PROCESS 1.0: USER AUTHENTICATION -->
+          <circle cx="280" cy="75" r="48" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2.5" />
+          <line x1="232" y1="65" x2="328" y2="65" stroke="#1d4ed8" stroke-width="1.5" />
+          <text x="280" y="55" font-size="14" font-weight="bold" fill="#1e3a8a" text-anchor="middle">1.0</text>
+          <text x="280" y="85" font-size="11" font-weight="bold" fill="#1e3a8a" text-anchor="middle">User</text>
+          <text x="280" y="100" font-size="11" font-weight="bold" fill="#1e3a8a" text-anchor="middle">Authentication</text>
+
+          <!-- PROCESS 2.0: PRODUCT CATALOG -->
+          <circle cx="280" cy="225" r="48" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2.5" />
+          <line x1="232" y1="215" x2="328" y2="215" stroke="#1d4ed8" stroke-width="1.5" />
+          <text x="280" y="205" font-size="14" font-weight="bold" fill="#1e3a8a" text-anchor="middle">2.0</text>
+          <text x="280" y="235" font-size="11" font-weight="bold" fill="#1e3a8a" text-anchor="middle">Product</text>
+          <text x="280" y="250" font-size="11" font-weight="bold" fill="#1e3a8a" text-anchor="middle">Catalog</text>
+
+          <!-- PROCESS 3.0: SHOPPING CART -->
+          <circle cx="280" cy="375" r="48" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2.5" />
+          <line x1="232" y1="365" x2="328" y2="365" stroke="#1d4ed8" stroke-width="1.5" />
+          <text x="280" y="355" font-size="14" font-weight="bold" fill="#1e3a8a" text-anchor="middle">3.0</text>
+          <text x="280" y="385" font-size="11" font-weight="bold" fill="#1e3a8a" text-anchor="middle">Shopping</text>
+          <text x="280" y="400" font-size="11" font-weight="bold" fill="#1e3a8a" text-anchor="middle">Cart</text>
+
+          <!-- PROCESS 4.0: ORDER & CHECKOUT -->
+          <circle cx="280" cy="525" r="48" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2.5" />
+          <line x1="232" y1="515" x2="328" y2="515" stroke="#1d4ed8" stroke-width="1.5" />
+          <text x="280" y="505" font-size="14" font-weight="bold" fill="#1e3a8a" text-anchor="middle">4.0</text>
+          <text x="280" y="535" font-size="11" font-weight="bold" fill="#1e3a8a" text-anchor="middle">Order &amp;</text>
+          <text x="280" y="550" font-size="11" font-weight="bold" fill="#1e3a8a" text-anchor="middle">Checkout</text>
+
+          <!-- PROCESS 5.0: ADMIN MANAGEMENT -->
+          <circle cx="280" cy="715" r="48" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2.5" />
+          <line x1="232" y1="705" x2="328" y2="705" stroke="#1d4ed8" stroke-width="1.5" />
+          <text x="280" y="695" font-size="14" font-weight="bold" fill="#1e3a8a" text-anchor="middle">5.0</text>
+          <text x="280" y="725" font-size="11" font-weight="bold" fill="#1e3a8a" text-anchor="middle">Admin</text>
+          <text x="280" y="740" font-size="11" font-weight="bold" fill="#1e3a8a" text-anchor="middle">Management</text>
+
+          <!-- DATA STORE D1: USERS -->
+          <g transform="translate(560, 50)">
+            <line x1="0" y1="0" x2="230" y2="0" stroke="#0f766e" stroke-width="2.5" />
+            <line x1="0" y1="45" x2="230" y2="45" stroke="#0f766e" stroke-width="2.5" />
+            <line x1="50" y1="0" x2="50" y2="45" stroke="#0f766e" stroke-width="1.5" />
+            <rect x="0" y="0" width="230" height="45" fill="#f0fdfa" opacity="0.6" />
+            <text x="25" y="28" font-size="15" font-weight="bold" fill="#0f766e" text-anchor="middle">D1</text>
+            <text x="135" y="28" font-size="14" font-weight="bold" fill="#134e4a" text-anchor="middle">Users Store</text>
+          </g>
+
+          <!-- DATA STORE D2: PRODUCTS -->
+          <g transform="translate(560, 200)">
+            <line x1="0" y1="0" x2="230" y2="0" stroke="#0f766e" stroke-width="2.5" />
+            <line x1="0" y1="45" x2="230" y2="45" stroke="#0f766e" stroke-width="2.5" />
+            <line x1="50" y1="0" x2="50" y2="45" stroke="#0f766e" stroke-width="1.5" />
+            <rect x="0" y="0" width="230" height="45" fill="#f0fdfa" opacity="0.6" />
+            <text x="25" y="28" font-size="15" font-weight="bold" fill="#0f766e" text-anchor="middle">D2</text>
+            <text x="135" y="28" font-size="14" font-weight="bold" fill="#134e4a" text-anchor="middle">Products &amp; Brands</text>
+          </g>
+
+          <!-- DATA STORE D3: CART -->
+          <g transform="translate(560, 350)">
+            <line x1="0" y1="0" x2="230" y2="0" stroke="#0f766e" stroke-width="2.5" />
+            <line x1="0" y1="45" x2="230" y2="45" stroke="#0f766e" stroke-width="2.5" />
+            <line x1="50" y1="0" x2="50" y2="45" stroke="#0f766e" stroke-width="1.5" />
+            <rect x="0" y="0" width="230" height="45" fill="#f0fdfa" opacity="0.6" />
+            <text x="25" y="28" font-size="15" font-weight="bold" fill="#0f766e" text-anchor="middle">D3</text>
+            <text x="135" y="28" font-size="14" font-weight="bold" fill="#134e4a" text-anchor="middle">Cart Data Store</text>
+          </g>
+
+          <!-- DATA STORE D4: ORDERS -->
+          <g transform="translate(560, 500)">
+            <line x1="0" y1="0" x2="230" y2="0" stroke="#0f766e" stroke-width="2.5" />
+            <line x1="0" y1="45" x2="230" y2="45" stroke="#0f766e" stroke-width="2.5" />
+            <line x1="50" y1="0" x2="50" y2="45" stroke="#0f766e" stroke-width="1.5" />
+            <rect x="0" y="0" width="230" height="45" fill="#f0fdfa" opacity="0.6" />
+            <text x="25" y="28" font-size="15" font-weight="bold" fill="#0f766e" text-anchor="middle">D4</text>
+            <text x="135" y="28" font-size="14" font-weight="bold" fill="#134e4a" text-anchor="middle">Orders &amp; Items</text>
+          </g>
+
+          <!-- FLOWS: USER TO 1.0 -->
+          <path d="M 80 160 L 80 75 L 230 75" fill="none" stroke="#1e3a8a" stroke-width="1.6" marker-end="url(#arr1)" />
+          <text x="145" y="68" font-size="11" font-weight="600" fill="#1e3a8a">Login Credentials</text>
+          <path d="M 230 90 L 105 90 L 105 160" fill="none" stroke="#1e3a8a" stroke-width="1.6" marker-end="url(#arr1)" />
+          <text x="145" y="105" font-size="11" font-weight="600" fill="#1e3a8a">Session Token</text>
+
+          <!-- FLOWS: 1.0 TO D1 -->
+          <path d="M 328 75 L 558 75" fill="none" stroke="#0f766e" stroke-width="1.6" marker-end="url(#arr-store)" />
+          <text x="440" y="68" font-size="11" font-weight="600" fill="#0f766e" text-anchor="middle">Read User Info / Update</text>
+
+          <!-- FLOWS: USER TO 2.0 -->
+          <path d="M 135 210 L 232 210" fill="none" stroke="#1e3a8a" stroke-width="1.6" marker-end="url(#arr1)" />
+          <text x="180" y="202" font-size="11" font-weight="600" fill="#1e3a8a" text-anchor="middle">Product Inquiry</text>
+          <path d="M 232 235 L 135 235" fill="none" stroke="#1e3a8a" stroke-width="1.6" marker-end="url(#arr1)" />
+          <text x="180" y="250" font-size="11" font-weight="600" fill="#1e3a8a" text-anchor="middle">Display Catalog</text>
+
+          <!-- FLOWS: 2.0 TO D2 -->
+          <path d="M 328 225 L 558 225" fill="none" stroke="#0f766e" stroke-width="1.6" marker-end="url(#arr-store)" />
+          <text x="440" y="218" font-size="11" font-weight="600" fill="#0f766e" text-anchor="middle">Fetch Catalog Data</text>
+
+          <!-- FLOWS: USER TO 3.0 -->
+          <path d="M 100 235 L 100 365 L 232 365" fill="none" stroke="#1e3a8a" stroke-width="1.6" marker-end="url(#arr1)" />
+          <text x="145" y="358" font-size="11" font-weight="600" fill="#1e3a8a">Add / Remove Item</text>
+          <path d="M 232 385 L 120 385 L 120 235" fill="none" stroke="#1e3a8a" stroke-width="1.6" marker-end="url(#arr1)" />
+          <text x="145" y="400" font-size="11" font-weight="600" fill="#1e3a8a">Cart Details</text>
+
+          <!-- FLOWS: 3.0 TO D3 -->
+          <path d="M 328 375 L 558 375" fill="none" stroke="#0f766e" stroke-width="1.6" marker-end="url(#arr-store)" />
+          <text x="440" y="368" font-size="11" font-weight="600" fill="#0f766e" text-anchor="middle">Store Cart Items</text>
+
+          <!-- FLOWS: 3.0 TO 4.0 -->
+          <path d="M 280 423 L 280 475" fill="none" stroke="#1e3a8a" stroke-width="1.6" marker-end="url(#arr1)" />
+          <text x="290" y="455" font-size="11" font-weight="600" fill="#1e3a8a">Payment Details</text>
+
+          <!-- FLOWS: 4.0 TO D4 -->
+          <path d="M 328 525 L 558 525" fill="none" stroke="#0f766e" stroke-width="1.6" marker-end="url(#arr-store)" />
+          <text x="440" y="518" font-size="11" font-weight="600" fill="#0f766e" text-anchor="middle">Write Order &amp; Invoice</text>
+
+          <!-- FLOWS: ADMIN TO 5.0 -->
+          <path d="M 135 715 L 232 715" fill="none" stroke="#047857" stroke-width="1.6" marker-end="url(#arr1)" />
+          <text x="180" y="707" font-size="11" font-weight="600" fill="#047857" text-anchor="middle">Admin Actions</text>
+
+          <!-- FLOWS: 5.0 TO D1, D2, D4 -->
+          <path d="M 328 700 C 420 680, 520 620, 580 550" fill="none" stroke="#047857" stroke-width="1.4" marker-end="url(#arr-store)" />
+          <text x="420" y="635" font-size="11" font-weight="600" fill="#047857">Order Fulfillment</text>
+
+          <path d="M 315 675 C 440 550, 480 350, 580 250" fill="none" stroke="#047857" stroke-width="1.4" stroke-dasharray="4,3" marker-end="url(#arr-store)" />
+          <text x="440" y="460" font-size="11" font-weight="600" fill="#047857">Product / Stock Updates</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- PAGE 14: ENTITY-RELATIONSHIP DIAGRAM -->
+    <div class="book-page">
+      <div class="page-tag">Page 14</div>
+      
+      <h2 class="section-title"><i class="fa fa-network-wired"></i> 9. Entity-Relationship (ER) Diagram</h2>
+      <p>Classic Chen's Notation ER Diagram matching your handwritten progress notebook with <strong>Entities (Rectangles)</strong>, <strong>Relationships (Diamonds)</strong>, and <strong>Attributes (Ovals)</strong> with Primary Keys underlined:</p>
+
+      <div class="diagram-card" style="padding: 15px 10px; background: #ffffff;">
+        <svg viewBox="0 0 950 1120" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="font-family: 'Segoe UI', Arial, sans-serif;">
+          
+          <!-- ==================== 1. ENTITY: ADMINS ==================== -->
+          <!-- Entity Box -->
+          <rect x="70" y="100" width="120" height="42" fill="#eff6ff" stroke="#1e3a8a" stroke-width="2" rx="4" />
+          <text x="130" y="127" font-size="15" font-weight="bold" fill="#1e3a8a" text-anchor="middle">admins</text>
+
+          <!-- Admins Attributes (Ovals) -->
+          <line x1="60" y1="45" x2="90" y2="100" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="60" cy="40" rx="35" ry="18" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="60" y="44" font-size="11" font-weight="bold" text-decoration="underline" fill="#111" text-anchor="middle">id</text>
+
+          <line x1="130" y1="45" x2="130" y2="100" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="130" cy="35" rx="42" ry="18" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="130" y="39" font-size="11" fill="#111" text-anchor="middle">username</text>
+
+          <line x1="200" y1="45" x2="170" y2="100" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="205" cy="40" rx="40" ry="18" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="205" y="44" font-size="11" fill="#111" text-anchor="middle">password</text>
+
+          <!-- Relationship: manages (admins -> categories) -->
+          <line x1="190" y1="121" x2="250" y2="121" stroke="#1e3a8a" stroke-width="1.8" />
+          <polygon points="280,103 320,121 280,139 240,121" fill="#fef3c7" stroke="#d97706" stroke-width="1.8" />
+          <text x="280" y="125" font-size="11" font-weight="bold" fill="#92400e" text-anchor="middle">manages</text>
+          <line x1="320" y1="121" x2="380" y2="121" stroke="#1e3a8a" stroke-width="1.8" />
+
+          <!-- ==================== 2. ENTITY: CATEGORIES ==================== -->
+          <rect x="380" y="100" width="130" height="42" fill="#eff6ff" stroke="#1e3a8a" stroke-width="2" rx="4" />
+          <text x="445" y="127" font-size="15" font-weight="bold" fill="#1e3a8a" text-anchor="middle">categories</text>
+
+          <!-- Categories Attributes -->
+          <line x1="380" y1="45" x2="410" y2="100" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="370" cy="40" rx="30" ry="18" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="370" y="44" font-size="11" font-weight="bold" text-decoration="underline" fill="#111" text-anchor="middle">id</text>
+
+          <line x1="450" y1="45" x2="450" y2="100" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="450" cy="35" rx="45" ry="18" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="450" y="39" font-size="11" fill="#111" text-anchor="middle">category_name</text>
+
+          <!-- Relationship: has (categories -> products) -->
+          <line x1="510" y1="121" x2="560" y2="121" stroke="#1e3a8a" stroke-width="1.8" />
+          <polygon points="590,103 625,121 590,139 555,121" fill="#fef3c7" stroke="#d97706" stroke-width="1.8" />
+          <text x="590" y="125" font-size="11" font-weight="bold" fill="#92400e" text-anchor="middle">has</text>
+          <line x1="625" y1="121" x2="680" y2="121" stroke="#1e3a8a" stroke-width="1.8" />
+
+          <!-- ==================== 3. ENTITY: PRODUCTS ==================== -->
+          <rect x="680" y="100" width="130" height="42" fill="#eff6ff" stroke="#1e3a8a" stroke-width="2" rx="4" />
+          <text x="745" y="127" font-size="15" font-weight="bold" fill="#1e3a8a" text-anchor="middle">products</text>
+
+          <!-- Products Attributes (Ovals Fan-out) -->
+          <line x1="650" y1="40" x2="690" y2="100" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="640" cy="35" rx="30" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="640" y="39" font-size="11" font-weight="bold" text-decoration="underline" fill="#111" text-anchor="middle">id</text>
+
+          <line x1="720" y1="35" x2="725" y2="100" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="715" cy="25" rx="45" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="715" y="29" font-size="11" fill="#111" text-anchor="middle">category_id</text>
+
+          <line x1="810" y1="35" x2="775" y2="100" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="815" cy="25" rx="48" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="815" y="29" font-size="11" fill="#111" text-anchor="middle">product_name</text>
+
+          <line x1="890" y1="80" x2="805" y2="105" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="900" cy="75" rx="42" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="900" y="79" font-size="11" fill="#111" text-anchor="middle">description</text>
+
+          <line x1="890" y1="130" x2="810" y2="125" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="895" cy="130" rx="35" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="895" y="134" font-size="11" fill="#111" text-anchor="middle">price</text>
+
+          <line x1="890" y1="180" x2="800" y2="140" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="895" cy="180" rx="35" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="895" y="184" font-size="11" fill="#111" text-anchor="middle">stock</text>
+
+          <line x1="860" y1="230" x2="780" y2="142" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="865" cy="230" rx="35" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="865" y="234" font-size="11" fill="#111" text-anchor="middle">image</text>
+
+          <!-- ==================== 4. ENTITY: USERS ==================== -->
+          <rect x="70" y="320" width="120" height="42" fill="#eff6ff" stroke="#1e3a8a" stroke-width="2" rx="4" />
+          <text x="130" y="347" font-size="15" font-weight="bold" fill="#1e3a8a" text-anchor="middle">users</text>
+
+          <!-- Users Attributes -->
+          <line x1="40" y1="260" x2="80" y2="320" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="35" cy="255" rx="30" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="35" y="259" font-size="11" font-weight="bold" text-decoration="underline" fill="#111" text-anchor="middle">id</text>
+
+          <line x1="105" y1="250" x2="115" y2="320" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="105" cy="245" rx="38" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="105" y="249" font-size="11" fill="#111" text-anchor="middle">full_name</text>
+
+          <line x1="175" y1="250" x2="155" y2="320" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="180" cy="245" rx="32" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="180" y="249" font-size="11" fill="#111" text-anchor="middle">email</text>
+
+          <line x1="25" y1="330" x2="70" y2="335" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="25" cy="330" rx="22" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="25" y="334" font-size="11" fill="#111" text-anchor="middle">phone</text>
+
+          <line x1="30" y1="390" x2="80" y2="362" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="30" cy="395" rx="32" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="30" y="399" font-size="11" fill="#111" text-anchor="middle">address</text>
+
+          <!-- ==================== 5. ENTITY: CART ==================== -->
+          <!-- Relationship: adds (users -> cart) -->
+          <line x1="190" y1="341" x2="245" y2="341" stroke="#1e3a8a" stroke-width="1.8" />
+          <polygon points="275,323 310,341 275,359 240,341" fill="#fef3c7" stroke="#d97706" stroke-width="1.8" />
+          <text x="275" y="345" font-size="11" font-weight="bold" fill="#92400e" text-anchor="middle">adds</text>
+          <line x1="310" y1="341" x2="365" y2="341" stroke="#1e3a8a" stroke-width="1.8" />
+
+          <rect x="365" y="320" width="115" height="42" fill="#eff6ff" stroke="#1e3a8a" stroke-width="2" rx="4" />
+          <text x="422" y="347" font-size="15" font-weight="bold" fill="#1e3a8a" text-anchor="middle">cart</text>
+
+          <!-- Cart Attributes -->
+          <line x1="380" y1="260" x2="400" y2="320" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="375" cy="255" rx="28" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="375" y="259" font-size="11" font-weight="bold" text-decoration="underline" fill="#111" text-anchor="middle">id</text>
+
+          <line x1="440" y1="250" x2="435" y2="320" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="445" cy="245" rx="35" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="445" y="249" font-size="11" fill="#111" text-anchor="middle">user_id</text>
+
+          <line x1="500" y1="270" x2="460" y2="320" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="510" cy="265" rx="42" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="510" y="269" font-size="11" fill="#111" text-anchor="middle">product_id</text>
+
+          <line x1="440" y1="410" x2="430" y2="362" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="440" cy="415" rx="36" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="440" y="419" font-size="11" fill="#111" text-anchor="middle">quantity</text>
+
+          <!-- Cart -> Products connection -->
+          <line x1="480" y1="341" x2="745" y2="341" stroke="#1e3a8a" stroke-width="1.8" />
+          <line x1="745" y1="341" x2="745" y2="142" stroke="#1e3a8a" stroke-width="1.8" />
+
+          <!-- ==================== 6. ENTITY: WISHLIST ==================== -->
+          <rect x="680" y="420" width="130" height="42" fill="#eff6ff" stroke="#1e3a8a" stroke-width="2" rx="4" />
+          <text x="745" y="447" font-size="15" font-weight="bold" fill="#1e3a8a" text-anchor="middle">wishlist</text>
+
+          <!-- Relationship: saves_in (users -> wishlist) -->
+          <line x1="130" y1="362" x2="130" y2="441" stroke="#1e3a8a" stroke-width="1.8" />
+          <line x1="130" y1="441" x2="530" y2="441" stroke="#1e3a8a" stroke-width="1.8" />
+          <polygon points="560,423 595,441 560,459 525,441" fill="#fef3c7" stroke="#d97706" stroke-width="1.8" />
+          <text x="560" y="445" font-size="11" font-weight="bold" fill="#92400e" text-anchor="middle">saves</text>
+          <line x1="595" y1="441" x2="680" y2="441" stroke="#1e3a8a" stroke-width="1.8" />
+
+          <!-- ==================== 7. ENTITY: ORDERS ==================== -->
+          <!-- Relationship: places (users -> orders) -->
+          <line x1="130" y1="441" x2="130" y2="520" stroke="#1e3a8a" stroke-width="1.8" />
+          <polygon points="130,520 150,545 130,570 110,545" fill="#fef3c7" stroke="#d97706" stroke-width="1.8" />
+          <text x="130" y="549" font-size="11" font-weight="bold" fill="#92400e" text-anchor="middle">places</text>
+          <line x1="130" y1="570" x2="130" y2="620" stroke="#1e3a8a" stroke-width="1.8" />
+
+          <rect x="70" y="620" width="120" height="42" fill="#eff6ff" stroke="#1e3a8a" stroke-width="2" rx="4" />
+          <text x="130" y="647" font-size="15" font-weight="bold" fill="#1e3a8a" text-anchor="middle">orders</text>
+
+          <!-- Orders Attributes -->
+          <line x1="30" y1="620" x2="70" y2="635" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="25" cy="615" rx="25" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="25" y="619" font-size="11" font-weight="bold" text-decoration="underline" fill="#111" text-anchor="middle">id</text>
+
+          <line x1="25" y1="675" x2="70" y2="655" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="25" cy="680" rx="45" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="25" y="684" font-size="11" fill="#111" text-anchor="middle">total_amount</text>
+
+          <line x1="130" y1="710" x2="130" y2="662" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="130" cy="720" rx="38" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="130" y="724" font-size="11" fill="#111" text-anchor="middle">order_date</text>
+
+          <line x1="195" y1="695" x2="175" y2="662" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="205" cy="705" rx="32" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="205" y="709" font-size="11" fill="#111" text-anchor="middle">status</text>
+
+          <!-- ==================== 8. ENTITY: ORDER_ITEMS ==================== -->
+          <!-- Relationship: contains (orders -> order_items) -->
+          <line x1="190" y1="641" x2="250" y2="641" stroke="#1e3a8a" stroke-width="1.8" />
+          <polygon points="285,623 325,641 285,659 245,641" fill="#fef3c7" stroke="#d97706" stroke-width="1.8" />
+          <text x="285" y="645" font-size="11" font-weight="bold" fill="#92400e" text-anchor="middle">contains</text>
+          <line x1="325" y1="641" x2="380" y2="641" stroke="#1e3a8a" stroke-width="1.8" />
+
+          <rect x="380" y="620" width="130" height="42" fill="#eff6ff" stroke="#1e3a8a" stroke-width="2" rx="4" />
+          <text x="445" y="647" font-size="15" font-weight="bold" fill="#1e3a8a" text-anchor="middle">order_items</text>
+
+          <!-- Order_items Attributes -->
+          <line x1="380" y1="565" x2="410" y2="620" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="375" cy="560" rx="28" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="375" y="564" font-size="11" font-weight="bold" text-decoration="underline" fill="#111" text-anchor="middle">id</text>
+
+          <line x1="445" y1="550" x2="445" y2="620" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="445" cy="545" rx="35" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="445" y="549" font-size="11" fill="#111" text-anchor="middle">order_id</text>
+
+          <line x1="510" y1="565" x2="480" y2="620" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="515" cy="560" rx="40" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="515" y="564" font-size="11" fill="#111" text-anchor="middle">product_id</text>
+
+          <line x1="410" y1="710" x2="425" y2="662" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="400" cy="715" rx="32" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="400" y="719" font-size="11" fill="#111" text-anchor="middle">quantity</text>
+
+          <line x1="480" y1="710" x2="465" y2="662" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="485" cy="715" rx="28" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="485" y="719" font-size="11" fill="#111" text-anchor="middle">price</text>
+
+          <!-- Order_items -> Products relationship: has -->
+          <line x1="510" y1="641" x2="570" y2="641" stroke="#1e3a8a" stroke-width="1.8" />
+          <polygon points="600,623 635,641 600,659 565,641" fill="#fef3c7" stroke="#d97706" stroke-width="1.8" />
+          <text x="600" y="645" font-size="11" font-weight="bold" fill="#92400e" text-anchor="middle">has</text>
+          <line x1="635" y1="641" x2="745" y2="641" stroke="#1e3a8a" stroke-width="1.8" />
+          <line x1="745" y1="641" x2="745" y2="462" stroke="#1e3a8a" stroke-width="1.8" />
+
+          <!-- ==================== 9. ENTITY: PAYMENTS ==================== -->
+          <!-- Relationship: paid_by (orders -> payments) -->
+          <line x1="510" y1="641" x2="510" y2="760" stroke="#1e3a8a" stroke-width="1.8" />
+          <line x1="510" y1="760" x2="640" y2="760" stroke="#1e3a8a" stroke-width="1.8" />
+          <polygon points="670,742 705,760 670,778 635,760" fill="#fef3c7" stroke="#d97706" stroke-width="1.8" />
+          <text x="670" y="764" font-size="11" font-weight="bold" fill="#92400e" text-anchor="middle">paid_by</text>
+          <line x1="705" y1="760" x2="750" y2="760" stroke="#1e3a8a" stroke-width="1.8" />
+
+          <rect x="750" y="740" width="130" height="42" fill="#eff6ff" stroke="#1e3a8a" stroke-width="2" rx="4" />
+          <text x="815" y="767" font-size="15" font-weight="bold" fill="#1e3a8a" text-anchor="middle">payments</text>
+
+          <!-- Payments Attributes -->
+          <line x1="750" y1="700" x2="780" y2="740" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="740" cy="695" rx="25" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="740" y="699" font-size="11" font-weight="bold" text-decoration="underline" fill="#111" text-anchor="middle">id</text>
+
+          <line x1="815" y1="685" x2="815" y2="740" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="815" cy="675" rx="42" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="815" y="679" font-size="11" fill="#111" text-anchor="middle">order_id</text>
+
+          <line x1="885" y1="700" x2="855" y2="740" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="895" cy="695" rx="48" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="895" y="699" font-size="11" fill="#111" text-anchor="middle">payment_method</text>
+
+          <line x1="800" y1="835" x2="810" y2="782" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="795" cy="840" rx="30" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="795" y="844" font-size="11" fill="#111" text-anchor="middle">status</text>
+
+          <line x1="875" y1="835" x2="845" y2="782" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="880" cy="840" rx="45" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="880" y="844" font-size="11" fill="#111" text-anchor="middle">payment_date</text>
+
+          <!-- ==================== 10. ENTITY: CONTACTS ==================== -->
+          <!-- Relationship: submits (users -> contacts) -->
+          <line x1="130" y1="662" x2="130" y2="850" stroke="#1e3a8a" stroke-width="1.8" />
+          <line x1="130" y1="850" x2="250" y2="850" stroke="#1e3a8a" stroke-width="1.8" />
+          <polygon points="285,832 320,850 285,868 250,850" fill="#fef3c7" stroke="#d97706" stroke-width="1.8" />
+          <text x="285" y="854" font-size="11" font-weight="bold" fill="#92400e" text-anchor="middle">submits</text>
+          <line x1="320" y1="850" x2="380" y2="850" stroke="#1e3a8a" stroke-width="1.8" />
+
+          <rect x="380" y="830" width="130" height="42" fill="#eff6ff" stroke="#1e3a8a" stroke-width="2" rx="4" />
+          <text x="445" y="857" font-size="15" font-weight="bold" fill="#1e3a8a" text-anchor="middle">contacts</text>
+
+          <!-- Contacts Attributes -->
+          <line x1="375" y1="785" x2="405" y2="830" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="365" cy="780" rx="25" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="365" y="784" font-size="11" font-weight="bold" text-decoration="underline" fill="#111" text-anchor="middle">id</text>
+
+          <line x1="445" y1="775" x2="445" y2="830" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="445" cy="765" rx="30" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="445" y="769" font-size="11" fill="#111" text-anchor="middle">name</text>
+
+          <line x1="515" y1="785" x2="485" y2="830" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="525" cy="780" rx="30" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="525" y="784" font-size="11" fill="#111" text-anchor="middle">email</text>
+
+          <line x1="410" y1="925" x2="425" y2="872" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="405" cy="930" rx="35" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="405" y="934" font-size="11" fill="#111" text-anchor="middle">subject</text>
+
+          <line x1="480" y1="925" x2="465" y2="872" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="485" cy="930" rx="35" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="485" y="934" font-size="11" fill="#111" text-anchor="middle">message</text>
+
+          <!-- ==================== 11. ENTITY: REVIEWS ==================== -->
+          <!-- Relationship: writes (users -> reviews) -->
+          <line x1="130" y1="850" x2="130" y2="990" stroke="#1e3a8a" stroke-width="1.8" />
+          <line x1="130" y1="990" x2="250" y2="990" stroke="#1e3a8a" stroke-width="1.8" />
+          <polygon points="285,972 320,990 285,1008 250,990" fill="#fef3c7" stroke="#d97706" stroke-width="1.8" />
+          <text x="285" y="994" font-size="11" font-weight="bold" fill="#92400e" text-anchor="middle">writes</text>
+          <line x1="320" y1="990" x2="380" y2="990" stroke="#1e3a8a" stroke-width="1.8" />
+
+          <rect x="380" y="970" width="130" height="42" fill="#eff6ff" stroke="#1e3a8a" stroke-width="2" rx="4" />
+          <text x="445" y="997" font-size="15" font-weight="bold" fill="#1e3a8a" text-anchor="middle">reviews</text>
+
+          <!-- Reviews Attributes -->
+          <line x1="380" y1="1055" x2="410" y2="1012" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="370" cy="1060" rx="25" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="370" y="1064" font-size="11" font-weight="bold" text-decoration="underline" fill="#111" text-anchor="middle">id</text>
+
+          <line x1="445" y1="1060" x2="445" y2="1012" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="445" cy="1070" rx="30" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="445" y="1074" font-size="11" fill="#111" text-anchor="middle">rating</text>
+
+          <line x1="510" y1="1055" x2="480" y2="1012" stroke="#64748b" stroke-width="1.2" />
+          <ellipse cx="520" cy="1060" rx="35" ry="17" fill="#fff" stroke="#64748b" stroke-width="1.2" />
+          <text x="520" y="1064" font-size="11" fill="#111" text-anchor="middle">comment</text>
+
+          <!-- Reviews -> Products line -->
+          <line x1="510" y1="990" x2="745" y2="990" stroke="#1e3a8a" stroke-width="1.8" />
+          <line x1="745" y1="990" x2="745" y2="782" stroke="#1e3a8a" stroke-width="1.8" />
+
+        </svg>
+      </div>
+
+      <h3 class="sub-title" style="margin-top: 20px;">Relational Cardinalities Explained:</h3>
+      <ul>
+        <li><strong><code>admins</code> &mdash; [manages] &mdash; <code>categories</code> / <code>products</code> (1 : N):</strong> Store administrators manage categories and apparel listings.</li>
+        <li><strong><code>users</code> &mdash; [adds] &mdash; <code>cart</code> (1 : N):</strong> Customers store multiple items in their cart session/database.</li>
+        <li><strong><code>users</code> &mdash; [saves] &mdash; <code>wishlist</code> (1 : N):</strong> Customers bookmark clothing items for later purchase.</li>
+        <li><strong><code>users</code> &mdash; [places] &mdash; <code>orders</code> (1 : N):</strong> Each customer can place multiple purchase orders.</li>
+        <li><strong><code>orders</code> &mdash; [contains] &mdash; <code>order_items</code> (1 : N):</strong> Each order is composed of multiple individual apparel items with size and color details.</li>
+        <li><strong><code>orders</code> &mdash; [paid_by] &mdash; <code>payments</code> (1 : 1):</strong> Every order connects to a transaction/payment record.</li>
+        <li><strong><code>users</code> &mdash; [submits] &mdash; <code>contacts</code> (1 : N):</strong> Inquiries submitted via the Contact form.</li>
+        <li><strong><code>users</code> / <code>products</code> &mdash; [writes] &mdash; <code>reviews</code> (1 : N):</strong> Customer star reviews and feedback.</li>
+      </ul>
+    </div>
+
+  </div>
+
+</body>
+</html>

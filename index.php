@@ -14,7 +14,7 @@ include __DIR__ . '/includes/header.php';
 
 <!-- ===== HERO SLIDER ===== -->
 <section class="hero">
-  <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600')">
+  <div class="hero-slide active" style="background-image:url('<?= SITE_URL ?>/assets/images/banners/banner1.jpg')">
     <div class="container hero-content">
       <span class="hero-tag">New Collection 2025</span>
       <h1 class="hero-title">Define Your<br><span>Style Story</span></h1>
@@ -25,7 +25,7 @@ include __DIR__ . '/includes/header.php';
       </div>
     </div>
   </div>
-  <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1600')">
+  <div class="hero-slide" style="background-image:url('<?= SITE_URL ?>/assets/images/banners/banner3.jpg')">
     <div class="container hero-content">
       <span class="hero-tag">Ethnic Wear</span>
       <h1 class="hero-title">Tradition Meets<br><span>Modern Grace</span></h1>
@@ -36,7 +36,7 @@ include __DIR__ . '/includes/header.php';
       </div>
     </div>
   </div>
-  <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1600')">
+  <div class="hero-slide" style="background-image:url('<?= SITE_URL ?>/assets/images/banners/banner2.jpg')">
     <div class="container hero-content">
       <span class="hero-tag">Men's Edit</span>
       <h1 class="hero-title">Dress Sharp.<br><span>Live Bold.</span></h1>

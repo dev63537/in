@@ -481,7 +481,7 @@ ul {
 }
 
 .nav-spacer {
-  height: 80px
+  height: 5px
 }
 
 /* ── HERO ── */
@@ -489,7 +489,7 @@ ul {
   position: relative;
   height: 100vh;
   min-height: 600px;
-  overflow: hidden
+  overflow: hidden;
 }
 
 .hero-slide {
@@ -498,70 +498,81 @@ ul {
   opacity: 0;
   transition: opacity .8s ease;
   background-size: cover;
-  background-position: center
+  background-position: center;
+  display: flex;
+  align-items: center;
 }
 
 .hero-slide.active {
-  opacity: 1
+  opacity: 1;
 }
 
 .hero-slide::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(41, 36, 33, .8) 0%, rgba(41, 36, 33, .35) 100%)
+  background: linear-gradient(135deg, rgba(41, 36, 33, .8) 0%, rgba(41, 36, 33, .35) 100%);
+  z-index: 1;
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  height: 100%;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 35px;
+  padding: 100px 20px 40px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 20px
 }
-
 
 .hero-tag {
   display: inline-block;
+  align-self: flex-start;
   background: transparent;
   border: none;
-  color: #A75F37;
+  color: var(--copper);
   padding: 0;
-  font-size: .8rem;
+  font-size: .85rem;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 20px
+  margin: 0 0 16px 0;
+  line-height: 1.2;
 }
 
 .hero-title {
   font-family: 'Marcellus', 'Cormorant Garamond', serif;
-  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-size: clamp(2.5rem, 5.5vw, 4.8rem);
   color: var(--white);
   line-height: 1.15;
-  margin-bottom: 16px;
+  margin: 0 0 16px 0;
   font-weight: 300;
+  min-height: 2.3em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .hero-title span {
-  color: var(--tan)
+  color: var(--tan);
 }
 
 .hero-subtitle {
   color: rgba(242, 231, 221, .85);
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
-  max-width: 500px;
-  margin-bottom: 32px
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  max-width: 520px;
+  min-height: 3.2em;
+  margin: 0 0 32px 0;
+  line-height: 1.5;
 }
 
 .hero-btns {
   display: flex;
   gap: 16px;
-  flex-wrap: wrap
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .hero-controls {
@@ -2706,7 +2717,7 @@ color: var(--tan)
   }
 
   .hero-content {
-    padding: 0 5%
+    padding: 80px 20px 40px 20px;
   }
 
   .hero-arrow {
@@ -2865,13 +2876,16 @@ color: var(--tan)
   }
 
   .hero-title {
-    font-size: clamp(1.8rem, 8vw, 2.8rem)
+    font-size: clamp(1.8rem, 8vw, 2.8rem);
+    min-height: 2.3em;
+    margin-bottom: 12px;
   }
 
   .hero-tag {
-    font-size: .7rem;
-    padding: 4px 12px;
-    letter-spacing: 1px
+    font-size: .75rem;
+    padding: 0;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
   }
 
   .hero-btns {

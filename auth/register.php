@@ -5,18 +5,34 @@ if (isLoggedIn()) { redirect(SITE_URL . '/index.php'); }
 
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!verifyCsrf($_POST['csrf_token'] ?? '')) { $errors[] = 'Invalid request.'; }
-    else {
+    if (!verifyCsrf($_POST['csrf_token'] ?? '')) {
+        $errors[] = 'Invalid request.';
+    } else {
         $name     = trim($_POST['name'] ?? '');
         $email    = trim($_POST['email'] ?? '');
         $phone    = trim($_POST['phone'] ?? '');
         $password = $_POST['password'] ?? '';
         $confirm  = $_POST['confirm_password'] ?? '';
 
-        if (!$name)                             $errors[] = 'Full name is required.';
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = 'Valid email required.';
-        if (strlen($password) < 6)              $errors[] = 'Password must be at least 6 characters.';
-        if ($password !== $confirm)             $errors[] = 'Passwords do not match.';
+        if (!$name) {
+            $errors[] = 'Full name is required.';
+        } elseif (!preg_match('/^[A-Za-z\s]+$/', $name)) {
+            $errors[] = 'Name must contain only letters and spaces.';
+        }
+
+        if ($phone && !preg_match('/^[0-9\+\-\s]{7,15}$/', $phone)) {
+            $errors[] = 'Phone number must contain only digits and valid phone characters.';
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors[] = 'Valid email required.';
+        }
+        if (strlen($password) < 6) {
+            $errors[] = 'Password must be at least 6 characters.';
+        }
+        if ($password !== $confirm) {
+            $errors[] = 'Passwords do not match.';
+        }
 
         if (!$errors) {
             $exists = dbFetchOne("SELECT id FROM users WHERE email = ?", [$email]);
@@ -68,7 +84,7 @@ $pageTitle = "Register — Gujju Clothing";
       <div class="form-group">
         <label>Full Name</label>
         <div class="input-icon"><i class="fa fa-user"></i>
-          <input type="text" name="name" required placeholder="Your full name" value="<?= e($_POST['name'] ?? '') ?>"/>
+          <input type="text" name="name" required placeholder="Your full name" pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed" value="<?= e($_POST['name'] ?? '') ?>"/>
         </div>
       </div>
       <div class="form-group">
@@ -80,7 +96,7 @@ $pageTitle = "Register — Gujju Clothing";
       <div class="form-group">
         <label>Phone Number</label>
         <div class="input-icon"><i class="fa fa-phone"></i>
-          <input type="tel" name="phone" placeholder="+91 98765 43210" value="<?= e($_POST['phone'] ?? '') ?>"/>
+          <input type="tel" name="phone" placeholder="+91 98765 43210" pattern="[0-9]+" title="Only digits are allowed" value="<?= e($_POST['phone'] ?? '') ?>"/>
         </div>
       </div>
       <div class="form-group">

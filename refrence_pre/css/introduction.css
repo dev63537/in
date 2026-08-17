@@ -1,0 +1,226 @@
+/* ============================================
+   InventMitra — Introduction Section
+   Visual comparison panel + numbered
+   concept cards for inventory explanation
+   ============================================ */
+
+/* ─── Comparison Panel ─── */
+.intro-comparison {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+    width: 100%;
+    max-width: var(--container-max);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    position: relative;
+    margin-bottom: var(--space-12);
+}
+
+.intro-comparison::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.08), transparent);
+}
+
+/* ─── Comparison Side ─── */
+.intro-side {
+    padding: var(--space-10);
+    display: flex;
+    flex-direction: column;
+}
+
+.intro-side-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+}
+
+.intro-side-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.intro-side-title {
+    font-size: var(--text-h3);
+    font-weight: var(--weight-semibold);
+}
+
+/* Traditional side (left) */
+.intro-traditional {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.03), transparent);
+}
+
+.intro-traditional .intro-side-icon {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.15);
+}
+
+.intro-traditional .intro-side-title {
+    color: #fca5a5;
+}
+
+/* Digital side (right) */
+.intro-digital {
+    background: linear-gradient(135deg, transparent, rgba(59, 130, 246, 0.03));
+}
+
+.intro-digital .intro-side-icon {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+}
+
+.intro-digital .intro-side-title {
+    color: var(--accent-blue-light);
+}
+
+/* ─── Comparison Items ─── */
+.intro-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    flex: 1;
+}
+
+.intro-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    font-size: var(--text-small);
+    color: var(--text-secondary);
+    line-height: var(--leading-normal);
+}
+
+.intro-item-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.intro-traditional .intro-item-icon {
+    background: rgba(239, 68, 68, 0.08);
+}
+
+.intro-digital .intro-item-icon {
+    background: rgba(59, 130, 246, 0.08);
+}
+
+/* ─── Center Divider ─── */
+.intro-divider {
+    width: 1px;
+    background: var(--glass-border);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.intro-divider-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--bg-primary);
+    border: 1px solid var(--glass-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+}
+
+/* ─── Concept Cards Row ─── */
+.intro-concepts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    width: 100%;
+    max-width: var(--container-max);
+}
+
+.intro-concept-card {
+    padding: var(--space-6);
+    display: flex;
+    gap: var(--space-5);
+    align-items: flex-start;
+}
+
+.intro-concept-number {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: var(--weight-extrabold);
+    line-height: 1;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0.4;
+    flex-shrink: 0;
+    min-width: 48px;
+}
+
+.intro-concept-content h4 {
+    font-size: var(--text-body);
+    font-weight: var(--weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.intro-concept-content p {
+    font-size: var(--text-small);
+    color: var(--text-muted);
+    line-height: var(--leading-relaxed);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 960px) {
+    .intro-comparison {
+        grid-template-columns: 1fr;
+    }
+
+    .intro-divider {
+        width: 100%;
+        height: 1px;
+    }
+
+    .intro-divider-badge {
+        top: 50%;
+        left: 50%;
+    }
+
+    .intro-concepts {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+}
+
+@media (max-width: 640px) {
+    .intro-side {
+        padding: var(--space-6);
+    }
+
+    .intro-concept-card {
+        padding: var(--space-4);
+    }
+}
